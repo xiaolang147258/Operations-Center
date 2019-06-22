@@ -1,0 +1,379 @@
+.nav-small {
+  padding-right: 0 !important;
+}
+/* Start iconfont */
+.nav-small .nav.side-menu li a i {
+  display: inline-block;
+}
+
+.icon-wrap a i {
+  font-size: 23px;
+}
+
+.icon-wrap a i {
+  font-size: 23px;
+}
+
+.icon-wrap a span {
+  display: inline-block;
+  margin-top: 7px;
+}
+/* End iconfont */
+
+/** Start container  **/
+.container, .main_container {
+  min-height: 100%;
+  height: 100%;
+}
+
+.container-fluid {
+  min-height: calc(100% - 50px);
+}
+
+.nav-small .small-logo img {
+  margin: 0;
+}
+/** End container  **/
+
+/** Start sidebar menu **/
+.dropdown-menu li .btn-outline.btn-primary {
+  width: 100%;
+  height: 32px;
+  border: none;
+  padding: 0;
+  text-align: left;
+  background: #fff;
+}
+
+.dropdown-menu li .btn-outline.btn-primary a {
+  width: 100%;
+}
+/** End sidebar menu **/
+
+/** Start sidebar menu **/
+.nav_title {
+  line-height: 50px;
+  font-size: 20px;
+  color: #e7e7e7;
+  text-align: center;
+  overflow: hidden;
+}
+
+.menu_section {
+  margin-top: 42px;
+}
+
+.page-main-header .breadcrumb {
+  float: left;
+}
+/** End sidebar menu **/
+.background-tab li a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+/* Start tab */
+
+/* End tab */
+
+/** Start table **/
+tbody tr td input {
+  margin-left: -4px !important;
+}
+
+table.dataTable.no-footer {
+  border-bottom: 1px solid #ccc;
+}
+/** End table **/
+
+/** Start select **/
+.mseeage-choose>div:first-child, .check-choose>div:first-child {
+  padding-left: 0;
+}
+
+.mseeage-choose, .check-choose {
+  margin-top: 8px;
+}
+
+.form-group {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/** End selset **/
+
+/** Start pagination **/
+ul.pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input-group-addon {
+  background-color: #fff;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  box-shadow: 0 0 0 #fff;
+}
+/** End pagination **/
+
+/** Start operation **/
+table tbody {
+  color: #000;
+}
+
+thead tr th, tbody tr td {
+  text-align: center;
+}
+
+tbody .time-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+tbody .time-item span {
+  height: 24px;
+  line-height: 24px;
+}
+
+.operation-wrap>div, .operation-wrap>div a{
+  display: inline-block;
+  cursor: pointer;
+  color: #4390ff;
+  height: 24px;
+  line-height: 24px;
+}
+
+#check-list thead tr>th:first-child {
+  width: auto !important;
+}
+
+thead tr>th:first-child label {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+thead #msgCheckAll, #listCheckAll {
+  margin-top: 0;
+  cursor: pointer;
+}
+
+tbody .dt-body-center {
+  text-indent: -2em;
+}
+
+#unsettle-modal .operation {
+  display: inline-block;
+  cursor: pointer;
+  color: #4390ff;
+}
+/** End operation **/
+
+/** Start pagination **/
+.pagination-wrap, .pagination-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pagination-wrap {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.pageJump input {
+  width: 46px;
+}
+
+.pagination-wrap a[aria-label] {
+  display: none;
+}
+
+.pagination-left {
+  height: 34px;
+  line-height: 34px;
+  padding: 0 3px;
+  min-width: 144px;
+  text-align: center;
+  border-radius: 4px;
+  color: #1890ff;
+  border: 1px solid #1890ff;
+  margin-right: 15px;
+}
+
+.pagination-wrap ul {
+  margin: 0;
+}
+
+.pagination-wrap li a {
+  color: rgba(0,0,0,.65);
+  border-radius: 4px;
+}
+
+.pagination-wrap li.active a {
+  background-color: #409eff;
+  color: #fff;
+  border: 1px solid #409eff;
+}
+
+.pagination-wrap li.active a:hover {
+  background-color: #409eff;
+  border: 1px solid #409eff;
+}
+
+.pageJump .button, .pageJump input {
+  color: rgba(0,0,0,.65);
+}
+
+.pageJump {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pageJump .button {
+  color: rgba(0,0,0,.65);
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+.pageJump input {
+  border-radius: 4px;
+}
+/** End pagination **/
+
+/** Start operation buttons **/
+.select-btns {
+  margin: 20px 0;
+}
+
+.select-btns .btn, .check-choose .btn, .mseeage-choose .btn {
+  border-radius: 4px;
+}
+
+.select-btns button:first-child {
+  margin-right: 15px;
+}
+/** End operation buttons **/
+
+/* Start 查看详情 */
+#settled-modal h4, #settling-modal h4, #unsettle-modal h4, #modify-modal h4, #repair-modal h4, #submit-modal h4 {
+  text-align: center;
+}
+
+#settled-modal .modal-body, #settling-modal .modal-body, #unsettle-modal .modal-body, #modify-modal .modal-body, #repair-modal .modal-body, #submit-modal .modal-body  {
+  padding: 15px 30px;
+  max-height: 400px;
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+#settled-modal .modal-body>p, #settling-modal .modal-body>p, #unsettle-modal .modal-body>p, #modify-modal .modal-body>p, #repair-modal .modal-body>p, #submit-modal .modal-body>p {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#settled-modal .modal-body .title, #settling-modal .modal-body .title, #unsettle-modal .modal-body .title, #modify-modal .modal-body .title, #repair-modal .modal-body .title, #submit-modal .modal-body .title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
+}
+
+#settled-modal .modal-body .warning, #settling-modal .modal-body .warning, #unsettle-modal .modal-body .warning, #submit-modal .modal-body .warn-detail {
+  color: #f56c6c;
+}
+
+#submit-modal .modal-body .warn-detail {
+  margin: 15px 0 20px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#submit-modal .modal-body .warn-detail img {
+  width: 24px;
+  height: 24px;
+  margin-right: 1em;
+}
+
+#settled-modal #settled-table, #settling-modal #settling-table, #unsettle-modal #unsettle-table {
+  margin-bottom: 25px !important;
+}
+
+#settled-modal #settled-table .settled-status, #settled-modal #settled-table .unsettle-status {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: #d3d9df;
+  border-radius: 4px;
+  color: #5e5e5e;
+}
+
+#settling-modal #settling-table .settled-status, #settling-modal #settling-table .unsettle-status {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: #d3d9df;
+  border-radius: 4px;
+  color: #5e5e5e;
+}
+
+#unsettle-modal #unsettle-table .settled-status, #unsettle-modal #unsettle-table .unsettle-status {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: #d3d9df;
+  border-radius: 4px;
+  color: #5e5e5e;
+}
+
+#settled-modal #settled-table .unsettle-status, #settling-modal #settling-table .unsettle-status, #unsettle-modal #unsettle-table .unsettle-status {
+  color: #fff;
+  background-color: #f56c6c;
+}
+
+#modify-table .nav>li>a, #modify-table .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  padding: 2px 12px;
+  margin-bottom: 5px;
+}
+
+#repair-table .nav>li>a, #repair-table .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  padding: 2px 12px;
+  margin-bottom: 5px;
+}
+
+#modify-modal #modify-table, #repair-modal #repair-table {
+  margin-bottom: 20px !important;
+}
+
+#modify-table thead tr th:first-child, #repair-table thead tr th:first-child {
+  white-space: nowrap;
+}
+
+#modify-modal .btn-wrap, #repair-modal .btn-wrap, #submit-modal .btn-wrap {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#modify-modal .btn-wrap .btn, #repair-modal .btn-wrap .btn, #submit-modal .btn-wrap .btn {
+  border-radius: 4px;
+}
+
+#submit-modal .btn-wrap .btn:first-child {
+  margin-right: 20px;
+}
+
+#submit-modal thead th, #submit-modal tbody td {
+  white-space: nowrap;
+}
+
+#submit-modal #submit-table_wrapper>div:nth-child(2) {
+  overflow-x: scroll;
+}
+/* End 查看详情 */

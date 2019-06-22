@@ -1,0 +1,26 @@
+.warning-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 80px 0;
+}
+
+.warning-wrap>img {
+  width: 135px;
+  height: 135px;
+}
+
+.warning-wrap .warning {
+  color: #f56c6c;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.warning-wrap>a {
+  display: inline-block;
+}
+
+.warning-wrap .btn {
+  border-radius: 4px;
+}

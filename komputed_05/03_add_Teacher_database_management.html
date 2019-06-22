@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="bootstrap default admin template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>添加/编辑教师</title>
+    
+	<!-- Start page plugin css -->
+    <link rel="stylesheet" href="../assets/global/plugins/Waves/dist/waves.min.css" />
+    <link rel="stylesheet" href="../assets/global/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/icons_fonts/font-awesome/css/font-awesome.min.css" />
+    <!-- End global css -->
+    
+    <!-- Start page plugin css -->
+    <link rel="stylesheet" href="../assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="../assets/global/plugins/datatables/media/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/global/plugins/jqvmap/dist/jqvmap.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/global/js/bootstrap-datepicker/css/datepicker-custom.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/global/js/bootstrap-timepicker/css/timepicker.css" />
+    <link rel="stylesheet" type="text/css"
+      href="../assets/global/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+    <!-- End page plugin css -->
+    
+    <!-- Start template global css -->
+    <link href="../assets/global/css/components.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/global/css/bootstrap-select.min.css">
+    <!-- End template global css -->
+    
+    <!-- Start layout css -->
+    <link rel="stylesheet" href="../css/font/iconfont.css">
+    <link rel="stylesheet" href="../assets/layouts/layouts_left_icon_menu/left_icon_menu_layout.min.css" />
+    <link rel="stylesheet" href="../css/pagination.css">
+    <!-- End layout css -->
+    
+    <link rel="stylesheet" href="../css/course-file.css">
+    
+    <!-- Start favicon ico -->
+    <link rel="icon" href="../assets/favicon/prince.ico" type="image/x-icon" />
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/prince-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/prince-180x180.png">
+	
+	<style type="text/css">
+		#dabtn button{
+			margin-bottom: 5px;
+		}
+		.radio-button{
+			float: left;
+			margin-top: 5px;
+			margin-right: 7px;
+			height: 100%;
+			
+			}
+			.radio-button p{
+				margin-top: 3px;
+				margin-left: -4px;
+			}
+			.checkbox{
+			    /* float: left; */
+			  	margin-top:-5px;
+			 }
+		    .checkbox label{
+				height: 25px;
+				margin-top: 10px;
+			}
+			.img_box{
+				width: 300px;
+				height: 200px;
+				float: left;
+				margin-top: 40px;
+				margin-right: 20px;
+			}
+			.img_box p{
+				font-size:17px;
+				float: left;
+				font-weight:600;
+			}
+			.inpboder{
+				width: 200px;
+				height: 200px;
+				float: left;
+                /* background: red; */
+				margin-left:10px;
+				position: relative;
+				overflow: hidden;
+			}
+			.inpboder input{
+				width: 100%;
+				height: 100%;
+				color:transparent;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 10;
+				BACKGROUND-COLOR: transparent;opacity:0;
+			}
+			.jia{
+				width: 100%;
+				height: 100%;
+				border: 2px dashed #9C9C9C;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				font-weight:300;
+			}
+			#imgsa{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.url_img{
+				width: 100%;
+			}
+			#xa{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				top: 0px;
+				right:0px;
+				/* display: none; */
+			}
+			
+			.jia2{
+				width: 100%;
+				height: 100%;
+				border: 2px dashed #9C9C9C;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				font-weight:300;
+			}
+			#imgsa2{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.url_img2{
+				width: 100%;
+			}
+			#xa2{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				top: 0px;
+				right:0px;
+				/* display: none; */
+			}
+			
+			.jia3{
+				width: 100%;
+				height: 100%;
+				border: 2px dashed #9C9C9C;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				font-weight:300;
+			}
+			#imgsa3{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.url_img3{
+				width: 100%;
+			}
+			#xa3{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				top: 0px;
+				right:0px;
+			}
+			
+			.jia4{
+				width: 100%;
+				height: 100%;
+				border: 2px dashed #9C9C9C;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				font-weight:300;
+			}
+			#imgsa4{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.url_img4{
+				width: 100%;
+			}
+			#xa4{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				top: 0px;
+				right:0px;
+			}
+			
+			.jia5{
+				width: 100%;
+				height: 100%;
+				border: 2px dashed #9C9C9C;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				font-weight:300;
+			}
+			#imgsa5{
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.url_img5{
+				width: 100%;
+			}
+			#xa5{
+				width: 30px;
+				height: 30px;
+				position: absolute;
+				top: 0px;
+				right:0px;
+			}
+	</style>
+	
+</head>
+<body class="nav-small">
+<div class="container body">
+    <div class="main_container">
+            <!-- Start Loader -->
+<div class="page-loader">
+    <div class="preloader loading">
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+    </div>
+</div>
+<!-- End Loader -->
+
+<!-- Start Scroll Top -->
+<a href="javascript:" id="scroll" style="display: none;"><span></span></a>
+<!-- End Scroll Top -->
+
+<!-- start Left Menu-->
+<div class="col-md-3 left_color">
+    <div class="left_color scroll-view">
+        <div class="navbar nav_title">
+            <a href="index.html" class="medium-logo">
+                <img src="../assets/global/images/prince_logo.png" alt="medium-logo">
+            </a>
+            <a href="index.html" class="small-logo">
+                <img src="../assets/global/images/prince_logo2.png" alt="small-logo">
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                  <li><a class="waves-effect waves-light" href="../index.html"><i class="fa fa-desktop"></i>工作台</a></li>
+                  <li><a class="waves-effect waves-light" href="../message_center.html"><i
+                        class="fa fa-envelope"></i>消息中心</a></li>
+                  <li><a class="waves-effect waves-light" href="../check_center.html"><i class="fa fa-edit"></i>审核中心</a></li>
+                  <!-- <li><a class="waves-effect waves-light" href="../course_center.html"><i class="fa fa-table"></i>课表中心</a> -->
+                  </li>
+                  <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="../settle_center.html"><i
+                        class="iconfont icon-jiesuan"></i><span>结算中心</span></a>
+                  </li> -->
+                  <li class="icon-wrap">
+                    <a class="waves-effect waves-light" href="javascript:void(0)">
+                      <i class="iconfont icon-ziliaoku"></i><span>资料中心</span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li> <a class="waves-effect waves-light" href="Institutional_management.html" >机构管理</a></li>
+                      <li> <a class="waves-effect waves-light" href="Course_library_management.html">课程库管理</a></li>
+                      <li> <a class="waves-effect waves-light" >师资库管理</a></li>
+                    </ul>
+                  </li>
+                  <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="../data_center.html"><i
+                        class="iconfont icon-shuju"></i><span>数据中心</span></a>
+                  </li> -->
+                  <!-- <li class="icon-wrap">
+                    <a class="waves-effect waves-light" href="javascript:void(0)">
+                      <i class="iconfont icon-iconfontkechengguanli"></i><span>销课中心</span>
+                    </a>
+                    <ul class="nav child_menu">
+                      <li> <a class="waves-effect waves-light" href="../sale_center.html">教师销课</a></li>
+                      <li> <a class="waves-effect waves-light" href="../student_sale.html">学生销课</a></li>
+                    </ul>
+                  </li> -->
+                </ul>
+            </div>
+            
+
+        </div>
+        <!-- /sidebar menu -->
+
+    </div>
+</div>
+<!-- End Left Menu -->
+
+<!-- start top navigation -->
+<div class="top_nav">
+	   <div class="nav_menu">
+	     <nav>
+	       <div class="nav toggle">
+	         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+	         <div class="responsive-logo">
+	           <a href="../index.html">
+	             <img src="../assets/global/images/prince_logo.png" alt="main-logo">
+	           </a>
+	         </div>
+	       </div>
+	       <div class="topbar-right">
+	         <div class="nav navbar-nav navbar-right">
+	           <div class="dropdown user-profile right-icon">
+	             <a href="javascript:" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+	               aria-expanded="false">
+	               <img src="../assets/global/images/user10.jpg" alt="user">
+	             </a>
+	             <ul class="dropdown-menu">
+	               <li>
+	                 <button type="button" class="btn btn-primary btn-outline float-button-light"
+	                   data-target="#primary-modal" data-toggle="modal">
+	                   <a href="javascript:" class="waves-effect waves-light">
+	                     <i class="fa fa-cog" aria-hidden="true"></i>修改密码
+	                   </a>
+	                 </button>
+	               </li>
+	               <li role="separator" class="divider"></li>
+	               <li>
+	                 <a href="../login.html" class="waves-effect waves-light">
+	                   <i class="fa fa-power-off text-danger" aria-hidden="true"></i>退出登录
+	                 </a>
+	               </li>
+	             </ul>
+	           </div>
+	         </div>
+	       </div>
+	     </nav>
+	   </div>
+	 </div>
+<div class="clearfix"></div>
+<!-- End top navigation -->
+    <!-- Start Contain Section -->
+    <div class="container-fluid right_color">
+        <div class="page-main-header">
+            <!-- Page Title -->
+            <!-- <h2 class="page-name-title">添加教师</h2> -->
+            <!--  Breadcrumb -->
+            <ol class="breadcrumb">
+                <!-- <li><a href="#">Home</a></li> -->
+                <li class="text-info">资料中心</li>
+				<li class="text-info">师资库管理</li>
+                <li class="active">添加/编辑教师</li>
+            </ol>
+        </div>
+
+        <div class="contain-section">
+            <div class="contain-inner-section">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						
+                      <div style="width:500px;height: 40px;margin-bottom: 20px;">  
+							   <p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*教师名称:</p>
+                               <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="教师名称">
+                      </div> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 20px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属地区:</p>
+					    <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					        <select title="城市" class="form-control">
+					            <option>广州市</option>
+					            <option>深圳市</option>
+					            <option>湛江市</option>
+					            <option>梅州市</option>
+					        </select>
+					    </div>
+					    
+					    <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					        <select title="城市" class="form-control">
+					            <option>番禺区</option>
+					            <option>深圳市</option>
+					            <option>湛江市</option>
+					            <option>梅州市</option>
+					        </select>
+					    </div>
+					    
+					    <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					        <select title="城市" class="form-control">
+					            <option>南村镇</option>
+					            <option>深圳市</option>
+					            <option>湛江市</option>
+					            <option>梅州市</option>
+					        </select>
+					    </div>
+					  </div> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 20px;padding-left:35px;">  
+					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*学历:</p>
+					            <div style="width:77%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					                <select title="" class="form-control">
+					                    <option>大专</option>
+					                    <option>本科</option>
+					                    <option>中专</option>
+					                </select>
+					            </div>
+					   </div> 
+					   
+					  <div style="width:500px;height: 40px;margin-bottom: 20px;padding-left:35px;">  
+					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*性别:</p>
+					            <div style="width:77%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					                <select title="性别" class="form-control">
+					                    <option>男</option>
+					                    <option>女</option>
+					                </select>
+					            </div>
+					   </div> 
+					  
+					   <div style="width:500px;height: 40px;margin-bottom: 20px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*手机号码:</p>
+					           <input style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="手机号码">
+					  </div> 
+					  
+					   <div style="width:500px;height: 40px;margin-bottom: 20px;padding-left:35px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*生日:</p>
+					       <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					           <select title="" class="form-control">
+					               <option>1997</option>
+					               <option>1996</option>
+					               <option>1995</option>
+					               <option>1994</option>
+					           </select>
+					       </div>
+					       
+					       <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					           <select title="" class="form-control">
+					               <option>1</option>
+					               <option>2</option>
+					               <option>3</option>
+					               <option>4</option>
+					           </select>
+					       </div>
+					       
+					       <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					           <select title="" class="form-control">
+					               <option>1</option>
+					               <option>2</option>
+					               <option>3</option>
+					               <option>4</option>
+					           </select>
+					       </div> 
+							
+							
+					   </div> 
+					   
+					   <div style="width:500px;height: 40px;margin-bottom: 20px;margin-left:0px">  
+					   		<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*教师来源:</p>
+					        <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					            <select title="" class="form-control">
+					                <option>机构</option>
+					                <option>广东省</option>
+					                <option>四川省</option>
+					                <option>湖南省</option>
+					            </select>
+					        </div>
+					        
+					        <div style="width:240px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					            <select title="" class="form-control">
+					                <option>下拉搜索选择学校或机构</option>
+					                <option>深圳市</option>
+					            </select>
+					        </div>
+					   							
+					   </div> 
+					  
+					   <div style="width:500px;height: 40px;margin-bottom: 20px;margin-left:-15px">  
+					   		<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*开户行地区:</p>
+					        <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					            <select title="" class="form-control">
+					                <option>湖南省</option>
+					                <option>广东省</option>
+					                <option>四川省</option>
+					                <option>湖南省</option>
+					            </select>
+					        </div>
+					        
+					        <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					            <select title="" class="form-control">
+					                <option>深圳市</option>
+					                <option>深圳市</option>
+					            </select>
+					        </div>
+					   							
+					   </div> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 20px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*银行卡号:</p>
+					           <input style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="银行卡号">
+					  </div> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 10px;overflow:hidden;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*证件类型:</p>
+					        <div class="form-radio">
+					                    <div class="radio-button">
+					                        <label><input type="radio" checked="checked" name="radio"><i class="helper"></i><p>身份证</p></label>
+					                    </div>
+					                    <div class="radio-button">
+					                        <label><input type="radio" name="radio"><i class="helper"></i><p>护照</p></label>
+					                    </div>
+					                    <div class="radio-button">
+					                        <label><input type="radio" name="radio"><i class="helper"></i><p>港澳台通行证/回乡证</p></label>
+					                    </div>
+					                </div>   
+					  </div> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 20px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*证件号码:</p>
+					           <input style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="证件号码">
+					  </div>
+					  
+					 <div style="width:500px;margin-bottom:10px;height:180px;">  
+					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*授课门类:</p>
+					    
+					     <div id="dabtn" style="width: 70%;float: left;height: 100%;">
+						     <div class="material-design-checkobx" style="float: left;">
+						                    <div class="checkbox">
+						                        <label>
+						                            <input type="checkbox"><i class="helper"></i>思维与创客课程
+						                        </label>
+						                    </div>
+											<div class="checkbox">
+											    <label>
+											        <input type="checkbox"><i class="helper"></i>思维与创客
+											    </label>
+											</div>
+											<div class="checkbox">
+											    <label>
+											        <input type="checkbox"><i class="helper"></i>Checkbox
+											    </label>
+											</div>
+											<div class="checkbox">
+											    <label>
+											        <input type="checkbox"><i class="helper"></i>思维
+											    </label>
+											</div>
+											<div class="checkbox">
+											    <label>
+											        <input type="checkbox"><i class="helper"></i>思维
+											    </label>
+											</div>
+						     </div>
+							  <div class="material-design-checkobx" style="float: left;margin-left:20px;">
+							                <div class="checkbox">
+							                    <label>
+							                        <input type="checkbox"><i class="helper"></i>思维与创客课程
+							                    </label>
+							                </div>
+							 											<div class="checkbox">
+							 											    <label>
+							 											        <input type="checkbox"><i class="helper"></i>思维与创客
+							 											    </label>
+							 											</div>
+							 											<div class="checkbox">
+							 											    <label>
+							 											        <input type="checkbox"><i class="helper"></i>Checkbox
+							 											    </label>
+							 											</div>
+							 											<div class="checkbox">
+							 											    <label>
+							 											        <input type="checkbox"><i class="helper"></i>思维
+							 											    </label>
+							 											</div>
+																		<div class="checkbox">
+																		    <label>
+																		        <input type="checkbox"><i class="helper"></i>思维
+																		    </label>
+																		</div>
+							     </div>
+					     </div>
+					 </div>    
+					 
+			   <div style="width:1200px;height: 480px;">
+				   
+				   <div class="img_box" style="width: 450px;">
+				   	<p>身份证（反面）:</p>
+				   	<div class="inpboder">
+				   		<div class="jia5">+</div>
+				   		<div id="imgsa5">
+				   			<img id="url_img5" src="" alt="">
+				   			<img id="xa5" src="../assets/img/guan.png">
+				   		</div>
+				   		<input type="file" name="file" id="zi5" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
+				   	</div>
+				   </div>	
+				   
+				   <div class="img_box">
+				   	<p>资格证书:</p>
+				   	<div class="inpboder">
+				   		<div class="jia3">+</div>
+				   		<div id="imgsa3">
+				   			<img id="url_img3" src="" alt="">
+				   			<img id="xa3" src="../assets/img/guan.png" >
+				   		</div>
+				   		<input type="file" name="file" id="zi3" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
+				   	</div>
+				   </div>	
+				   
+					<div class="img_box" style="padding-left:18px">
+						<p>职业照:</p>
+						<div class="inpboder">
+							<div class="jia">+</div>
+							<div id="imgsa">
+								<img id="url_img" src="" alt="">
+								<img id="xa" src="../assets/img/guan.png" >
+							</div>
+							<input type="file" name="file" id="zi" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
+						</div>
+					</div>
+						
+					<div class="img_box" style="width:365px;">
+						<p>身份证（正面）:</p>
+						<div class="inpboder">
+							<div class="jia4">+</div>
+							<div id="imgsa4">
+								<img id="url_img4" src="" alt="">
+								<img id="xa4" src="../assets/img/guan.png">
+							</div>
+							<input type="file" name="file" id="zi4" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
+						</div>
+					</div>	
+					
+					<div class="img_box" style="width:450px;">
+						<p>合同盖章页（尾页）:</p>
+						<div class="inpboder">
+							<div class="jia2">+</div>
+							<div id="imgsa2">
+								<img id="url_img2" src="" alt="">
+								<img id="xa2" src="../assets/img/guan.png" >
+							</div>
+							<input type="file" name="file" id="zi2" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
+						</div>
+					</div>	
+					</div>
+					<div style="width: 100%;margin-top: 50px;">
+					   <button style="margin-top:10px;" type="button" class="btn btn-info float-button-light">取消</button>
+					   <button style="margin-top:10px;" type="button" class="btn btn-primary effect effect-1 float-button-light">提交</button>
+					</div> 
+                  </div>
+            </div>
+        </div>
+    </div>
+   <footer class="footer">Copyright © 2018 广州市智托教育科技有限公司 <a class="text-primary"></a>    </footer>    <!-- End Footer Section -->
+   
+	 <div class="modal fade" id="primary-modal">
+	   <div class="modal-dialog" role="document">
+	     <div class="modal-content">
+	       <div class="modal-header primary-modal">
+	         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	           <span aria-hidden="true">&times;</span>
+	         </button>
+	         <h4 class="modal-title">修改密码</h4>
+	       </div>
+	       <div class="modal-body">
+	         <label>新密码</label>
+	         <div class="form-group">
+	           <input class="form-control" value="" placeholder="请输入新密码">
+	         </div>
+	 
+	         <label>确认密码</label>
+	         <div class="form-group">
+	           <input class="form-control" value="" placeholder="请再次输入密码">
+	         </div>
+	       </div>
+	       <div class="modal-footer">
+	         <button type="button" class="btn btn-default float-button-light" data-dismiss="modal">取消</button>
+	         <button type="button" class="btn btn-primary float-button-light">保存</button>
+	       </div>
+	     </div>
+	   </div>
+	 </div>
+</div>
+</div>
+
+<!-- Start core js -->
+ <!-- Start core js -->
+  <script src="../assets/global/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/global/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../assets/global/plugins/Waves/dist/waves.min.js"></script>
+  <script src="../assets/global/plugins/screenfull.js/dist/screenfull.min.js"></script>
+  <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <!-- Start core javascript -->
+
+  <!-- Start global js -->
+  <script src="../assets/global/js/left-icon-menu.min.js"></script>
+  <!-- End global js -->
+
+  <!-- Start page plugin js -->
+  <script src="../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../assets/global/plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
+  <script src="../js/pagination.js"></script>
+  <script src="../assets/global/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="../assets/global/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <!-- End page plugin js -->
+
+  <script src="../js/common.js"></script>
+  <script src="../js/course-file.js"></script>
+
+ <!-- Start global js -->
+
+<script type="text/javascript">
+	
+$('#zi').on('change',function(file){
+		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {
+                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+                console.log(this.result);
+				$('#url_img').attr('src',this.result);
+				$('#imgsa').show();
+				$('#zi').hide();
+				$('.jia').hide();
+            }
+});
+$('#xa').on('click',function(file){
+				$('#url_img').attr('src','');
+				$('#imgsa').hide();
+				$('#zi').show();
+				$('.jia').show();
+});
+
+$('#zi2').on('change',function(file){
+		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {
+                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+                console.log(this.result);
+				$('#url_img2').attr('src',this.result);
+				$('#imgsa2').show();
+				$('#zi2').hide();
+				$('.jia2').hide();
+            }
+});
+$('#xa2').on('click',function(file){
+				$('#url_img2').attr('src','');
+				$('#imgsa2').hide();
+				$('#zi2').show();
+				$('.jia2').show();
+});
+
+$('#zi3').on('change',function(file){
+		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function(){
+                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+                console.log(this.result);
+				$('#url_img3').attr('src',this.result);
+				$('#imgsa3').show();
+				$('#zi3').hide();
+				$('.jia3').hide();
+            }
+});
+$('#xa3').on('click',function(file){
+				$('#url_img3').attr('src','');
+				$('#imgsa3').hide();
+				$('#zi3').show();
+				$('.jia3').show();
+});
+
+$('#zi4').on('change',function(file){
+		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {
+                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+                console.log(this.result);
+				$('#url_img4').attr('src',this.result);
+				$('#imgsa4').show();
+				$('#zi4').hide();
+				$('.jia4').hide();
+            }
+});
+$('#xa4').on('click',function(file){
+				$('#url_img4').attr('src','');
+				$('#imgsa4').hide();
+				$('#zi4').show();
+				$('.jia4').show();
+});
+
+$('#zi5').on('change',function(file){
+		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {
+                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+                console.log(this.result);
+				$('#url_img5').attr('src',this.result);
+				$('#imgsa5').show();
+				$('#zi5').hide();
+				$('.jia5').hide();
+            }
+});
+$('#xa5').on('click',function(file){
+				$('#url_img5').attr('src','');
+				$('#imgsa5').hide();
+				$('#zi5').show();
+				$('.jia5').show();
+});
+</script>
+</body>
+</html>

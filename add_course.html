@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="bootstrap default admin template">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>添加课程</title>
+
+  <!-- Start global css -->
+  <link rel="stylesheet" href="assets/global/plugins/Waves/dist/waves.min.css" />
+  <link rel="stylesheet" href="assets/global/plugins/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/icons_fonts/font-awesome/css/font-awesome.min.css" />
+  <!-- End global css -->
+
+  <!-- Start page plugin css -->
+  <link rel="stylesheet" href="assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="assets/global/plugins/datatables/media/css/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/global/plugins/jqvmap/dist/jqvmap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/global/js/bootstrap-datepicker/css/datepicker-custom.css" />
+  <link rel="stylesheet" type="text/css" href="assets/global/js/bootstrap-timepicker/css/timepicker.css" />
+  <link rel="stylesheet" type="text/css"
+    href="assets/global/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+  <!-- End page plugin css -->
+
+  <!-- Start template global css -->
+  <link href="assets/global/css/components.min.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/global/css/bootstrap-select.min.css">
+  <!-- End template global css -->
+
+  <!-- Start layout css -->
+  <link rel="stylesheet" href="css/font/iconfont.css">
+  <link rel="stylesheet" href="assets/layouts/layouts_left_icon_menu/left_icon_menu_layout.min.css" />
+  <link rel="stylesheet" href="css/pagination.css">
+  <link rel="stylesheet" href="css/webuploader.css">
+  <!-- End layout css -->
+
+  <link rel="stylesheet" href="css/add-course.css">
+
+  <!-- Start favicon ico -->
+  <link rel="icon" href="assets/favicon/prince.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/prince-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/prince-180x180.png">
+  <!-- End favicon ico -->
+
+</head>
+
+<body class="nav-small">
+  <div class="container body">
+    <div class="main_container">
+      <!-- Start Loader -->
+      <div class="page-loader">
+        <div class="preloader loading">
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+        </div>
+      </div>
+      <!-- End Loader -->
+
+      <!-- Start Scroll Top -->
+      <a href="javascript:" id="scroll" style="display: none;"><span></span></a>
+      <!-- End Scroll Top -->
+
+      <!-- start Left Menu-->
+      <div class="col-md-3 left_color">
+        <div class="left_color scroll-view">
+          <div class="navbar nav_title">
+            <a href="index.html" class="medium-logo">
+              <img src="assets/global/images/prince_logo.png" alt="medium-logo">
+            </a>
+            <a href="index.html" class="small-logo">
+              <img src="assets/global/images/prince_logo2.png" alt="small-logo">
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <ul class="nav side-menu">
+                <li><a class="waves-effect waves-light" href="index.html"><i class="fa fa-desktop"></i>工作台</a></li>
+                <li><a class="waves-effect waves-light" href="message_center.html"><i class="fa fa-envelope"></i>消息中心</a></li>
+                <li><a class="waves-effect waves-light" href="check_center.html"><i class="fa fa-edit"></i>审核中心</a></li>
+                <!-- <li><a class="waves-effect waves-light" href="course_center.html"><i class="fa fa-table"></i>课表中心</a>
+                </li> -->
+                <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="settle_center.html"><i class="iconfont icon-jiesuan"></i><span>结算中心</span></a>
+                </li> -->
+                <li class="icon-wrap">
+                  <a class="waves-effect waves-light" href="javascript:void(0)">
+                    <i class="iconfont icon-ziliaoku"></i><span>资料中心</span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li> <a class="waves-effect waves-light" href="./komputed_05/Institutional_management.html">机构管理</a></li>
+                    <li> <a class="waves-effect waves-light" href="./komputed_05/Course_library_management.html">课程库管理</a></li>
+                    <li> <a class="waves-effect waves-light" href="./komputed_05/Teacher_database_management.html">师资库管理</a></li>
+                  </ul>
+                </li>
+                <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="data_center.html"><i class="iconfont icon-shuju"></i><span>数据中心</span></a>
+                </li> -->
+                <!-- <li class="icon-wrap">
+                  <a class="waves-effect waves-light" href="javascript:void(0)">
+                    <i class="iconfont icon-iconfontkechengguanli"></i><span>销课中心</span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li> <a class="waves-effect waves-light" href="sale_center.html">教师销课</a></li>
+                    <li> <a class="waves-effect waves-light" href="student_sale.html">学生销课</a></li>
+                  </ul>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+
+        </div>
+      </div>
+      <!-- End Left Menu -->
+
+      <!-- start top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              <div class="responsive-logo">
+                <a href="index.html">
+                  <img src="assets/global/images/prince_logo.png" alt="main-logo">
+                </a>
+              </div>
+            </div>
+
+            <div class="topbar-right">
+              <div class="nav navbar-nav navbar-right">
+                <div class="dropdown user-profile right-icon">
+                  <a href="javascript:" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="assets/global/images/user10.jpg" alt="user">
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button type="button" class="btn btn-primary btn-outline float-button-light"
+                        data-target="#primary-modal" data-toggle="modal">
+                        <a href="javascript:" class="waves-effect waves-light">
+                          <i class="fa fa-cog" aria-hidden="true"></i>修改密码
+                        </a>
+                      </button>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                      <a href="login.html" class="waves-effect waves-light">
+                        <i class="fa fa-power-off text-danger" aria-hidden="true"></i>退出登录
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <!-- End top navigation -->
+
+      <!-- Start Contain Section -->
+      <div class="container-fluid right_color">
+        <div class="page-main-header">
+          <!--  Breadcrumb -->
+          <ol class="breadcrumb">
+            <li><a href="course_file.html">资料中心</a></li>
+            <li class="active">课程资料管理</li>
+          </ol>
+        </div>
+
+        <div class="contain-section">
+          <div class="contain-inner-section">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="section-body">
+                  <div class="background-tab">
+                    <div class="tab-content">
+                      <div id="add-course" class="tab-pane fade in active">
+                        <h2>添加课程</h2>
+                        <div class="edit-item">
+                          <span class="edit-title">课程名称</span>
+                          <div class="form-group">
+                            <input class="form-control" value="" placeholder="请输入课程名称">
+                          </div>
+                        </div>
+                        <div class="edit-item">
+                          <span class="edit-title">课程门类</span>
+                          <div class="form-group">
+                            <select class="form-control">
+                              <option selected="selected" disabled>请选择课程门类</option>
+                              <option>语文</option>
+                              <option>数学</option>
+                              <option>英语</option>
+                              <option>体育</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="edit-item">
+                          <span class="edit-title">适合年级</span>
+                          <div class="class-range">
+                            <select class="form-control">
+                              <option selected="selected" disabled>请选择年级</option>
+                              <option value="1">1年级</option>
+                              <option value="2">2年级</option>
+                              <option value="3">3年级</option>
+                              <option value="4">4年级</option>
+                              <option value="5">5年级</option>
+                              <option value="6">6年级</option>
+                            </select>
+                            <span>至</span>
+                            <select class="form-control">
+                              <option selected="selected" disabled>请选择年级</option>
+                              <option value="1">1年级</option>
+                              <option value="2">2年级</option>
+                              <option value="3">3年级</option>
+                              <option value="4">4年级</option>
+                              <option value="5">5年级</option>
+                              <option value="6">6年级</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="edit-item">
+                          <span class="edit-title">适合人数</span>
+                          <div class="people-wrap">
+                            <div class="selectpicker-wrap">
+                              <select class="selectpicker" data-size="5" data-live-search="true">
+                                <option selected="selected" disabled data-tokens="ketchup mustard">请选择人数</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                              </select>
+                            </div>
+                            <span>至</span>
+                            <div class="selectpicker-wrap">
+                              <select class="selectpicker" data-size="5" data-live-search="true">
+                                <option selected="selected" disabled data-tokens="ketchup mustard">请选择人数</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="edit-item">
+                          <span class="edit-title">课程目标</span>
+                          <div class="form-group">
+                            <input class="form-control" value="" placeholder="请输入课程目标">
+                          </div>
+                        </div>
+                        <div class="edit-item poster-wrap">
+                          <span class="edit-title">封面图</span>
+                          <div class="fill-content">
+                            <div class="upload-ct">
+                              <div id="uploader" class="clearfix">
+                                <div id="fileList" class="uploader-list"></div>
+                                <div class="btns">
+                                  <span id="picker" class="files">
+                                    <div class="img-list"></div>
+                                    <img src="images/upload.png" alt="">
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            <p class="warning">最多上传1张图片</p>
+                          </div>
+                        </div>
+                        <div class="edit-item feature-course">
+                          <span class="edit-title">课程特色</span>
+                          <ul class="nav nav-pills">
+                            <li role="presentation" class="active nav-item"> <a href="#home10" class="nav-link active"
+                                data-toggle="tab" aria-expanded="false">身体健康</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#profile10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">诚实守信</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#message10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">善于沟通</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#home10" class="nav-link active"
+                                data-toggle="tab" aria-expanded="false">乐学好思</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#profile10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">克己让人</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#message10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">智慧</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#message10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">文明</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#message10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">高雅</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#message10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">乐观向上</a> </li>
+                            <li role="presentation" class="nav-item"> <a href="#message10" class="nav-link"
+                                data-toggle="tab" aria-expanded="false">志存高远</a> </li>
+                          </ul>
+                        </div>
+                        <div class="edit-item outline-wrap">
+                          <span class="edit-title">课程大纲</span>
+                          <textarea id="outline-editor" name="content" style="width:700px;height:300px;"></textarea>
+                        </div>
+                        <div class="edit-item course-intro">
+                          <span class="edit-title">课程简介</span>
+                          <textarea id="introduce-editor" name="content" style="width:700px;height:300px;"></textarea>
+                        </div>
+                        <div class="btn-wrap">
+                          <button type="button" class="btn btn-default float-button-light waves-effect waves-button waves-float waves-light">取消</button>
+                          <button type="button" class="btn btn-primary float-button-light waves-effect waves-button waves-float waves-light">提交</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="primary-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header primary-modal">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">修改密码</h4>
+              </div>
+              <div class="modal-body">
+                <label>新密码</label>
+                <div class="form-group">
+                  <input class="form-control" value="" placeholder="请输入新密码">
+                </div>
+
+                <label>确认密码</label>
+                <div class="form-group">
+                  <input class="form-control" value="" placeholder="请再次输入密码">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default float-button-light" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary float-button-light">保存</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Contain Section -->
+
+      <!-- Start Footer Section -->
+      <footer class="footer">Copyright © 2018 广州市智托教育科技有限公司</footer>
+      <!-- End Footer Section -->
+    </div>
+  </div>
+
+  <!-- Start core js -->
+  <script src="assets/global/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="assets/global/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="assets/global/plugins/Waves/dist/waves.min.js"></script>
+  <script src="assets/global/plugins/screenfull.js/dist/screenfull.min.js"></script>
+  <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <!-- Start core javascript -->
+
+  <!-- Start global js -->
+  <script src="assets/global/js/left-icon-menu.min.js"></script>
+  <!-- End global js -->
+
+  <!-- Start page plugin js -->
+  <script src="assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="assets/global/plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
+  <script src="js/pagination.js"></script>
+  <script src="assets/global/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="assets/global/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script src="js/webuploader.js"></script>
+  <script src="js/kindeditor/kindeditor-all-min.js"></script>
+  <!-- End page plugin js -->
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/add-course.js"></script>
+</body>
+
+</html>

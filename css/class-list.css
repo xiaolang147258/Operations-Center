@@ -1,0 +1,375 @@
+/* Start iconfont */
+.nav-small .nav.side-menu li a i {
+  display: inline-block;
+}
+
+.icon-wrap a i {
+  font-size: 23px;
+}
+
+.icon-wrap a span {
+  display: inline-block;
+  margin-top: 7px;
+}
+/* End iconfont */
+
+/** Start container  **/
+.container, .main_container {
+  min-height: 100%;
+  height: 100%;
+}
+
+.container-fluid {
+  min-height: calc(100% - 50px);
+}
+
+.nav-small .small-logo img {
+  margin: 0;
+}
+/** End container  **/
+
+/** Start sidebar menu **/
+.dropdown-menu li .btn-outline.btn-primary {
+  width: 100%;
+  height: 32px;
+  border: none;
+  padding: 0;
+  text-align: left;
+  background: #fff;
+}
+
+.dropdown-menu li .btn-outline.btn-primary a {
+  width: 100%;
+}
+/** End sidebar menu **/
+
+/** Start sidebar menu **/
+.nav_title {
+  line-height: 50px;
+  font-size: 20px;
+  color: #e7e7e7;
+  text-align: center;
+  overflow: hidden;
+}
+
+.menu_section {
+  margin-top: 42px;
+}
+
+.page-main-header .breadcrumb {
+  float: left;
+}
+
+/** End sidebar menu **/
+
+/** Start table **/
+tr {
+  color: #000;
+}
+
+tbody tr td input {
+  margin-left: -4px !important;
+}
+
+.time-item span, .teacher-item span {
+  display: block;
+}
+
+table.dataTable.no-footer {
+  border-bottom: 1px solid #ccc;
+}
+/** End table **/
+
+/** Start select **/
+.search-wrap {
+  float: left;
+}
+
+.export-wrap {
+  float: right;
+  margin-left: 35px;
+}
+
+.selectpicker-wrap .dropdown {
+  width: 100% !important;
+}
+
+.selectpicker-wrap .dropdown .btn:hover {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+}
+
+.selectpicker-wrap .dropdown-menu {
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  padding: 8px 0;
+}
+
+.selectpicker-wrap .dropdown-menu>.active>a {
+  color: #fff;
+  text-decoration: none;
+  background-color: #007bff;
+}
+
+.selectpicker-wrap .open>.dropdown-toggle.btn-default {
+  color: #212529;
+  background-color: #dae0e5;
+  border-color: #d3d9df;
+}
+
+.selectpicker-wrap .dropdown-menu li {
+  background: #fff;
+}
+
+.mseeage-choose>div:first-child, .check-choose>div:first-child {
+  padding-left: 0;
+}
+
+.mseeage-choose, .check-choose {
+  margin-top: 8px;
+}
+
+.form-group {
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/** End selset **/
+
+/** Start pagination **/
+ul.pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input-group-addon {
+  background-color: #fff;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  box-shadow: 0 0 0 #fff;
+}
+/** End pagination **/
+
+/** Start operation **/
+thead tr th, tbody tr td {
+  text-align: center;
+}
+
+.operation-wrap .detail-btn {
+  margin-right: 10px;
+}
+
+.operation-wrap>div, .operation-wrap>div a {
+  cursor: pointer;
+  color: #4390ff;
+}
+
+
+
+#check-list thead tr>th:first-child {
+  width: auto !important;
+}
+
+thead tr>th:first-child label {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+thead #msgCheckAll, #listCheckAll {
+  margin-top: 0;
+  cursor: pointer;
+}
+
+tbody .dt-body-center {
+  text-indent: -2em;
+}
+/** End operation **/
+
+/** Start pagination **/
+.pagination-wrap, .pagination-right {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pagination-wrap {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pageJump input {
+  width: 46px;
+}
+
+.pagination-wrap a[aria-label] {
+  display: none;
+}
+
+.pagination-left {
+  height: 34px;
+  line-height: 34px;
+  padding: 0 3px;
+  min-width: 144px;
+  text-align: center;
+  border-radius: 4px;
+  color: #1890ff;
+  border: 1px solid #1890ff;
+  margin-right: 15px;
+}
+
+.pagination-wrap ul {
+  margin: 0;
+}
+
+.pagination-wrap li a {
+  color: rgba(0,0,0,.65);
+  border-radius: 4px;
+}
+
+.pagination-wrap li.active a {
+  background-color: #409eff;
+  color: #fff;
+  border: 1px solid #409eff;
+}
+
+.pagination-wrap li.active a:hover {
+  background-color: #409eff;
+  border: 1px solid #409eff;
+}
+
+.pageJump .button, .pageJump input {
+  color: rgba(0,0,0,.65);
+}
+
+.pageJump {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.pageJump .button {
+  color: rgba(0,0,0,.65);
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+.pageJump input {
+  border-radius: 4px;
+}
+/** End pagination **/
+
+/** Start operation buttons **/
+.select-btns {
+  margin: 20px 0;
+}
+
+.select-btns .btn, .check-choose .btn, .mseeage-choose .btn {
+  border-radius: 4px;
+}
+
+.select-btns button:first-child {
+  margin-right: 15px;
+}
+/** End operation buttons **/
+
+/** Start overlay **/
+.assign-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 1040;
+}
+
+.assign-overlay .model {
+  padding: 12px 0;
+  min-width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1050;
+  background: #fff;
+  color: #000;
+  border-radius: 6px;
+}
+
+.assign-overlay .model .header {
+  padding: 0 20px;
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ccc;
+}
+
+.assign-overlay .model .detail-item:first-child {
+  margin-top: 10px;
+}
+
+.assign-overlay .model .detail-item {
+  font-size: 0;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
+.assign-overlay .model .detail-item>span:first-child {
+  margin-right: 1em;
+}
+
+.assign-overlay .model .detail-item>span {
+  font-size: 14px;
+}
+
+.model .course-time {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.model .course-time span {
+  height: 26px;
+  line-height: 26px;
+}
+
+.model .course-time ul {
+  font-size: 14px;
+}
+
+.model .dropdown {
+  width: 150px !important;
+}
+
+.assign-wrap, .assign-btns {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.assign-btns {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.assign-btns .btn {
+  border-radius: 4px;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.assign-btns .btn:last-child {
+  margin-right: 0;
+}
+
+.assign-wrap>.btn {
+  margin-left: 1em;
+  border-radius: 4px;
+  font-size: 14px;
+}
+/** End overlay **/

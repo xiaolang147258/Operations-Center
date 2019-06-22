@@ -1,0 +1,41 @@
+/* Start iconfont */
+.nav-small .nav.side-menu li a i {
+  display: inline-block;
+}
+
+.icon-wrap a i {
+  font-size: 23px;
+}
+
+.icon-wrap a span {
+  display: inline-block;
+  margin-top: 7px;
+}
+/* End iconfont */
+
+.detail-wrap {
+  padding: 0 25px;
+}
+
+.detail-wrap h1 {
+  text-align: center;
+  font-size: 25px;
+}
+
+.detail-wrap .institution-infor {
+  margin-bottom: 20px;
+}
+
+.detail-wrap .main {
+  text-indent: 2em;
+}
+
+.institution {
+  margin-top: 45px;
+  text-align: right;
+}
+
+.institution p {
+  margin: 0;
+  padding: 0;
+}

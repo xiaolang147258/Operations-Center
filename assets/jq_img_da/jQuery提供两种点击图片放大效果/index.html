@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery提供两种点击图片放大效果</title>
+<link href="css/lanrenzhijia.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<!-- 代码 开始 -->
+<div id="content">
+	<a id="example1" href="images/4006876523_289a8296ee.jpg"><img src="images/4006876523_289a8296ee_m.jpg" /></a>
+	<a id="example2" href="images/3793633099_3e1e53e4ac_o.jpg"><img src="images/3793633099_4f9c3e08b3_m.jpg" /></a>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.imgbox.pack.js"></script>
+<script>
+$(function(){
+	$("#example1").imgbox();
+	$("#example2").imgbox({
+		'speedIn'		: 0,
+		'speedOut'		: 0,
+		'alignment'		: 'center',
+		'overlayShow'	: true,
+		'allowMultiple'	: false
+	});
+});
+</script>
+<!-- 代码 结束 -->
+</body>
+</html>

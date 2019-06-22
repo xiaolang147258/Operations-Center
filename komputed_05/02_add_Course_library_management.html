@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="bootstrap default admin template">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>添加/编辑课程</title>
+    
+	 <!-- Start global css -->
+	<link rel="stylesheet" href="../assets/global/plugins/Waves/dist/waves.min.css" />
+	<link rel="stylesheet" href="../assets/global/plugins/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../assets/icons_fonts/font-awesome/css/font-awesome.min.css" />
+	<!-- End global css -->
+	
+	<!-- Start page plugin css -->
+	<link rel="stylesheet" href="../assets/global/plugins/datatables/media/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" href="../assets/global/plugins/datatables/media/css/dataTables.bootstrap.min.css" />
+	<link rel="stylesheet" href="../assets/global/plugins/jqvmap/dist/jqvmap.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/global/js/bootstrap-datepicker/css/datepicker-custom.css" />
+	<link rel="stylesheet" type="text/css" href="../assets/global/js/bootstrap-timepicker/css/timepicker.css" />
+	<link rel="stylesheet" type="text/css"
+	  href="../assets/global/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+	<!-- End page plugin css -->
+	
+	<!-- Start template global css -->
+	<link href="../assets/global/css/components.min.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="../assets/global/css/bootstrap-select.min.css">
+	<!-- End template global css -->
+	
+	<!-- Start layout css -->
+	<link rel="stylesheet" href="../css/font/iconfont.css">
+	<link rel="stylesheet" href="../assets/layouts/layouts_left_icon_menu/left_icon_menu_layout.min.css" />
+	<link rel="stylesheet" href="../css/pagination.css">
+	<!-- End layout css -->
+	
+	<link rel="stylesheet" href="../css/course-file.css">
+	
+	<!-- Start favicon ico -->
+	<link rel="icon" href="../assets/favicon/prince.ico" type="image/x-icon" />
+	<link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/prince-192x192.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/prince-180x180.png">
+	
+	
+	<link rel="stylesheet" href="../assets/kindeditor/themes/default/default.css" />
+	 
+	  
+	     
+		 
+		 
+		<script charset="utf-8" src="../assets/kindeditor/kindeditor-all-min.js"></script>
+		<script charset="utf-8" src="../assets/kindeditor/lang/zh-CN.js"></script>
+		<script>
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					allowFileManager : true
+				});
+				K('input[name=getHtml]').click(function(e) {
+					alert(editor.html());
+				});
+				K('input[name=isEmpty]').click(function(e) {
+					alert(editor.isEmpty());
+				});
+				K('input[name=getText]').click(function(e) {
+					alert(editor.text());
+				});
+				K('input[name=selectedHtml]').click(function(e) {
+					alert(editor.selectedHtml());
+				});
+				K('input[name=setHtml]').click(function(e) {
+					editor.html('<h3>Hello KindEditor</h3>');
+				});
+				K('input[name=setText]').click(function(e) {
+					editor.text('<h3>Hello KindEditor</h3>');
+				});
+				K('input[name=insertHtml]').click(function(e) {
+					editor.insertHtml('<strong>插入HTML</strong>');
+				});
+				K('input[name=appendHtml]').click(function(e) {
+					editor.appendHtml('<strong>添加HTML</strong>');
+				});
+				K('input[name=clear]').click(function(e) {
+					editor.html('');
+				});
+			});
+		</script>
+	
+	
+	<style type="text/css">
+		#dabtn button{
+			margin-bottom: 5px;
+		}
+		.inp_box{
+			width: 100px;
+			height: 100px;
+			float: left;
+			position: relative;
+			border: 2px dashed #9C9C9C;
+			text-align: center;
+			font-size: 40px;
+			line-height: 100px;
+			margin-top: 5px;
+			/* margin-right: px; */
+		}
+		.inp_box input{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			BACKGROUND-COLOR: transparent;opacity:0;
+			color:transparent;
+		}
+		.ax{
+			color: red;
+			margin-left: 5px;
+			display: none;
+		}
+		.input_box{
+			width: 100%;
+			height: 40px;
+			margin: 10px 0;
+			line-height: 40px;
+			float: left;
+		}
+		.input_box p{
+			   font-size: 15px;
+			   float:left;
+				 margin: 0 10px 0 0;
+				 line-height: 40px;
+				 padding: 0;
+			}
+			.input_box input{
+				float: left;
+				width: 20%;
+				outline:none;
+			}
+			.input_box a{
+				color: red;
+			}
+			
+		.inp_box2{
+			width: 100px;
+			height: 100px;
+			float: left;
+			position: relative;
+			border: 2px dashed #9C9C9C;
+			text-align: center;
+			font-size: 40px;
+			line-height: 100px;
+			margin-top: 5px;
+			/* margin-right: 15px; */
+		}
+		.inp_box2 input{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			BACKGROUND-COLOR: transparent;opacity:0;
+			color:transparent;
+		}
+		.ax2{
+			color: red;
+			margin-left: 5px;
+			display: none;
+		}	
+		.inp_box3{
+			width: 100px;
+			height: 100px;
+			float: left;
+			position: relative;
+			border: 2px dashed #9C9C9C;
+			text-align: center;
+			font-size: 40px;
+			line-height: 100px;
+			margin-top: 5px;
+			
+		}
+		.inp_box3 input{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			BACKGROUND-COLOR: transparent;opacity:0;
+			color:transparent;
+		}
+		.ax3{
+			color: red;
+			margin-left: 5px;
+			display: none;
+		}	
+		.x_img{
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}	
+	</style>
+	
+</head>
+<body class="nav-small">
+<div class="container body">
+    <div class="main_container">
+            <!-- Start Loader -->
+<div class="page-loader">
+    <div class="preloader loading">
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+        <span class="slice"></span>
+    </div>
+</div>
+<!-- End Loader -->
+
+<!-- Start Scroll Top -->
+<a href="javascript:" id="scroll" style="display: none;"><span></span></a>
+<!-- End Scroll Top -->
+
+<!-- start Left Menu-->
+<div class="col-md-3 left_color">
+    <div class="left_color scroll-view">
+        <div class="navbar nav_title">
+            <a href="index.html" class="medium-logo">
+                <img src="../assets/global/images/prince_logo.png" alt="medium-logo">
+            </a>
+            <a href="index.html" class="small-logo">
+                <img src="../assets/global/images/prince_logo2.png" alt="small-logo">
+            </a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+          <div class="menu_section">
+            <ul class="nav side-menu">
+              <li><a class="waves-effect waves-light" href="../index.html"><i class="fa fa-desktop"></i>工作台</a></li>
+              <li><a class="waves-effect waves-light" href="../message_center.html"><i
+                    class="fa fa-envelope"></i>消息中心</a></li>
+              <li><a class="waves-effect waves-light" href="../check_center.html"><i class="fa fa-edit"></i>审核中心</a></li>
+              <!-- <li><a class="waves-effect waves-light" href="../course_center.html"><i class="fa fa-table"></i>课表中心</a>
+              </li> -->
+              <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="../settle_center.html"><i
+                    class="iconfont icon-jiesuan"></i><span>结算中心</span></a>
+              </li> -->
+              <li class="icon-wrap">
+                <a class="waves-effect waves-light" href="javascript:void(0)">
+                  <i class="iconfont icon-ziliaoku"></i><span>资料中心</span>
+                </a>
+                <ul class="nav child_menu">
+                  <li> <a class="waves-effect waves-light" href="Institutional_management.html" >机构管理</a></li>
+                  <li> <a class="waves-effect waves-light" href="Course_library_management.html" >课程库管理</a></li>
+                  <li> <a class="waves-effect waves-light" href="Teacher_database_management.html">师资库管理</a></li>
+                </ul>
+              </li>
+              <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="../data_center.html"><i
+                    class="iconfont icon-shuju"></i><span>数据中心</span></a>
+              </li> -->
+              <!-- <li class="icon-wrap">
+                <a class="waves-effect waves-light" href="javascript:void(0)">
+                  <i class="iconfont icon-iconfontkechengguanli"></i><span>销课中心</span>
+                </a>
+                <ul class="nav child_menu">
+                  <li> <a class="waves-effect waves-light" href="../sale_center.html">教师销课</a></li>
+                  <li> <a class="waves-effect waves-light" href="../student_sale.html">学生销课</a></li>
+                </ul>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <!-- /sidebar menu -->
+
+    </div>
+</div>
+<!-- End Left Menu -->
+
+<!-- start top navigation -->
+<div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              <div class="responsive-logo">
+                <a href="../index.html">
+                  <img src="../assets/global/images/prince_logo.png" alt="main-logo">
+                </a>
+              </div>
+            </div>
+            <div class="topbar-right">
+              <div class="nav navbar-nav navbar-right">
+                <div class="dropdown user-profile right-icon">
+                  <a href="javascript:" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="../assets/global/images/user10.jpg" alt="user">
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button type="button" class="btn btn-primary btn-outline float-button-light"
+                        data-target="#primary-modal" data-toggle="modal">
+                        <a href="javascript:" class="waves-effect waves-light">
+                          <i class="fa fa-cog" aria-hidden="true"></i>修改密码
+                        </a>
+                      </button>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                      <a href="../login.html" class="waves-effect waves-light">
+                        <i class="fa fa-power-off text-danger" aria-hidden="true"></i>退出登录
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+<div class="clearfix"></div>
+<!-- End top navigation -->
+    <!-- Start Contain Section -->
+    <div class="container-fluid right_color">
+        <div class="page-main-header">
+            <!-- Page Title -->
+            <!-- <h2 class="page-name-title">添加课程</h2> -->
+            <!--  Breadcrumb -->
+            <ol class="breadcrumb">
+                
+                <li class="text-info">资料中心</li>
+                <li class="text-info">课程库管理</li>
+				<li class="active">添加课程</li>
+            </ol>
+        </div>
+
+        <div class="contain-section">
+            <div class="contain-inner-section">
+                    <div style="padding-left:70px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						
+                      <!-- <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+							   <p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属单位:</p>
+                               <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="所属单位">
+                      </div> --> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属地区:</p>
+					            
+								<div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								    <select id="cs" onchange="cs_showImg()" title="城市" class="form-control">
+								        
+								    </select>
+								</div>
+								
+								<div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								    <select id="qy" onchange="qy_showImg()" title="区域" class="form-control">
+								       
+								    </select>
+								</div>
+								
+								<div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+								    <select id="jd" onchange="jd_showImg()" title="街道" class="form-control">
+								        
+								    </select>
+								</div>
+					   </div> 
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属类型:</p>
+					  						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					  						    <select  title="" class="form-control">
+					  						        <option>深</option>
+					  						    </select>
+					  						</div>
+					  </div> 
+					   <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属单位:</p>
+					  						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					  						    <select  title="" class="form-control">
+					  						        <option>深</option>
+					  						    </select>
+					  						</div>
+					  </div> 
+					  
+					  
+					  <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;margin-left: -75px;">*机构/学校课程名称:</p>
+					             <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="课程名称">
+					   </div> 
+					   
+					   <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					   			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;margin-left: -35px;">*平台课程名称:</p>
+					              <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="平台课程名称">
+					    </div> 
+					  
+					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*课程门类:</p>
+						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+						    <select  title="" class="form-control">
+						        <option>深</option>
+						    </select>
+						</div>
+					 </div> 
+					 
+					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*适合年级:</p>
+					     <div style="width:163px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+					         <select title="" class="form-control">
+					             <option>1年级</option>
+								 <option>2年级</option>
+								 <option>3年级</option>
+								 <option>4年级</option>
+							     <option>5年级</option>
+							     <option>6年级</option>
+								 <option>7年级</option>
+								 <option>8年级</option>
+								 <option>9年级</option>
+					         </select>
+					     </div>
+						 <div style="float:left;margin-right:10px;line-height:35px;">——</div>
+						 <div style="width:163px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+						     <select title="" class="form-control">
+								 <option>1年级</option>
+								 <option>2年级</option>
+								 <option>3年级</option>
+								 <option>4年级</option>
+								 <option>5年级</option>
+								 <option>6年级</option>
+								 <option>7年级</option>
+								 <option>8年级</option>
+								 <option>9年级</option>
+						     </select>
+						 </div>
+						 
+					 </div> 
+					 
+					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*适合人数:</p>
+					     <input style="float:left;width:153px;" class="form-control" type="number" value="" placeholder="最小人数">
+					 		<div style="float:left;margin:0 10px;line-height:35px;">——</div>
+					 	 <input style="float:left;width:153px;" class="form-control" type="number" value="" placeholder="最大人数">	
+					 </div> 
+					 
+					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
+					 			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*课程目标:</p>
+					            <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="课程目标">
+					  </div>  
+					 
+					 <div id="bal" style="width:100%;height:120px;margin-bottom:10px;padding-left:17px;">  
+					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*封面图:</p>
+						<!-- 1 -->
+						<div class="inp_box">+
+					        <input style="float:left;width: 70%;" id="chooseImage" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image"  type="file">
+					    </div>
+						<div style="float: left;position: relative;margin-top:5px;margin-right: 24px;">
+							<img style="height: 100px;width:100px;display:none;" id="imgs" src="" alt="">
+							<!-- <a class="ax" >重新上传</a> -->
+							<img class="x_img ax" src="../assets/img/guan.png" alt="">
+						</div>
+						<!-- 2 -->
+						<div class="inp_box2">+
+						    <input style="float:left;width: 70%;" id="chooseImage2" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image"  type="file">
+						</div>
+						<div style="float: left;position: relative;margin-right: 24px;margin-top:5px;">
+							<img style="height: 100px;width:100px;display:none;" id="imgs2" src="" alt="">
+							<!-- <a class="ax2" >重新上传</a> -->
+							<img class="x_img ax2" src="../assets/img/guan.png" alt="">
+						</div>
+						<!-- 3 -->
+						<div class="inp_box3">+
+						    <input style="float:left;width: 70%;" id="chooseImage3" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image"  type="file">
+						</div>
+						<div style="float: left;position: relative;margin-top:5px;">
+							<img style="height: 100px;width:100px;display:none;" id="imgs3" src="" alt="">
+							<!-- <a class="ax3" >重新上传</a> -->
+							<img class="x_img ax3" src="../assets/img/guan.png" alt="">
+						</div>
+						
+						
+					 </div>  
+					 
+					 <div style="width:100%;margin-bottom:30px;float: left;">  
+					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*课程特色:</p>
+					    
+					   <div id="dabtn" style="width:500px;height: 100%;float: left;">
+						     <!-- <button class="btn btn-info float-button-light">身心健康</button> -->
+						     
+					  </div>
+					 </div><br> 
+					 
+					 <p style="font-size: 17px;font-weight:600;padding: 0;margin: 0;height: 30px;width: 100%;float: left;">*课程大纲</p>
+					 <!-- <textarea name="content" style="width:1200px;height:500px;visibility:hidden;"></textarea> -->
+					 
+					 
+					 <div class="input_box" style="margin-top: 10px;"><p>下载模板：</p><button style="float: left;" type="button" class="btn btn-success float-button-light">点击下载模板</button><a>请按照模版格式填写</a></div>
+					 					 
+					 <div class="input_box" style="margin-top: 10px;"><p>上传附件：</p><input id="inp_vc" style="float:left;width:20%;" type="file" placeholder="点击上传附件"></div>
+					 
+					 
+					 <p style="font-size: 17px;font-weight:600;padding: 0;margin-top:20px;float: left;width: 100%;margin-bottom: 10px;">*课程简介</p>
+					 <textarea name="content" style="width:1200px;height:500px;visibility:hidden;"></textarea>
+					 
+                      <button style="margin-top:30px;" type="button" class="btn btn-info float-button-light">取消</button>
+					  <button style="margin-top:30px;" type="button" class="btn btn-primary effect effect-1 float-button-light">提交</button>
+					 
+                  </div>
+            </div>
+        </div>
+    </div>
+<!-- 修改密码弹窗 -->	
+	<div class="modal fade" id="primary-modal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header primary-modal">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	        <h4 class="modal-title">修改密码</h4>
+	      </div>
+	      <div class="modal-body">
+	        <label>新密码</label>
+	        <div class="form-group">
+	          <input class="form-control" value="" placeholder="请输入新密码">
+	        </div>
+	
+	        <label>确认密码</label>
+	        <div class="form-group">
+	          <input class="form-control" value="" placeholder="请再次输入密码">
+	        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default float-button-light" data-dismiss="modal">取消</button>
+	        <button type="button" class="btn btn-primary float-button-light">保存</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+    <!-- End Contain Section -->    <!-- Start Footer Section -->    <footer class="footer">        © 2018 All rights reserved. Template designed by <a class="text-primary" href="http://www.bootstrapmb.com/">Prince</a>    </footer>    <!-- End Footer Section -->
+</div>
+</div>
+
+<!-- Start core js -->
+ <!-- Start core js -->
+
+  <script src="../assets/global/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/global/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../assets/global/plugins/Waves/dist/waves.min.js"></script>
+  <script src="../assets/global/plugins/screenfull.js/dist/screenfull.min.js"></script>
+  <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <!-- Start core javascript -->
+
+  <!-- Start global js -->
+  <script src="../assets/global/js/left-icon-menu.min.js"></script>
+  <!-- End global js -->
+
+  <!-- Start page plugin js -->
+  <script src="../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="../assets/global/plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
+  <script src="../js/pagination.js"></script>
+  <script src="../assets/global/js/bootstrap-select.min.js"></script>
+  <script type="text/javascript" src="../assets/global/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <!-- End page plugin js -->
+
+  <script src="../js/common.js"></script>
+  <script src="../js/course-file.js"></script>
+   
+  <script src="../js/vuex.js"></script>
+  <script type="text/javascript" src="../js/komputed05/02_add_Course_library_management.js"></script>
+ 
+</body>
+</html>

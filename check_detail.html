@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="bootstrap default admin template">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>审核</title>
+
+  <!-- Start global css -->
+  <link rel="stylesheet" href="assets/global/plugins/Waves/dist/waves.min.css" />
+  <link rel="stylesheet" href="assets/global/plugins/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="assets/icons_fonts/font-awesome/css/font-awesome.min.css" />
+  <!-- End global css -->
+
+  <!-- Start page plugin css -->
+  <link rel="stylesheet" href="assets/global/plugins/jqvmap/dist/jqvmap.css" />
+  <!-- End page plugin css -->
+
+  <!-- Start template global css -->
+  <link href="assets/global/css/components.min.css" type="text/css" rel="stylesheet" />
+  <!-- End template global css -->
+
+  <!-- Start layout css -->
+  <link rel="stylesheet" href="css/font/iconfont.css">
+  <link rel="stylesheet" href="assets/layouts/layouts_left_icon_menu/left_icon_menu_layout.min.css" />
+  <link rel="stylesheet" href="css/commen.css">
+  <!-- End layout css -->
+
+  <link rel="stylesheet" href="css/check-detail.css">
+
+  <!-- Start favicon ico -->
+  <link rel="icon" href="assets/favicon/prince.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/prince-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/prince-180x180.png">
+  <!-- End favicon ico -->
+
+</head>
+
+<body class="nav-small">
+  <div class="container body">
+    <div class="main_container">
+      <!-- Start Loader -->
+      <div class="page-loader">
+        <div class="preloader loading">
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+          <span class="slice"></span>
+        </div>
+      </div>
+      <!-- End Loader -->
+
+      <!-- Start Scroll Top -->
+      <a href="javascript:" id="scroll" style="display: none;"><span></span></a>
+      <!-- End Scroll Top -->
+
+      <!-- start Left Menu-->
+      <div class="col-md-3 left_color">
+        <div class="left_color scroll-view">
+          <div class="navbar nav_title">
+            <a href="index.html" class="medium-logo">
+              <img src="assets/global/images/prince_logo.png" alt="medium-logo">
+            </a>
+            <a href="index.html" class="small-logo">
+              <img src="assets/global/images/prince_logo2.png" alt="small-logo">
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <ul class="nav side-menu">
+                <li><a class="waves-effect waves-light" href="index.html"><i class="fa fa-desktop"></i>工作台</a></li>
+                <li><a class="waves-effect waves-light" href="message_center.html"><i class="fa fa-envelope"></i>消息中心</a></li>
+                <li><a class="waves-effect waves-light" href="check_center.html"><i class="fa fa-edit"></i>审核中心</a></li>
+                <!-- <li><a class="waves-effect waves-light" href="course_center.html"><i class="fa fa-table"></i>课表中心</a>
+                </li> -->
+                <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="settle_center.html"><i class="iconfont icon-jiesuan"></i><span>结算中心</span></a>
+                </li> -->
+                <li class="icon-wrap">
+                  <a class="waves-effect waves-light" href="javascript:void(0)">
+                    <i class="iconfont icon-ziliaoku"></i><span>资料中心</span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li> <a class="waves-effect waves-light" href="./komputed_05/Institutional_management.html">机构管理</a></li>
+                    <li> <a class="waves-effect waves-light" href="./komputed_05/Course_library_management.html">课程库管理</a></li>
+                    <li> <a class="waves-effect waves-light" href="./komputed_05/Teacher_database_management.html">师资库管理</a></li>
+                  </ul>
+                </li>
+                <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="data_center.html"><i class="iconfont icon-shuju"></i><span>数据中心</span></a>
+                </li> -->
+                <!-- <li class="icon-wrap">
+                  <a class="waves-effect waves-light" href="javascript:void(0)">
+                    <i class="iconfont icon-iconfontkechengguanli"></i><span>销课中心</span>
+                  </a>
+                  <ul class="nav child_menu">
+                    <li> <a class="waves-effect waves-light" href="sale_center.html">教师销课</a></li>
+                    <li> <a class="waves-effect waves-light" href="student_sale.html">学生销课</a></li>
+                  </ul>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+
+        </div>
+      </div>
+      <!-- End Left Menu -->
+
+      <!-- start top navigation -->
+      <div class="top_nav">
+        <div class="nav_menu">
+          <nav>
+            <div class="nav toggle">
+              <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              <div class="responsive-logo">
+                <a href="index.html">
+                  <img src="assets/global/images/prince_logo.png" alt="main-logo">
+                </a>
+              </div>
+            </div>
+
+            <div class="topbar-right">
+              <div class="nav navbar-nav navbar-right">
+                <div class="dropdown user-profile right-icon">
+                  <a href="javascript:" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="assets/global/images/user10.jpg" alt="user">
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <button type="button" class="btn btn-primary btn-outline float-button-light"
+                        data-target="#primary-modal" data-toggle="modal">
+                        <a href="javascript:" class="waves-effect waves-light">
+                          <i class="fa fa-cog" aria-hidden="true"></i>修改密码
+                        </a>
+                      </button>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li>
+                      <a href="login.html" class="waves-effect waves-light">
+                        <i class="fa fa-power-off text-danger" aria-hidden="true"></i>退出登录
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <!-- End top navigation -->
+
+      <!-- Start Contain Section -->
+      <div class="container-fluid right_color">
+        <div class="page-main-header">
+          <!--  Breadcrumb -->
+          <ol class="breadcrumb">
+            <li><a href="check_center.html">审核中心</a></li>
+            <li class="active">审核</li>
+          </ol>
+        </div>
+
+        <div class="contain-section">
+          <div class="contain-inner-section">
+            <div class="detail-wrap">
+              <div class="detail-item">
+                <span class="indent2">授课类型</span>
+                <p>代理课程</p>
+              </div>
+              <div class="detail-item">
+                <span class="indent2">代理机构</span>
+                <p>新东方</p>
+              </div>
+              <div class="detail-item">
+                <span>代理课程门类</span>
+                <p>体育类</p>
+              </div>
+              <div class="detail-item">
+                <span class="indent2">适合年级</span>
+                <p>1年级/2年级</p>
+              </div>
+              <div class="detail-item">
+                <span class="indent2">课堂人数</span>
+                <p>23</p>
+              </div>
+              <div class="detail-item">
+                <span class="indent2">课程目标</span>
+                <p>育人</p>
+              </div>
+              <div class="detail-item poster-wrap">
+                <span class="indent3">封面图</span>
+                <img src="images/nopicture.png" alt="">
+              </div>
+              <div class="detail-item">
+                <span class="indent2">课程特色</span>
+                <span class="feature-item">诚实守信</span>
+                <span class="feature-item">身心健康</span>
+              </div>
+              <div class="detail-item outline-wrap">
+                <span class="indent2">课程大纲</span>
+                <ol>
+                  <li>基础</li>
+                  <li>技巧</li>
+                  <li>进阶</li>
+                  <li>比赛</li>
+                </ol>
+              </div>
+              <div class="detail-item">
+                <span class="indent2">课程简介</span>
+                <p>培养正确的跑、跳技术，发展身体动作的柔韧性、协调性、灵敏性和平衡能力，注重抓好柔韧、协调和平衡素质敏感期的训练、培养</p>
+              </div>
+              <div class="detail-item">
+                <span class="indent2">原因备注</span>
+                <textarea onkeyup="this.value=this.value.replace(/\s+/g,'')" placeholder="请输入原因备注" rows="4"
+                  id="content"></textarea>
+              </div>
+            </div>
+            <div class="btn-wrap">
+              <button type="button" class="btn btn-default float-button-light">取消</button>
+              <button type="button" class="btn btn-primary float-button-light">接受</button>
+              <button type="button" class="btn btn-primary float-button-light">拒绝</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="primary-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header primary-modal">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">修改密码</h4>
+              </div>
+              <div class="modal-body">
+                <label>新密码</label>
+                <div class="form-group">
+                  <input class="form-control" value="" placeholder="请输入新密码">
+                </div>
+
+                <label>确认密码</label>
+                <div class="form-group">
+                  <input class="form-control" value="" placeholder="请再次输入密码">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default float-button-light" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary float-button-light">保存</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Contain Section -->
+
+      <!-- Start Footer Section -->
+      <footer class="footer">Copyright © 2018 广州市智托教育科技有限公司</footer>
+      <!-- End Footer Section -->
+    </div>
+    <div class="overlay">
+      <div class="model">
+        <img src="images/nopicture.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- Start core js -->
+  <script src="assets/global/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="assets/global/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="assets/global/plugins/Waves/dist/waves.min.js"></script>
+  <script src="assets/global/plugins/screenfull.js/dist/screenfull.min.js"></script>
+  <script src="assets/global/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+  <!-- Start core javascript -->
+
+  <!-- Start global js -->
+  <script src="assets/global/js/left-icon-menu.min.js"></script>
+  <!-- End global js -->
+
+  <script src="js/common.js"></script>
+  <script src="js/check-detail.js"></script>
+</body>
+
+</html>
