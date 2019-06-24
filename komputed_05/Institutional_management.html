@@ -485,6 +485,7 @@
 		    		  console.log(res)
 		    			if(res.code==200){
 								 // alert('删除成功')
+							  num=0;
 		    				  git_act(1);//更新数据
 		    			}
 		    	 }
@@ -588,6 +589,7 @@
 							 $('#inp_iphone').val('')
 							 $('#inp_bili').val('');
 							  $('#inp_dizi').val('');
+							 num=0;
 							 git_act(1);
 							 
 							 if(ider){
@@ -629,8 +631,7 @@
 				// console.log($("#cs").find("option:selected").attr("index"));
 				var index = 0;
 				if(id){index = id}else{index = $("#cs").find("option:selected").attr("index");}
-				if(nu==1){}else{cs_id1 =  $("#cs").find("option:selected").attr("index");}
-				
+				if(nu==1){}else{cs_id1 = $("#cs").find("option:selected").attr("index");}
 				
 				$.ajax({//获取城市数据
 					type: "GET",
@@ -680,6 +681,7 @@
       					  	$('#jd').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`);
       					  }
 									// jd_id1 = res.data[0].street_id;
+									num=0;
 									git_act(1)
       				}
       		 }
@@ -688,6 +690,7 @@
       }
 			function jd_showImg(){
 				 jd_id1 = $("#jd").find("option:selected").attr("index");
+				 num=0;
 				 git_act(1)
 			}
 				

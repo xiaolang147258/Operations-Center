@@ -5,7 +5,20 @@ function initPag(){//分页确定按钮被点击
 	};
 function initPagination(el, pages) {//分页初始化、、控制跳转第几页
 	  Page({num: pages,	startnum: 1,elem: $(el),callback: function (n) {console.log(n);git_act(n)}});
-	}   	  
+	} ; 	  
+
+function dell(i){//删除函数
+  var msg = "确定要删除吗？\n\n请确认！"; 
+  if (confirm(msg)==true){ 
+     $.ajax({type:"delete",url: url_data+"/api/teachers/"+$(i).attr('id'),dataType: 'json',success:res=>{
+				if(res.code==200){
+					console.log(res,'删除结果');
+					git_act(1);//更新教师列表
+				}
+		  }
+	});
+  }else{return false;} 
+}
 
 var num = 0;
 function git_act(pages){//获取教师列表数据
@@ -40,8 +53,8 @@ function git_act(pages){//获取教师列表数据
 						      	<td>番禺</td>
 						      	<td>市桥</td>
 						      	<td class="operation-wrap">
-						      		<a class="edit-btn assing-teacher-btn bian_click">编辑</a>
-						      	    <a href="javascript:void(0)" class="assing-teacher-btn">删除</a>
+						      		<a id=`+res.data[i].teacher_id+` class="edit-btn assing-teacher-btn bian_click">编辑</a>
+						      	    <a id=`+res.data[i].teacher_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
 						      	</td>
 						      </tr>`);
 	 				   }	
@@ -63,7 +76,7 @@ $.ajax({type: "GET",url: url_data+"/api/teacherSourceTypes",dataType: 'json',suc
 	    }
 });
 function js_lyfn(){
-	  js_ly_id = $('#js_ly').find("option:selected").attr("id");git_act(1);
+	  js_ly_id = $('#js_ly').find("option:selected").attr("id");num=0;git_act(1);
  };
 	 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,12 +109,13 @@ function js_lyfn(){
       				if(res.code==200){$('#jd').empty();
 					      $('#jd').append(`<option>选择街道</option>`);
       					  for (var i = 0; i < res.data.length; i++) {$('#jd').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`); };
-      				      git_act(1);
+      				      num=0;
+						  git_act(1);
 					}
       		   }
       	  });
       }
-	function jd_showImg(){jd_id1 = $("#jd").find("option:selected").attr("index");git_act(1);};
+	function jd_showImg(){jd_id1 = $("#jd").find("option:selected").attr("index");num=0;git_act(1);};
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // git_act(1);

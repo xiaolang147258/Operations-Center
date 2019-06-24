@@ -63,7 +63,7 @@ function btn_tabfn(i){//课程标签被点击函数
 		// 				// $(i).css()
 		// 				
 		// 			}
-		// 	},
+		// 	    },
 	  // });
 	   $(i).css({background:'red'});
 	   tab_box.push($(i).attr('id'));
@@ -71,53 +71,65 @@ function btn_tabfn(i){//课程标签被点击函数
 	   console.log(tab_box)
 	}
 };
-
-
-
-$('#chooseImage').on('change',function(file){//第1张封面图上传图片
-		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
-            reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-				$('#imgs').attr('src',this.result);
-				$('#imgs').show();
-				$('.inp_box').hide();
-				// $('#bal').css('height','220px');
-				$('.ax').show()
-            }
+var url1='',url2='',url3='';//存储上传之后的图片url地址
+$('#chooseImage').on('change',function(){//第1张封面图上传图片
+    $('.gif_img').eq(0).show();
+    var formData = new FormData();var filesa = $("#chooseImage")[0].files[0];formData.append("images",filesa);
+    $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+    		    console.log(res,'上传图片');
+    			if(res.code==200){
+					$('.gif_img').eq(0).hide();url1 = res.data.image;
+					
+					var reader = new FileReader();//这是核心,读取操作就是由它完成.
+					reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
+					reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+						$('#imgs').attr('src',this.result);
+						$('#imgs').show();$('.inp_box').hide();$('.ax').show()
+					}
+					 
+    			}
+    	    },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(0).hide();}
+      }); 
 });
  $('.ax').on('click',function(file){//点击重新上传i
-	$('#imgs').attr('src','');$('#imgs').hide();$('.inp_box').show();$('#bal').css('height','120px');$('.ax').hide()
+	url1='';$('#imgs').attr('src','');$('#imgs').hide();$('.inp_box').show();$('#bal').css('height','120px');$('.ax').hide()
 });
 
-//、、、、、、、、、、、、、、、、
-$('#chooseImage2').on('change',function(file){//第2张封面图上传图片
-		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+//、、、、、、、、、、、、、、、、,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+$('#chooseImage2').on('change',function(){//第2张封面图上传图片
+      $('.gif_img').eq(1).show();var formData = new FormData();var filesa = $("#chooseImage2")[0].files[0];formData.append("images",filesa);
+      $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+      	console.log(res,'上传图片');if(res.code==200){
+            $('.gif_img').eq(1).hide();url2 = res.data.image;
+		    var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
             reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-				$('#imgs2').attr('src',this.result);
-				$('#imgs2').show();
-				$('.inp_box2').hide();
-				// $('#bal2').css('height','220px');
-				$('.ax2').show()
-            }
+				$('#imgs2').attr('src',this.result);$('#imgs2').show();$('.inp_box2').hide();$('.ax2').show();
+              }
+		   }
+		},error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(1).hide();}
+	 });
 });
  $('.ax2').on('click',function(file){//点击重新上传
-	$('#imgs2').attr('src','');$('#imgs2').hide();$('.inp_box2').show();$('#bal2').css('height','120px');$('.ax2').hide()
+	url2 = '';$('#imgs2').attr('src','');$('#imgs2').hide();$('.inp_box2').show();$('#bal2').css('height','120px');$('.ax2').hide()
 });
 //、、、、、、、、、、、、、、、、
-$('#chooseImage3').on('change',function(file){//第3张封面图上传图片
+$('#chooseImage3').on('change',function(){//第3张封面图上传图片
+  $('.gif_img').eq(2).show();var formData = new FormData();var filesa = $("#chooseImage3")[0].files[0];formData.append("images",filesa);
+  $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+  	   console.log(res,'上传图片');if(res.code==200){
+  		 $('.gif_img').eq(2).hide();url3 = res.data.image;   
 		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
             reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-				$('#imgs3').attr('src',this.result);
-				$('#imgs3').show();
-				$('.inp_box3').hide();
-				// $('#bal3').css('height','220px');
-				$('.ax3').show()
+				$('#imgs3').attr('src',this.result);$('#imgs3').show();$('.inp_box3').hide();$('.ax3').show()
             }
+		  }
+	   },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(2).hide();}
+    }); 	
 });
  $('.ax3').on('click',function(file){//点击重新上传
-	$('#imgs3').attr('src','');$('#imgs3').hide();$('.inp_box3').show();$('#bal3').css('height','120px');$('.ax3').hide()
+	url3 = '';$('#imgs3').attr('src','');$('#imgs3').hide();$('.inp_box3').show();$('#bal3').css('height','120px');$('.ax3').hide()
 });
 
 

@@ -216,6 +216,7 @@
 				line-height: 200px;
 				font-size: 40px;
 				font-weight:300;
+				position: relative;
 			}
 			#imgsa5{
 				width: 100%;
@@ -234,6 +235,15 @@
 				position: absolute;
 				top: 0px;
 				right:0px;
+			}
+			 .gif_img{
+				width: 40%;
+				height: 40%;
+				position: absolute;
+			    top:31%;
+				left: 30%;
+				z-index:1000;
+				display: none;
 			}
 	</style>
 	
@@ -601,10 +611,10 @@
 					 
 			   <div style="width:1200px;height: 480px;">
 				   
-				   <div class="img_box" style="width: 450px;">
-				   	<p>身份证（反面）:</p>
+				   <div class="img_box" style="width: 370px;">
+				   	<p>身份证（正面）:</p>
 				   	<div class="inpboder">
-				   		<div class="jia5">+</div>
+				   		<div class="jia5">+<img class="gif_img" src="../assets/img/5-121204193R5-50.gif" alt=""></div>
 				   		<div id="imgsa5">
 				   			<img id="url_img5" src="" alt="">
 				   			<img id="xa5" src="../assets/img/guan.png">
@@ -616,7 +626,7 @@
 				   <div class="img_box">
 				   	<p>资格证书:</p>
 				   	<div class="inpboder">
-				   		<div class="jia3">+</div>
+				   		<div class="jia3" style="position:relative;">+<img class="gif_img" src="../assets/img/5-121204193R5-50.gif" alt=""></div>
 				   		<div id="imgsa3">
 				   			<img id="url_img3" src="" alt="">
 				   			<img id="xa3" src="../assets/img/guan.png" >
@@ -625,41 +635,40 @@
 				   	</div>
 				   </div>	
 				   
-					<div class="img_box" style="padding-left:18px">
-						<p>职业照:</p>
-						<div class="inpboder">
-							<div class="jia">+</div>
-							<div id="imgsa">
-								<img id="url_img" src="" alt="">
-								<img id="xa" src="../assets/img/guan.png" >
-							</div>
-							<input type="file" name="file" id="zi" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
-						</div>
-					</div>
-						
-					<div class="img_box" style="width:365px;">
-						<p>身份证（正面）:</p>
-						<div class="inpboder">
-							<div class="jia4">+</div>
-							<div id="imgsa4">
-								<img id="url_img4" src="" alt="">
-								<img id="xa4" src="../assets/img/guan.png">
-							</div>
-							<input type="file" name="file" id="zi4" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
-						</div>
-					</div>	
-					
 					<div class="img_box" style="width:450px;">
 						<p>合同盖章页（尾页）:</p>
 						<div class="inpboder">
-							<div class="jia2">+</div>
+							<div class="jia2"style="position:relative;">+<img class="gif_img" src="../assets/img/5-121204193R5-50.gif"></div>
 							<div id="imgsa2">
 								<img id="url_img2" src="" alt="">
 								<img id="xa2" src="../assets/img/guan.png" >
 							</div>
 							<input type="file" name="file" id="zi2" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
 						</div>
+					</div>
+						
+					<div class="img_box" style="width:365px;">
+						<p>身份证（反面）:</p>
+						<div class="inpboder">
+							<div class="jia4"style="position:relative;">+<img class="gif_img" src="../assets/img/5-121204193R5-50.gif"></div>
+							<div id="imgsa4">
+								<img id="url_img4" src="" alt=""><img id="xa4" src="../assets/img/guan.png">
+							</div>
+							<input type="file" name="file" id="zi4" accept="image/gif,image/jpeg,image/jpg,image/png,image" />
+						</div>
 					</div>	
+					
+					<div class="img_box" style="padding-left:18px">
+						<p>职业照:</p>
+						<div class="inpboder">
+							<div class="jia" style="position:relative;">+<img class="gif_img" src="../assets/img/5-121204193R5-50.gif"></div>
+							<div id="imgsa">
+								<img id="url_img" src="" alt=""><img id="xa" src="../assets/img/guan.png">
+							</div>
+							<input type="file" name="file" id="zi" accept="image/gif,image/jpeg,image/jpg,image/png,image"/>
+						</div>
+					</div>	
+					
 					</div>
 					<div style="width: 100%;margin-top: 50px;">
 					   <button style="margin-top:10px;" type="button" class="btn btn-info float-button-light">取消</button>
@@ -724,105 +733,94 @@
 
   <script src="../js/common.js"></script>
   <script src="../js/course-file.js"></script>
-
+   <script src="../js/vuex.js"></script>
  <!-- Start global js -->
 
 <script type="text/javascript">
-	
-$('#zi').on('change',function(file){
-		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
-            reader.onload = function () {
-                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-                console.log(this.result);
-				$('#url_img').attr('src',this.result);
-				$('#imgsa').show();
-				$('#zi').hide();
-				$('.jia').hide();
-            }
-});
-$('#xa').on('click',function(file){
-				$('#url_img').attr('src','');
-				$('#imgsa').hide();
-				$('#zi').show();
-				$('.jia').show();
-});
 
-$('#zi2').on('change',function(file){
+var url_0='',url_1='';url_2='',url_3='',url_4='';
+$('#zi5').on('change',function(){
+	$('.gif_img').eq(0).show();var formData = new FormData();var filesa = $("#zi5")[0].files[0];formData.append("images",filesa);
+	$.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+		console.log(res,'上传图片');if(res.code==200){
+			$('.gif_img').eq(0).hide();url_0 = res.data.image;
+		    var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+				$('#url_img5').attr('src',this.result);$('#imgsa5').show();$('#zi5').hide();$('.jia5').hide();
+             }
+		   }
+		},error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(0).hide();}
+	 }); 	
+});
+$('#xa5').on('click',function(file){url_0='';$('#url_img5').attr('src','');$('#imgsa5').hide();$('#zi5').show();$('.jia5').show();});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$('#zi3').on('change',function(){
+	$('.gif_img').eq(1).show();var formData = new FormData();var filesa = $("#zi3")[0].files[0];formData.append("images",filesa);
+	$.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+		console.log(res,'上传图片');if(res.code==200){
+			$('.gif_img').eq(1).hide();url_1 = res.data.image;
 		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
-            reader.onload = function () {
-                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-                console.log(this.result);
-				$('#url_img2').attr('src',this.result);
-				$('#imgsa2').show();
-				$('#zi2').hide();
-				$('.jia2').hide();
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function(){//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+				$('#url_img3').attr('src',this.result);$('#imgsa3').show();$('#zi3').hide();$('.jia3').hide();
             }
+	      }
+	   },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(1).hide();}
+    }); 		
 });
-$('#xa2').on('click',function(file){
-				$('#url_img2').attr('src','');
-				$('#imgsa2').hide();
-				$('#zi2').show();
-				$('.jia2').show();
-});
+$('#xa3').on('click',function(file){url_1='';$('#url_img3').attr('src','');$('#imgsa3').hide();$('#zi3').show();$('.jia3').show();});
 
-$('#zi3').on('change',function(file){
-		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
-            reader.onload = function(){
-                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-                console.log(this.result);
-				$('#url_img3').attr('src',this.result);
-				$('#imgsa3').show();
-				$('#zi3').hide();
-				$('.jia3').hide();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$('#zi2').on('change',function(){
+	$('.gif_img').eq(2).show();var formData = new FormData();var filesa = $("#zi2")[0].files[0];formData.append("images",filesa);
+	$.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+		console.log(res,'上传图片');if(res.code==200){
+			$('.gif_img').eq(2).hide();url_2 = res.data.image;
+		    var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+				$('#url_img2').attr('src',this.result);$('#imgsa2').show();$('#zi2').hide();$('.jia2').hide();
             }
+	      }
+	    },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(2).hide();}
+	}); 		
 });
-$('#xa3').on('click',function(file){
-				$('#url_img3').attr('src','');
-				$('#imgsa3').hide();
-				$('#zi3').show();
-				$('.jia3').show();
-});
+$('#xa2').on('click',function(file){ url_2=''; $('#url_img2').attr('src','');$('#imgsa2').hide();$('#zi2').show();$('.jia2').show();});
 
-$('#zi4').on('change',function(file){
-		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
-            reader.onload = function () {
-                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-                console.log(this.result);
-				$('#url_img4').attr('src',this.result);
-				$('#imgsa4').show();
-				$('#zi4').hide();
-				$('.jia4').hide();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$('#zi4').on('change',function(){
+	 $('.gif_img').eq(3).show();var formData = new FormData();var filesa = $("#zi4")[0].files[0];formData.append("images",filesa);
+	$.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+		console.log(res,'上传图片');if(res.code==200){
+			$('.gif_img').eq(3).hide();url_3 = res.data.image;
+		    var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+				$('#url_img4').attr('src',this.result);$('#imgsa4').show();$('#zi4').hide();$('.jia4').hide();
             }
+	       }
+	     },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(3).hide();}
+	}); 		
 });
-$('#xa4').on('click',function(file){
-				$('#url_img4').attr('src','');
-				$('#imgsa4').hide();
-				$('#zi4').show();
-				$('.jia4').show();
+$('#xa4').on('click',function(file){url_3='';$('#url_img4').attr('src','');$('#imgsa4').hide();$('#zi4').show();$('.jia4').show();});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$('#zi').on('change',function(){
+	$('.gif_img').eq(4).show();var formData = new FormData();var filesa = $("#zi")[0].files[0];formData.append("images",filesa);
+	$.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+		console.log(res,'上传图片');if(res.code==200){
+			$('.gif_img').eq(4).hide();url_4 = res.data.image; 
+		    var reader = new FileReader();//这是核心,读取操作就是由它完成.
+            reader.readAsDataURL(filesa);//读取文件的内容,也可以读取文件的URL
+            reader.onload = function () {//当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
+				$('#url_img').attr('src',this.result);$('#imgsa').show();$('#zi').hide();$('.jia').hide();
+            }
+	     }
+	  },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！'); $('.gif_img').eq(4).hide();}
+	}); 		
 });
+$('#xa').on('click',function(file){url_4='';$('#url_img').attr('src','');$('#imgsa').hide();$('#zi').show();$('.jia').show();});
 
-$('#zi5').on('change',function(file){
-		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
-            reader.readAsDataURL(file.currentTarget.files[0]);//读取文件的内容,也可以读取文件的URL
-            reader.onload = function () {
-                //当读取完成后回调这个函数,然后此时文件的内容存储到了result中,直接操作即可
-                console.log(this.result);
-				$('#url_img5').attr('src',this.result);
-				$('#imgsa5').show();
-				$('#zi5').hide();
-				$('.jia5').hide();
-            }
-});
-$('#xa5').on('click',function(file){
-				$('#url_img5').attr('src','');
-				$('#imgsa5').hide();
-				$('#zi5').show();
-				$('.jia5').show();
-});
 </script>
 </body>
 </html>

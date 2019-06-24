@@ -40,13 +40,8 @@
 	<link rel="icon" type="image/png" sizes="192x192" href="../assets/favicon/prince-192x192.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/prince-180x180.png">
 	
-	
 	<link rel="stylesheet" href="../assets/kindeditor/themes/default/default.css" />
 	 
-	  
-	     
-		 
-		 
 		<script charset="utf-8" src="../assets/kindeditor/kindeditor-all-min.js"></script>
 		<script charset="utf-8" src="../assets/kindeditor/lang/zh-CN.js"></script>
 		<script>
@@ -200,7 +195,16 @@
 			position: absolute;
 			top: 0;
 			right: 0;
-		}	
+		}
+	    .gif_img{
+			width: 60%;
+			height: 60%;
+			position: absolute;
+		    top:22%;
+			left: 20%;
+			z-index:1000;
+			display: none;
+		}
 	</style>
 	
 </head>
@@ -456,7 +460,8 @@
 						<!-- 1 -->
 						<div class="inp_box">+
 					        <input style="float:left;width: 70%;" id="chooseImage" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image"  type="file">
-					    </div>
+					        <img class="gif_img" src="../assets/img/5-121204193R5-50.gif" alt="">
+						</div>
 						<div style="float: left;position: relative;margin-top:5px;margin-right: 24px;">
 							<img style="height: 100px;width:100px;display:none;" id="imgs" src="" alt="">
 							<!-- <a class="ax" >重新上传</a> -->
@@ -465,6 +470,7 @@
 						<!-- 2 -->
 						<div class="inp_box2">+
 						    <input style="float:left;width: 70%;" id="chooseImage2" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image"  type="file">
+						    <img class="gif_img" src="../assets/img/5-121204193R5-50.gif" alt="">
 						</div>
 						<div style="float: left;position: relative;margin-right: 24px;margin-top:5px;">
 							<img style="height: 100px;width:100px;display:none;" id="imgs2" src="" alt="">
@@ -474,6 +480,7 @@
 						<!-- 3 -->
 						<div class="inp_box3">+
 						    <input style="float:left;width: 70%;" id="chooseImage3" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image"  type="file">
+						    <img class="gif_img" src="../assets/img/5-121204193R5-50.gif" alt="">
 						</div>
 						<div style="float: left;position: relative;margin-top:5px;">
 							<img style="height: 100px;width:100px;display:none;" id="imgs3" src="" alt="">

@@ -8,10 +8,11 @@ $.ajax({type: "GET",url: url_data+"/api/courseCategories",dataType: 'json',succe
 					 $('#ke_box').append(` <option id=`+res.data[i].id+` >`+res.data[i].name+`</option> `);
 				}	
 			}
-	}
+	   }
 });
 function select_click(){
 	 ke_id=$('#ke_box').find("option:selected").attr("id");
+	 num=0;
 	 git_act(1);
 };
 
@@ -77,9 +78,10 @@ function dell(i){//删除函数
 		    $.ajax({type:"delete",url:url_data+"/api/courses/"+$(i).attr('index_id'),dataType: 'json',success: res=>{
 		    		  console.log(res)
 		    			if(res.code==200){
+							num=0;
 		    				  git_act(1);//更新数据
 		    			}
 		    	 },error:(XMLHttpRequest,textStatus,errorThrown)=>{console.log(errorThrown);alert('发生了错误！');}
 		    });
 		 }else{return false;} 
-	};
+};
