@@ -43,15 +43,15 @@ function git_act(pages){//获取教师列表数据
 						      <tr>
 						      	<td>1</td>
 						      	<td>`+res.data[i].name+`</td>
-						      	<td>本科</td>
-						      	<td>男</td>
+						      	<td>`+res.data[i].edu_degree+`</td>
+						      	<td>`+res.data[i].gender_name+`</td>
 						      	<td>13632451664</td>
-						      	<td>体育与健康课程</td>
-						      	<td>32</td>
-						      	<td>机构新东方培训</td>
-						      	<td>广州</td>
-						      	<td>番禺</td>
-						      	<td>市桥</td>
+						      	<td>`+res.data[i].full_category+`</td>
+						      	<td>0</td>
+						      	<td>`+res.data[i].source_name+`</td>
+						      	<td>`+res.data[i].city_name+`</td>
+						      	<td>`+res.data[i].region_name+`</td>
+						      	<td>`+res.data[i].street_name+`</td>
 						      	<td class="operation-wrap">
 						      		<a id=`+res.data[i].teacher_id+` class="edit-btn assing-teacher-btn bian_click">编辑</a>
 						      	    <a id=`+res.data[i].teacher_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>

@@ -139,6 +139,24 @@ function lx_fn(){
 	git_act(1);
 }
 
+//批量删除与批量已读
+function all_del_du(type){
+	let val = type=='read'?'已读':'删除'
+	var msg = "确定要批量"+val+"吗？\n\n请确认！";
+	if (confirm(msg)==true){
+	  $.ajax({type:"patch",url:url_data+"/api/messages",data:{'type':type,'ids':chebox_id},dataType:'json',success:res=>{
+					if(res.code==200){
+						   alert('操作成功！');
+						   num=0;git_act(1);
+						   chebox_id=[];
+				     }
+			  }
+	  });
+	}else{return false;}
+}
+
+
+
 
 
 

@@ -303,7 +303,7 @@
                     <ul class="nav child_menu">
                       <li> <a class="waves-effect waves-light" href="Institutional_management.html" >机构管理</a></li>
                       <li> <a class="waves-effect waves-light" href="Course_library_management.html">课程库管理</a></li>
-                      <li> <a class="waves-effect waves-light" >师资库管理</a></li>
+                      <li> <a class="waves-effect waves-light" href='Teacher_database_management.html' >师资库管理</a></li>
                     </ul>
                   </li>
                   <!-- <li class="icon-wrap"><a class="waves-effect waves-light" href="../data_center.html"><i
@@ -392,35 +392,26 @@
 						
                       <div style="width:500px;height: 40px;margin-bottom: 20px;">  
 							   <p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*教师名称:</p>
-                               <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="教师名称">
+                               <input id="name_s" style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="教师名称">
                       </div> 
 					  
 					  <div style="width:500px;height: 40px;margin-bottom: 20px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属地区:</p>
 					    <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					        <select title="城市" class="form-control">
-					            <option>广州市</option>
-					            <option>深圳市</option>
-					            <option>湛江市</option>
-					            <option>梅州市</option>
+					        <select id="cs" title="城市" onchange="cs_showImg()" class="form-control">
+					            
 					        </select>
 					    </div>
 					    
 					    <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					        <select title="城市" class="form-control">
-					            <option>番禺区</option>
-					            <option>深圳市</option>
-					            <option>湛江市</option>
-					            <option>梅州市</option>
+					        <select id="qy" title="区域" onchange="qy_showImg()" class="form-control">
+					            
 					        </select>
 					    </div>
 					    
 					    <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					        <select title="城市" class="form-control">
-					            <option>南村镇</option>
-					            <option>深圳市</option>
-					            <option>湛江市</option>
-					            <option>梅州市</option>
+					        <select id="jd" title="街道" onchange="jd_showImg()" class="form-control">
+					           
 					        </select>
 					    </div>
 					  </div> 
@@ -428,10 +419,8 @@
 					  <div style="width:500px;height: 40px;margin-bottom: 20px;padding-left:35px;">  
 					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*学历:</p>
 					            <div style="width:77%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					                <select title="" class="form-control">
-					                    <option>大专</option>
-					                    <option>本科</option>
-					                    <option>中专</option>
+					                <select id="xue" onchange="xue_click()" title="" class="form-control">
+					                    
 					                </select>
 					            </div>
 					   </div> 
@@ -439,7 +428,7 @@
 					  <div style="width:500px;height: 40px;margin-bottom: 20px;padding-left:35px;">  
 					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*性别:</p>
 					            <div style="width:77%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					                <select title="性别" class="form-control">
+					                <select id="sex" title="性别" onchange="sex()" class="form-control">
 					                    <option>男</option>
 					                    <option>女</option>
 					                </select>
@@ -448,96 +437,79 @@
 					  
 					   <div style="width:500px;height: 40px;margin-bottom: 20px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*手机号码:</p>
-					           <input style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="手机号码">
+					           <input  id="iphone_s" style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="手机号码">
 					  </div> 
 					  
 					   <div style="width:500px;height: 40px;margin-bottom: 20px;padding-left:35px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*生日:</p>
 					       <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					           <select title="" class="form-control">
-					               <option>1997</option>
-					               <option>1996</option>
-					               <option>1995</option>
-					               <option>1994</option>
+					           <select id="nian" title="" class="form-control">
+					               
 					           </select>
 					       </div>
 					       
 					       <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					           <select title="" class="form-control">
-					               <option>1</option>
-					               <option>2</option>
-					               <option>3</option>
-					               <option>4</option>
+					           <select id="yue" onchange="yue_fn()" title="" class="form-control">
+					               
 					           </select>
 					       </div>
 					       
 					       <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					           <select title="" class="form-control">
-					               <option>1</option>
-					               <option>2</option>
-					               <option>3</option>
-					               <option>4</option>
+					           <select id="ri" title="" class="form-control">
+					              
 					           </select>
 					       </div> 
-							
 							
 					   </div> 
 					   
 					   <div style="width:500px;height: 40px;margin-bottom: 20px;margin-left:0px">  
 					   		<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*教师来源:</p>
 					        <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					            <select title="" class="form-control">
-					                <option>机构</option>
-					                <option>广东省</option>
-					                <option>四川省</option>
-					                <option>湖南省</option>
+					            <select title="" id="lysa" onchange="ly_fn()" class="form-control">
+					                <option>学校</option>
+									<option>机构</option>
 					            </select>
 					        </div>
 					        
 					        <div style="width:240px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					            <select title="" class="form-control">
-					                <option>下拉搜索选择学校或机构</option>
-					                <option>深圳市</option>
+					            <select title="" id="xue_name" class="form-control">
+					                <option>下拉选择学校或机构</option>
 					            </select>
 					        </div>
 					   							
 					   </div> 
-					  
+				<div id="js_show">	 	  
 					   <div style="width:500px;height: 40px;margin-bottom: 20px;margin-left:-15px">  
 					   		<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*开户行地区:</p>
 					        <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					            <select title="" class="form-control">
-					                <option>湖南省</option>
-					                <option>广东省</option>
-					                <option>四川省</option>
-					                <option>湖南省</option>
+					            <select id="yin_sheng" onchange="sheng_fn()" title="" class="form-control">
+					                
 					            </select>
 					        </div>
 					        
 					        <div style="width:120px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					            <select title="" class="form-control">
-					                <option>深圳市</option>
-					                <option>深圳市</option>
+					            <select id="yin_shi" title="" class="form-control">
+					                
 					            </select>
 					        </div>
 					   							
 					   </div> 
-					  
+				 
 					  <div style="width:500px;height: 40px;margin-bottom: 20px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*银行卡号:</p>
-					           <input style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="银行卡号">
+					           <input id="yin_kid_s" style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="银行卡号">
 					  </div> 
 					  
 					  <div style="width:500px;height: 40px;margin-bottom: 10px;overflow:hidden;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*证件类型:</p>
 					        <div class="form-radio">
-					                    <div class="radio-button">
+					                    <div onclick="zheng_fn(1)" class="radio-button">
 					                        <label><input type="radio" checked="checked" name="radio"><i class="helper"></i><p>身份证</p></label>
 					                    </div>
-					                    <div class="radio-button">
+					                    <div onclick="zheng_fn(2)" class="radio-button">
 					                        <label><input type="radio" name="radio"><i class="helper"></i><p>护照</p></label>
 					                    </div>
-					                    <div class="radio-button">
+					                    <div onclick="zheng_fn(3)" class="radio-button">
 					                        <label><input type="radio" name="radio"><i class="helper"></i><p>港澳台通行证/回乡证</p></label>
 					                    </div>
 					                </div>   
@@ -545,71 +517,29 @@
 					  
 					  <div style="width:500px;height: 40px;margin-bottom: 20px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*证件号码:</p>
-					           <input style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="证件号码">
+					           <input  id="exid_s" style="float:left;width: 70%;" class="form-control" type="number" value="" placeholder="证件号码">
 					  </div>
-					  
-					 <div style="width:500px;margin-bottom:10px;height:180px;">  
+				</div>	  
+					 <div style="width:600px;margin-bottom:10px;float: left;">  
 					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*授课门类:</p>
 					    
 					     <div id="dabtn" style="width: 70%;float: left;height: 100%;">
-						     <div class="material-design-checkobx" style="float: left;">
-						                    <div class="checkbox">
-						                        <label>
-						                            <input type="checkbox"><i class="helper"></i>思维与创客课程
-						                        </label>
-						                    </div>
-											<div class="checkbox">
-											    <label>
-											        <input type="checkbox"><i class="helper"></i>思维与创客
-											    </label>
-											</div>
-											<div class="checkbox">
-											    <label>
-											        <input type="checkbox"><i class="helper"></i>Checkbox
-											    </label>
-											</div>
-											<div class="checkbox">
-											    <label>
-											        <input type="checkbox"><i class="helper"></i>思维
-											    </label>
-											</div>
-											<div class="checkbox">
-											    <label>
-											        <input type="checkbox"><i class="helper"></i>思维
-											    </label>
-											</div>
+							 
+						     <div class="material-design-checkobx" id="men_left" style="float: left;">
+						                  	
 						     </div>
-							  <div class="material-design-checkobx" style="float: left;margin-left:20px;">
-							                <div class="checkbox">
-							                    <label>
-							                        <input type="checkbox"><i class="helper"></i>思维与创客课程
-							                    </label>
-							                </div>
-							 											<div class="checkbox">
-							 											    <label>
-							 											        <input type="checkbox"><i class="helper"></i>思维与创客
-							 											    </label>
-							 											</div>
-							 											<div class="checkbox">
-							 											    <label>
-							 											        <input type="checkbox"><i class="helper"></i>Checkbox
-							 											    </label>
-							 											</div>
-							 											<div class="checkbox">
-							 											    <label>
-							 											        <input type="checkbox"><i class="helper"></i>思维
-							 											    </label>
-							 											</div>
-																		<div class="checkbox">
-																		    <label>
-																		        <input type="checkbox"><i class="helper"></i>思维
-																		    </label>
-																		</div>
+							 
+							  <div class="material-design-checkobx" id="men_right" style="float: left;margin-left:20px;">
+							                
+											
+							 											
 							     </div>
+								 
+								 
 					     </div>
 					 </div>    
 					 
-			   <div style="width:1200px;height: 480px;">
+			   <div style="width:1300px;height: 480px;float: left;">
 				   
 				   <div class="img_box" style="width: 370px;">
 				   	<p>身份证（正面）:</p>
@@ -670,9 +600,9 @@
 					</div>	
 					
 					</div>
-					<div style="width: 100%;margin-top: 50px;">
+					<div style="width: 100%;margin-top: 50px;float: left;">
 					   <button style="margin-top:10px;" type="button" class="btn btn-info float-button-light">取消</button>
-					   <button style="margin-top:10px;" type="button" class="btn btn-primary effect effect-1 float-button-light">提交</button>
+					   <button onclick="git_act()" style="margin-top:10px;" type="button" class="btn btn-primary effect effect-1 float-button-light">提交</button>
 					</div> 
                   </div>
             </div>
@@ -722,7 +652,7 @@
   <!-- Start global js -->
   <script src="../assets/global/js/left-icon-menu.min.js"></script>
   <!-- End global js -->
-
+  
   <!-- Start page plugin js -->
   <script src="../assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
   <script src="../assets/global/plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
@@ -735,7 +665,7 @@
   <script src="../js/course-file.js"></script>
    <script src="../js/vuex.js"></script>
  <!-- Start global js -->
-
+   <script src="../js/komputed05/03_add_Teacher_database_management.js"></script>
 <script type="text/javascript">
 
 var url_0='',url_1='';url_2='',url_3='',url_4='';
