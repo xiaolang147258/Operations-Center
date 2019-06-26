@@ -131,6 +131,39 @@ $('#chooseImage3').on('change',function(){//第3张封面图上传图片
  $('.ax3').on('click',function(file){//点击重新上传
 	url3 = '';$('#imgs3').attr('src','');$('#imgs3').hide();$('.inp_box3').show();$('#bal3').css('height','120px');$('.ax3').hide()
 });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取所属类型下拉数据
+var ly_id = '';
+function ly_fn(){
+	var url = $('#lysa').find("option:selected").html()=='机构'?'institutions':'schools';
+	$.ajax({type:"GET",url:url_data+"/api/"+url,dataType:'json',success:res=>{
+		  // console.log(res)
+	      				if(res.code==200){
+							ly_id = res.data
+							  $('#xue_name').html(''); var htmls = '';
+	      					  for (var i = 0; i < res.data.length; i++) {
+								  htmls+=`<option index=` + res.data[i].institution_id + ` >` + res.data[i].name + `</option>`
+							  };$('#xue_name').append(htmls); 
+	      				}
+	      		  }
+	     });
+};ly_fn();
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取课程门类下拉数据
+$.ajax({type:"GET",url:url_data+"/api/courseCategories",dataType:'json',success:res=>{
+		  console.log(res)
+	      				if(res.code==200){
+							   var htmls = '';
+	      		// 			  for (var i = 0; i < res.data.length; i++) {
+								 //  htmls+=`<option index=` + res.data[i].institution_id + ` >` + res.data[i].name + `</option>`
+							  // };$('#xue_name').append(htmls); 
+	      				}
+	      		  }
+	     });
+
+
+
+
 
 
 

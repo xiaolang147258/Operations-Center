@@ -38,14 +38,14 @@ function git_act(pages){//获取教师列表数据
 				    $('.dataTotal').html(res.meta.to);
 				    if(num==0){initPagination("#msgPage",res.meta.current_page);num=1};
 				    if(res.meta.current_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
+					var htmls = ''
 	 				for(var i=0;i<res.data.length;i++){
-	 					 $('#tr_box').append(`
-						      <tr>
+						htmls+=`<tr>
 						      	<td>1</td>
 						      	<td>`+res.data[i].name+`</td>
 						      	<td>`+res.data[i].edu_degree+`</td>
 						      	<td>`+res.data[i].gender_name+`</td>
-						      	<td>13632451664</td>
+						      	<td>`+res.data[i].phone+`</td>
 						      	<td>`+res.data[i].full_category+`</td>
 						      	<td>0</td>
 						      	<td>`+res.data[i].source_name+`</td>
@@ -53,16 +53,24 @@ function git_act(pages){//获取教师列表数据
 						      	<td>`+res.data[i].region_name+`</td>
 						      	<td>`+res.data[i].street_name+`</td>
 						      	<td class="operation-wrap">
-						      		<a id=`+res.data[i].teacher_id+` class="edit-btn assing-teacher-btn bian_click">编辑</a>
+						      		<a id=`+res.data[i].teacher_id+` onclick='bian(this)' class="edit-btn assing-teacher-btn bian_click">编辑</a>
 						      	    <a id=`+res.data[i].teacher_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
 						      	</td>
-						      </tr>`);
-	 				   }	
+						      </tr>`;
+	 				   };$('#tr_box').append(htmls);
 	 			 }
 	 	   }
 	 });
  };
-
+//编辑被点击
+function bian(thisa){
+	localStorage.terid = $(thisa).attr('id');
+	window.location.href = '03_add_Teacher_database_management.html'//跳转编辑页面
+};
+$('#jia_click').on('click',()=>{//添加按钮被点击
+	localStorage.terid = 0;
+	window.location.href = '03_add_Teacher_database_management.html'//跳转添加页面
+})
 
 //获取教师来源下拉数据
 var js_ly_id = '';//教师来源id

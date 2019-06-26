@@ -377,16 +377,17 @@
 					  <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属类型:</p>
 					  						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					  						    <select  title="" class="form-control">
-					  						        <option>深</option>
+					  						    <select id="lysa" onchange="ly_fn()" title=""  class="form-control">
+					  						        <option>学校</option>
+													<option>机构</option>
 					  						    </select>
 					  						</div>
 					  </div> 
 					   <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					  	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*所属单位:</p>
 					  						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					  						    <select  title="" class="form-control">
-					  						        <option>深</option>
+					  						    <select id="xue_name" title="" class="form-control">
+					  						        <!-- <option>深</option> -->
 					  						    </select>
 					  						</div>
 					  </div> 
@@ -405,7 +406,7 @@
 					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*课程门类:</p>
 						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-						    <select  title="" class="form-control">
+						    <select id="men_lei"  title="" class="form-control">
 						        <option>深</option>
 						    </select>
 						</div>
@@ -576,7 +577,6 @@
   <script src="../js/common.js"></script>
   <script src="../js/course-file.js"></script>
    
-  
   <script type="text/javascript" src="../js/komputed05/02_add_Course_library_management.js"></script>
  
 </body>
