@@ -10,7 +10,7 @@
 			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440}, 
 				success: function(res){
 						if(res.code==200){for (var i = 0; i < res.data.length; i++) {$('#cs').append(`<option index=` + res.data[i].city_id + ` >` + res.data[i].city_name + `</option>`);}}
-						cs_id1 = res.data[0].city_id;cs_showImg(res.data[0].city_id);//获取区域数据
+						cs_id1 = res.data[0].city_id; cs_showImg(res.data[0].city_id);//获取区域数据
 				 }
 			});
 	   function cs_showImg(id){ //城市的option被点击//获取区域数据
@@ -180,11 +180,11 @@ function git_act(){//增加课程函数
 	var ids = $('#lysa').find("option:selected").html(),source_type_id_s = ids=='学校'?2:1;
 	var source_id_s = $('#xue_name').find("option:selected").attr('index');
     var attachments=[];
-	attachments[7]=url_0;
-	attachments[1]=url_1;
-	attachments[2]=url_2;
-	attachments[8]=url_3;
-	attachments[6]=url_4;
+	attachments['7']=url_0;
+	attachments['1']=url_1;
+	attachments['2']=url_2;
+	attachments['8']=url_3;
+	attachments['6']=url_4;
 	
 	var type_s = localStorage.terid==0?'post':'put';
 	var urls = localStorage.terid==0?'':'/'+localStorage.terid;
@@ -294,22 +294,17 @@ if(localStorage.terid==0){}else{//获取详细信息并赋值
 							
 							ke_id_box = category;
 							let full_category = teacher.full_category.split(' ');
+							console.log(full_category);
+							
+							
 							for(var i=0;i<full_category.length;i++){
-								if($('#men_left label a').eq(i).html()==full_category[i]){
-									$('#men_left label input').eq(i).prop('checked', true);
-								};
-							};
-							for(var i=0;i<full_category.length;i++){
-								if($('#men_right label a').eq(i).html()==full_category[i]){
-									$('#men_right label input').eq(i).prop('checked', true);
+								for(var j=0;j<full_category.length;j++){
+									if($('#dabtn label a').eq(j).html()==full_category[i]){
+									      $('#dabtn label input').eq(i).prop('checked', true);
+								    }
 								}
 							};
 							
-							for(var i=0,length=attachment.length;i<length;i++){
-								if($('#men_right label a').eq(i).html()==full_category[i]){
-									$('#men_right label input').eq(i).prop('checked', true);
-								}
-							};
 							
 							url_0 = attachment[1].url;
 							url_1 = attachment[3].url;

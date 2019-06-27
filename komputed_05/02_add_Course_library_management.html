@@ -42,44 +42,6 @@
 	
 	<link rel="stylesheet" href="../assets/kindeditor/themes/default/default.css" />
 	 
-		<script charset="utf-8" src="../assets/kindeditor/kindeditor-all-min.js"></script>
-		<script charset="utf-8" src="../assets/kindeditor/lang/zh-CN.js"></script>
-		<script>
-			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('textarea[name="content"]', {
-					allowFileManager : true
-				});
-				K('input[name=getHtml]').click(function(e) {
-					alert(editor.html());
-				});
-				K('input[name=isEmpty]').click(function(e) {
-					alert(editor.isEmpty());
-				});
-				K('input[name=getText]').click(function(e) {
-					alert(editor.text());
-				});
-				K('input[name=selectedHtml]').click(function(e) {
-					alert(editor.selectedHtml());
-				});
-				K('input[name=setHtml]').click(function(e) {
-					editor.html('<h3>Hello KindEditor</h3>');
-				});
-				K('input[name=setText]').click(function(e) {
-					editor.text('<h3>Hello KindEditor</h3>');
-				});
-				K('input[name=insertHtml]').click(function(e) {
-					editor.insertHtml('<strong>插入HTML</strong>');
-				});
-				K('input[name=appendHtml]').click(function(e) {
-					editor.appendHtml('<strong>添加HTML</strong>');
-				});
-				K('input[name=clear]').click(function(e) {
-					editor.html('');
-				});
-			});
-		</script>
-	
 	
 	<style type="text/css">
 		#dabtn button{
@@ -204,6 +166,24 @@
 			left: 20%;
 			z-index:1000;
 			display: none;
+		}
+		.text{
+			width:100%;height:600px;float:left;
+			border: 1px solid #ccc;
+		}
+		.course-table tr{
+			width: 100%;
+			border: 1px solid #ccc;
+		}
+		.course-table td{
+			padding: 0 20px;
+			border-right: 1px solid #ccc;
+			text-align: center;
+		}
+		.course-table th{
+			padding:0 20px;
+			border-right: 1px solid #ccc;
+			text-align: center;
 		}
 	</style>
 	
@@ -395,19 +375,19 @@
 					  
 					  <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					  			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;margin-left: -75px;">*机构/学校课程名称:</p>
-					             <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="课程名称">
+					             <input id="names1" style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="课程名称">
 					   </div> 
 					   
 					   <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					   			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;margin-left: -35px;">*平台课程名称:</p>
-					              <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="平台课程名称">
+					              <input id="names2" style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="平台课程名称">
 					    </div> 
 					  
 					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*课程门类:</p>
 						<div style="width:72%;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
 						    <select id="men_lei"  title="" class="form-control">
-						        <option>深</option>
+						        
 						    </select>
 						</div>
 					 </div> 
@@ -415,30 +395,14 @@
 					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*适合年级:</p>
 					     <div style="width:163px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-					         <select title="" class="form-control">
-					             <option>1年级</option>
-								 <option>2年级</option>
-								 <option>3年级</option>
-								 <option>4年级</option>
-							     <option>5年级</option>
-							     <option>6年级</option>
-								 <option>7年级</option>
-								 <option>8年级</option>
-								 <option>9年级</option>
+					         <select id="nian_row" title="" class="form-control">
+								 
 					         </select>
 					     </div>
 						 <div style="float:left;margin-right:10px;line-height:35px;">——</div>
 						 <div style="width:163px;padding-left: 0;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-						     <select title="" class="form-control">
-								 <option>1年级</option>
-								 <option>2年级</option>
-								 <option>3年级</option>
-								 <option>4年级</option>
-								 <option>5年级</option>
-								 <option>6年级</option>
-								 <option>7年级</option>
-								 <option>8年级</option>
-								 <option>9年级</option>
+						     <select id="nian_to" title="" class="form-control">
+								 
 						     </select>
 						 </div>
 						 
@@ -446,14 +410,14 @@
 					 
 					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					 	<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*适合人数:</p>
-					     <input style="float:left;width:153px;" class="form-control" type="number" value="" placeholder="最小人数">
+					     <input id="ren_unm_a" style="float:left;width:153px;" class="form-control" type="number" value="" placeholder="最小人数">
 					 		<div style="float:left;margin:0 10px;line-height:35px;">——</div>
-					 	 <input style="float:left;width:153px;" class="form-control" type="number" value="" placeholder="最大人数">	
+					 	 <input id="ren_unm_b" style="float:left;width:153px;" class="form-control" type="number" value="" placeholder="最大人数">	
 					 </div> 
 					 
 					 <div style="width:500px;height: 40px;margin-bottom: 10px;">  
 					 			<p style="font-size: 17px;font-weight:600;float:left;line-height:35px;padding:0;margin-right:7px;">*课程目标:</p>
-					            <input style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="课程目标">
+					            <input id="mu_biao" style="float:left;width: 70%;" class="form-control" type="text" value="" placeholder="课程目标">
 					  </div>  
 					 
 					 <div id="bal" style="width:100%;height:120px;margin-bottom:10px;padding-left:17px;">  
@@ -502,20 +466,42 @@
 					 </div><br> 
 					 
 					 <p style="font-size: 17px;font-weight:600;padding: 0;margin: 0;height: 30px;width: 100%;float: left;">*课程大纲</p>
-					 <!-- <textarea name="content" style="width:1200px;height:500px;visibility:hidden;"></textarea> -->
 					 
+						 <div class="input_box" style="margin-top: 10px;"><p>下载模板：</p>
+						   <a href="https://smartzt.oss-cn-shenzhen.aliyuncs.com/operate/29711561427433.xlsx"><button style="float: left;" type="button" class="btn btn-success float-button-light">点击下载模板</button></a>
+						   &nbsp;&nbsp;<a>请按照模版格式填写</a>
+						 </div>
+					 			 
+					 <div class="input_box" style="margin-top: 10px;"><p>上传附件：</p>
+					 <!-- <input id="inp_vc" onchange="initUploadExcel(this)" style="float:left;width:20%;" type="file" placeholder="点击上传附件">< -->
+					 <input type="file" name="xlfile" id="xlf" />
+					 </div>
 					 
-					 <div class="input_box" style="margin-top: 10px;"><p>下载模板：</p><button style="float: left;" type="button" class="btn btn-success float-button-light">点击下载模板</button><a>请按照模版格式填写</a></div>
-					 					 
-					 <div class="input_box" style="margin-top: 10px;"><p>上传附件：</p><input id="inp_vc" style="float:left;width:20%;" type="file" placeholder="点击上传附件"></div>
-					 
-					 
+					
+						 <table class="course-table" style="width:100%;float:left;display:none;">
+                          <tr>
+                          <th>单元</th>
+                          <th>单元标题</th>
+                          <th>单元目标</th>
+                          <th>课时编号</th>
+                          <th>课时名称</th>
+                          <th>课时内容</th>
+                          </tr>
+                           <tbody>
+                           </tbody>
+                          </table>
+
 					 <p style="font-size: 17px;font-weight:600;padding: 0;margin-top:20px;float: left;width: 100%;margin-bottom: 10px;">*课程简介</p>
-					 <textarea name="content" style="width:1200px;height:500px;visibility:hidden;"></textarea>
 					 
-                      <button style="margin-top:30px;" type="button" class="btn btn-info float-button-light">取消</button>
-					  <button style="margin-top:30px;" type="button" class="btn btn-primary effect effect-1 float-button-light">提交</button>
+					 <div id="editor2"  style="border:1px solid #ccc;"></div>
+					 <div id="editor3" class="text" style=""></div>
 					 
+					<div style="float: left;">
+						<button style="margin-top:30px;" type="button" class="btn btn-info float-button-light">取消</button>
+					    <button onclick="git_act()" style="margin-top:30px;" type="button" class="btn btn-primary effect effect-1 float-button-light">提交</button>
+					</div> 
+					
+                      
                   </div>
             </div>
         </div>
@@ -573,10 +559,24 @@
   <script src="../assets/global/js/bootstrap-select.min.js"></script>
   <script type="text/javascript" src="../assets/global/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
   <!-- End page plugin js -->
+  
+  <script src="../assets/excel/js-xlsx/xlsx.js"></script>
+  <script src="../assets/excel/js-xlsx/m_xlsx.js"></script>
+  
 <script src="../js/vuex.js"></script>
   <script src="../js/common.js"></script>
   <script src="../js/course-file.js"></script>
-   
+  
+  <script type="text/javascript" src="../assets/wangEditor-3.1.1/release/wangEditor.min.js"></script>	
+  
+  <script>
+	  
+	    var E = window.wangEditor;
+        var editor = new E('#editor2','#editor3');
+		editor.customConfig.uploadImgShowBase64 = true;   // 使用 base64 保存图片
+        editor.create();
+	    
+  </script>
   <script type="text/javascript" src="../js/komputed05/02_add_Course_library_management.js"></script>
  
 </body>

@@ -151,18 +151,154 @@ function ly_fn(){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //获取课程门类下拉数据
 $.ajax({type:"GET",url:url_data+"/api/courseCategories",dataType:'json',success:res=>{
-		  console.log(res)
+		  // console.log(res.data)
 	      				if(res.code==200){
 							   var htmls = '';
-	      		// 			  for (var i = 0; i < res.data.length; i++) {
-								 //  htmls+=`<option index=` + res.data[i].institution_id + ` >` + res.data[i].name + `</option>`
-							  // };$('#xue_name').append(htmls); 
+	      					  for (var i = 0; i < res.data.length; i++) {
+								  htmls+=`<option index=` + res.data[i].id + ` >` + res.data[i].name + `</option>`
+							  };$('#men_lei').append(htmls); 
 	      				}
 	      		  }
-	     });
+});
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//年级初始化
+var htmls = '';
+ for(var i=1;i<=9;i++){htmls+=`<option id=`+i+`>`+i+`年级</option>`};
+ $('#nian_row').html(htmls);$('#nian_to').html(htmls);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//上传 excel文件
+function git_excel(files){
+	var formData = new FormData();formData.append("excel",files); 
+	 $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+		   // console.log(res,'上传文件');
+		   if(res.code==200){
+			      excel_url =  res.data.excel; 
+				  console.log(excel_url);
+			  }
+		   },error:function(data){console.log(data);alert('上传失败，请检查网络再尝试一次！');}
+	  }); 
+	
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//读取 excel文件  
+var xlsxworker = '../assets/excel/js-xlsx/xlsxworker.js';
+var excel_unit = '';//传递的内容
+var excel_url = ''//源文件url由后台返回
+function initUploadExcel() {
+function handleFile(e) {
+git_excel(e.target.files[0]);
+do_file(e.target.files, function (data) {
+var excelObj = resolving_new(data).unit;
+excel_unit = excelObj;
+// console.log(excel_unit);
+var tableStr = '',
+rowStr = '';
+for (var i = 0; i < excelObj.length; i++) {
+for (var j = 0; j < excelObj[i].class.length; j++) {
+if (j == 0) {
+rowStr += '<td>' +
+excelObj[i].class[j].season +
+'</td>' +
+'<td>' +
+excelObj[i].class[j].title +
+'</td>' +
+'<td>' +
+excelObj[i].class[j].content +
+'</td>'
+
+tableStr += '<tr>' +
+'<td rowspan="' + excelObj[i].class.length + '">' +
+excelObj[i].unit +
+'</td>' +
+'<td rowspan="' + excelObj[i].class.length + '">' +
+excelObj[i].title +
+'</td>' +
+'<td rowspan="' + excelObj[i].class.length + '">' +
+excelObj[i].content +
+'</td>' +
+rowStr +
+'</tr>'
+
+} else {
+rowStr += '<tr>' +
+'<td>' +
+excelObj[i].class[j].season +
+'</td>' +
+'<td>' +
+excelObj[i].class[j].title +
+'</td>' +
+'<td>' +
+excelObj[i].class[j].content +
+'</td>' +
+'</tr>'
+tableStr += rowStr
+}
+rowStr = ''
+}
+}
+$('.course-table tbody').append(tableStr)
+$('.course-table').css({ 'display':'block' })
+})
+}
+xlf.addEventListener('change', handleFile, false)
+};initUploadExcel();
 
 
-
+ 
+ 
+//提交
+function git_act(){
+	console.log(editor.txt.html());//富文本编辑框的内容
+	let img_box = [];img_box[0]=url1;img_box[1]=url2;img_box[2]=url3;
+	var postData = {
+                city_id:cs_id1,//暂定这个字段，早上与后台定
+                region_id:qy_id1,
+                street_id:jd_id1,
+                source_type:$('#lysa').find("option:selected").html()=='机构'?1:2,
+                source_id:$('#xue_name').find("option:selected").attr("index"),
+                name:$('#names1').val(),
+                revised_name:$('#names2').val(),
+                category_id:$('#men_lei').find("option:selected").attr("index"),//课程分类id
+                min_grade:$('#nian_row').find("option:selected").attr("id"),
+                max_grade:$('#nian_to').find("option:selected").attr("id"),
+                min_students:$('#ren_unm_a').val(),
+                max_students:$('#ren_unm_b').val(),
+                title:$('#mu_biao').val(),//课程目标暂定这个字段，早上与后台定
+                cover_img1:img_box,
+                course_tags:tab_box,
+                
+                outline_url:excel_url,//课程大纲暂定这个字段，早上与后台定
+                outline:excel_unit,
+                
+                intro:editor.txt.html()
+          };
+ $.ajax({
+	 type:"post",
+	 url:url_data+"/api/courses",
+	 data:postData,
+	 dataType:'json',success:res=>{
+		       console.log(res)
+			   if(res.code==200){
+				      
+				  }
+			   },error:data=>{console.log(data);alert('操作失败，请检查网络！');}
+	 }); 
+};	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
