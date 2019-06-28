@@ -249,13 +249,13 @@
 														</div>
 
 
-														<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+														<!-- <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
 															<div class="form-group">
 																<input class="form-control" value="" placeholder="请输入机构名称">
 															</div>
-														</div>
+														</div> -->
 														<div class="form-group search-wrap">
-															<button type="button" class="btn btn-primary btn-outline float-button-light waves-effect waves-button waves-float waves-light">搜索</button>
+															<!-- <button type="button" class="btn btn-primary btn-outline float-button-light waves-effect waves-button waves-float waves-light">搜索</button> -->
 														</div>
 														<div class="export-wrap">
 															<a>
@@ -277,7 +277,7 @@
 																<th>街道</th>
 																<th>联系人</th>
 																<th>手机号码</th>
-																<th>分成比例</th>
+																<!-- <th>分成比例</th> -->
 																<th>操作</th>
 															</tr>
 														</thead>
@@ -543,7 +543,7 @@
 									      	<td>`+res.data[i].street_name+`</td>
 													<td>`+res.data[i].contact_name+`</td>
 													<td>`+res.data[i].contact_phone+`</td>
-													<td>`+res.data[i].radio+`</td>
+													
 									      	<td class="operation-wrap">
 									      		<a index_id=`+res.data[i].institution_id+` onclick='put_click(this)' class="edit-btn assing-teacher-btn bian_click">编辑</a>
 									      		<a index_id=`+res.data[i].institution_id+` index=`+i+` onclick='dell(this)' class='dell' href="javascript:void(0)" class="assing-teacher-btn">删除</a>

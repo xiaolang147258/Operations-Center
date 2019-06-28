@@ -1,4 +1,4 @@
-$(function () {
+
   //初始化消息列表DataTable
   var messageColums = [{
     data: "select"
@@ -14,65 +14,12 @@ $(function () {
     data: "operation"
   }
   ];
-  initTable("#handle-message", "#check-message ul.pagination", messageColums)
-
-  $('.detail-btn').parent().addClass('operation-wrap')
-  console.log(111, $('.detail-btn').parent())
-
+  
   //待处理消息分页初始化
-  initPagination("#msgPage", 12)
+  // initPagination("#msgPage", 12)
 
   //时间区间初始化，选完开始时间自动弹出结束时间选择框
-  var nowTemp = new Date();
-  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
-  var checkin = $('#startTime').datepicker({
-    onRender: function (date) {
-      return date.valueOf() < now.valueOf() ? 'disabled' : '';
-    }
-  }).on('changeDate', function (ev) {
-    if (ev.date.valueOf() > checkout.date.valueOf()) {
-      var newDate = new Date(ev.date)
-      newDate.setDate(newDate.getDate() + 1);
-      checkout.setValue(newDate);
-    }
-    checkin.hide();
-    $('#endTime')[0].focus();
-  }).data('datepicker');
-
-  var checkout = $('#endTime').datepicker({
-    onRender: function (date) {
-      return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-    }
-  }).on('changeDate', function (ev) {
-    checkout.hide();
-  }).data('datepicker');
-
-})
-
-function appendSkipPage(selector, parentNode) {
-  var table = $(selector).dataTable();
-  var template =
-    $("<li class='paginate_button active'>" +
-      "   <div class='input-group' style='margin-left:3px;'>" +
-      "       <span class='input-group-addon' style='padding:6px 12x;background-color:#fff;font-size: 12px;'>前往</span>" +
-      "       <input type='text' class='form-control' style='text-align:center;padding: 8px 4px;height:34px;width:40px;' />" +
-      "       <span class='input-group-addon active' style='padding:6px 12px;'><a href='javascript:void(0)'> 页 </a></span>" +
-      "   </div>" +
-      "</li>");
-
-  template.find("a").click(function () {
-    var pn = template.find("input").val();
-    if (pn > 0) {
-      --pn;
-    } else {
-      pn = 0;
-    }
-    table.fnPageChange(pn);
-  });
-
-  $(parentNode).append(template);
-}
 
 function initTable(selector, parentNode, columns) {
   $(selector).DataTable({
@@ -94,18 +41,7 @@ function initTable(selector, parentNode, columns) {
       "sInfoThousands": ","
     },
     columns: columns,
-    columnDefs: [{
-      //为每一行数据添加一个checkbox
-      'targets': 0,
-      'searchable': false,
-      'orderable': false,
-      'className': 'dt-body-center',
-      'render': function (data, type, row) {
-        return '<input class="checkbox_select" type="checkbox" data-status="' + row.status + '"name="id[]" value="' + $('<div/>').text(row.id).html() + '">';
-      }
-    }],
-    // "aoColumnDefs": [ { "bSortable": false, "aTargets": index }],
-    // "aaSorting": [[0, "asc"]],
+   
     "drawCallback": function () {
       appendSkipPage(selector, parentNode)
     },
@@ -113,24 +49,92 @@ function initTable(selector, parentNode, columns) {
     "info": false //去掉底部文字
   });
 
-  //全选
-  $(document.body).click(function () {
-    if ($('#msgCheckAll').prop('checked')) {//获取是否选中 并判断
-      $("tbody tr td input").each(function () {
-        $(this).prop('checked', true);//修改设置为选中状态
-      })
-    } else {
-      $("tbody tr td input").each(function () {
-        $(this).prop('checked', false);//修改设置为不选中状态
-      })
-    }
-  })
-
-  $("tbody tr td input").click(function (e) {
-    e.stopPropagation()
-  })
 }
 
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取审核类型下拉数据
+$.ajax({type:"get",url:url_data+"/api/auditTypes",dataType:'json',success:res=>{
+		    		  // console.log(res.data);
+		    			if(res.code==200){
+								for(var i=0;i<res.data.length;i++){
+									  $('#sh_lei').append(`<option index=`+res.data[i].id+`>`+res.data[i].name+`</option>`)  
+								}
+							}
+		    	 },error:(XMLHttpRequest,textStatus,errorThrown)=>{console.log(errorThrown);alert('发生了错误！');}
+});
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取审核状态下拉数据
+$.ajax({type:"get",url:url_data+"/api/auditStatus",dataType:'json',success:res=>{
+		    		  // console.log(res.data);
+		    			if(res.code==200){
+								for(var i=0;i<res.data.length;i++){
+									  $('#sh_zt').append(`<option index=`+res.data[i].id+`>`+res.data[i].name+`</option>`)  
+								}
+							}
+		    	 },error:(XMLHttpRequest,textStatus,errorThrown)=>{console.log(errorThrown);alert('发生了错误！');}
+});
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取所有来源下拉数据
+// $.ajax({type:"get",url:url_data+"/api/auditStatus",dataType:'json',success:res=>{
+// 		    		  // console.log(res.data);
+// 		    			if(res.code==200){
+// 								for(var i=0;i<res.data.length;i++){
+// 									  $('#sh_ly').append(`<option index=`+res.data[i].id+`>`+res.data[i].name+`</option>`)  
+// 								}
+// 							}
+// 		    	 },error:(XMLHttpRequest,textStatus,errorThrown)=>{console.log(errorThrown);alert('发生了错误！');}
+// });
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取城市区域街道
+ var cs_id1 = '',qy_id1='',jd_id1 = '';
+			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440}, 
+				success: function(res){
+						if(res.code==200){$('#cs').append(`<option>选择城市</option>`);for (var i = 0; i < res.data.length; i++) {$('#cs').append(`<option index=` + res.data[i].city_id + ` >` + res.data[i].city_name + `</option>`);}}
+						cs_showImg(res.data[0].city_id,1);//获取区域数据
+				 }
+			});
+	   function cs_showImg(id,nu){ //城市的option被点击//获取区域数据
+			    var index = id?id:$("#cs").find("option:selected").attr("index");
+				if(nu==1){}else{cs_id1 = $("#cs").find("option:selected").attr("index");}
+				$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'region',id:index},
+					success: function(res){
+							if(res.code==200){$('#qy').empty();$('#jd').empty();
+							      $('#qy').append(`<option>选择区域</option>`);
+								  for (var i = 0; i < res.data.length; i++) {$('#qy').append(`<option index=` + res.data[i].region_id + ` >` + res.data[i].region_name + `</option>`);}
+								  qy_showImg(res.data[0].region_id,nu);//获取街道数据
+							}
+					   }
+				});
+			};
+      function qy_showImg(id,nu){ //区域的option被点击//获取城市数据
+      	var index = id?id:$("#qy").find("option:selected").attr("index");
+		if(nu==1){}else{qy_id1 = $("#qy").find("option:selected").attr("index");}
+      	$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'street',id:index},
+      		success: function(res){
+      				if(res.code==200){$('#jd').empty();
+					      $('#jd').append(`<option>选择街道</option>`);
+      					  for (var i = 0; i < res.data.length; i++) {$('#jd').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`); };
+      				      num=0;
+						        git_act(1);
+					}
+      		   }
+      	  });
+      }
+	function jd_showImg(){jd_id1 = $("#jd").find("option:selected").attr("index");num=0;
+	     git_act(1);
+	};
+	
+
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//获取审核列表函数
+function initPag(){//分页确定按钮被点击
+		if($('#page_inp').val()){git_act(Number($('#page_inp').val()))}
+	};
 //分页初始化
 function initPagination(el, pages) {
   Page({
@@ -138,7 +142,53 @@ function initPagination(el, pages) {
     startnum: 1,				//指定页码
     elem: $(el),		//指定的元素
     callback: function (n) {	//回调函数
-
+         git_act(n);
     }
   });
+};
+var num = 0,nums=0;
+function git_act(pages){
+	  $.ajax({type:"GET",url:url_data+"/api/audits",dataType:'json',
+		data:{
+			audit_type:$('#sh_lei').find("option:selected").attr("index"),
+			city_id:cs_id1,
+			region_id:qy_id1,
+			street_id:jd_id1,
+			audit_status:$('#sh_lei').find("option:selected").attr("index"),
+			audit_name:$('#inp_val').val()
+		},success: function(res){
+			  console.log(res,'审核列表')
+	  	  if(res.code==200){
+					 $('.pageTotal').html(res.meta.current_page);
+					 $('.dataTotal').html(res.meta.to);
+					 if(num==0){initPagination("#msgPage",res.meta.current_page);num=1};
+					 if(res.meta.current_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页
+					  var htmls = '';$('#tr_box').html('')
+						for(var i=0;i<res.data.length;i++){
+							  htmls+=`<tr class="no-reading">
+								    	<td>`+res.data[i].created_at+`</td>
+								       <td>`+res.data[i].city_name+`</td>
+								      <td>`+res.data[i].region_name+`</td>
+								      <td>`+res.data[i].street_name+`</td>
+								      <td>`+res.data[i].audit_type_name+`</td>
+								      <td>`+res.data[i].audit_status_name+`</td>
+								      <td class="operation-wrap">
+								        <div onclick='bian_ji(this)' index=`+res.data[i].audit_id+` type_s=`+res.data[i].audit_type_name+` class="detail-btn">审核</div>
+												<div index=`+res.data[i].audit_id+` type_s=`+res.data[i].audit_type_name+` class="detail-btn"><a href="check_detail.html">详情</a></div>
+								      </td></tr>`;
+						};$('#tr_box').append(htmls);
+						if(nums==0){
+							  nums=1;
+							  initTable("#handle-message","#check-message ul.pagination",messageColums);
+							};
+		      }
+	     }  
+	  });
+};
+
+//审核被点击
+function bian_ji(thiss){
+	  localStorage.audit_type_name = $(thiss).attr('type_s');//存储名字
+		localStorage.audit_id = $(thiss).attr('index');//存储id
+		window.location.href = 'check_detail.html';
 }

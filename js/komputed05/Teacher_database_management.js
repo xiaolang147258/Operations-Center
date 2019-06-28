@@ -46,18 +46,17 @@ function git_act(pages){//获取教师列表数据
 						      	<td>`+res.data[i].edu_degree+`</td>
 						      	<td>`+res.data[i].gender_name+`</td>
 						      	<td>`+res.data[i].phone+`</td>
-						      	<td>`+res.data[i].full_category+`</td>
-						      	<td>0</td>
+						      	
 						      	<td>`+res.data[i].source_name+`</td>
 						      	<td>`+res.data[i].city_name+`</td>
 						      	<td>`+res.data[i].region_name+`</td>
 						      	<td>`+res.data[i].street_name+`</td>
 						      	<td class="operation-wrap">
 						      		<a id=`+res.data[i].teacher_id+` onclick='bian(this)' class="edit-btn assing-teacher-btn bian_click">编辑</a>
-						      	    <a id=`+res.data[i].teacher_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
+						      	   
 						      	</td>
 						      </tr>`;
-	 				   };$('#tr_box').append(htmls);
+	 				   };$('#tr_box').append(htmls);// <a id=`+res.data[i].teacher_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
 	 			 }
 	 	   }
 	 });

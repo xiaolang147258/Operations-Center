@@ -46,21 +46,21 @@ function git_act(pages){
 					for(var i=0;i<res.data.length;i++){
 						 $('#tr_box').append(` 
 						     <tr>
-						     	<td>城市</td>
-						     	<td>区域</td>
-						     	<td>街道</td>
+						     	<td>`+res.data[i].city_name+`</td>
+						     	<td>`+res.data[i].region_name+`</td>
+						     	<td>`+res.data[i].street_name+`</td>
 						     	<td>`+res.data[i].name+`</td>
 						     	<td>`+res.data[i].revised_name+`</td>
-						     	<td>课程门类</td>
+						     	<td>`+res.data[i].category_name+`</td>
 						     	<td>所属单位</td>
 						     	<td>课程目标</td>
 						     	<td>`+res.data[i].min_grade+'—'+res.data[i].max_grade+`</td>
 						     	<td>`+res.data[i].min_students+'—'+res.data[i].max_students+`</td>
 						       <td class="operation-wrap">
 						         <a index_id=`+res.data[i].course_id+` class="edit-btn assing-teacher-btn bian_click">编辑</a>
-						         <a index_id=`+res.data[i].course_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
+						         
 						       </td>
-						     </tr>`);
+						     </tr>`);//<a index_id=`+res.data[i].course_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
 					}			   
 			  }else{alert('暂时没有该信息！');}
 		},error:(XMLHttpRequest,textStatus,errorThrown)=>{//报错

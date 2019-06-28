@@ -119,20 +119,20 @@ ly_fn();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //开户行地区赛选初始化
 var shuju = [];
- $.ajax({type:"get",dataType:"json",url:"../assets/json/Province_and_city_selection.json",success:res=>{
-          // console.log(res);
-		  shuju = res;
-          for(var i=0;i<res.length;i++){
-			  $('#yin_sheng').append(`<option code=` + i + `>` + res[i].name + `</option>`)
-		  };sheng_fn(0);
-      }
-    });
-function sheng_fn(j){
-   let i = j==0?j:$('#yin_sheng').find("option:selected").attr('code');$('#yin_shi').html('');
-   for(var k=0;k<shuju[i].childs.length;k++){
-	   $('#yin_shi').append(`<option>` + shuju[i].childs[k].name + `</option>`)
-   }
-};
+//  $.ajax({type:"get",dataType:"json",url:"../assets/json/Province_and_city_selection.json",success:res=>{
+//           // console.log(res);
+// 		  shuju = res;
+//           for(var i=0;i<res.length;i++){
+// 			  $('#yin_sheng').append(`<option code=` + i + `>` + res[i].name + `</option>`)
+// 		  };sheng_fn(0);
+//       }
+//     });
+// function sheng_fn(j){
+//    let i = j==0?j:$('#yin_sheng').find("option:selected").attr('code');$('#yin_shi').html('');
+//    for(var k=0;k<shuju[i].childs.length;k++){
+// 	   $('#yin_shi').append(`<option>` + shuju[i].childs[k].name + `</option>`)
+//    }
+// };
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //证件类型
 var zheng_id = 1;
@@ -178,6 +178,19 @@ function ke_lei(this_s){//课程门类选项被点击
 //提交按钮被点击
 function git_act(){//增加课程函数
 	var ids = $('#lysa').find("option:selected").html(),source_type_id_s = ids=='学校'?2:1;
+	 
+	 if(ids=='学校'){
+		if(ixel_id_id==false||shen_id_id == false){
+			 alert('请效验银行卡账号和证件号码!');
+			 return false;
+		}
+	   }else if(ids=='机构'){
+		if(shen_id_id == false){
+			 alert('请效验证件号码!');
+			 return false;
+		}
+	 };
+   	
 	var source_id_s = $('#xue_name').find("option:selected").attr('index');
     var attachments=[];
 	attachments['7']=url_0;
@@ -305,12 +318,11 @@ if(localStorage.terid==0){}else{//获取详细信息并赋值
 								}
 							};
 							
-							
-							url_0 = attachment[1].url;
-							url_1 = attachment[3].url;
-							url_2 = attachment[4].url;
-							url_3 = attachment[2].url;
-							url_4 = attachment[0].url;
+							url_0 = attachment[1].url?attachment[1].url:'';
+							url_1 = attachment[3].url?attachment[3].url:'';
+							url_2 = attachment[4].url?attachment[4].url:'';
+							url_3 = attachment[2].url?attachment[2].url:'';
+							url_4 = attachment[0].url?attachment[0].url:'';
 							
 			$('#url_img5').attr('src',url_0);$('#imgsa5').show();$('#zi5').hide();$('.jia5').hide();
 			$('#url_img3').attr('src',url_1);$('#imgsa3').show();$('#zi3').hide();$('.jia3').hide();
@@ -322,7 +334,40 @@ if(localStorage.terid==0){}else{//获取详细信息并赋值
 	      		  }
 	     });
 }
-	
+/////////银行卡效验函数///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var ixel_id_id = false,shen_id_id = false;
+function ixel_id(){
+	$.ajax({type:"GET",url:url_data+"/api/cards?card="+$('#yin_kid_s').val(),dataType:'json',success:res=>{
+		                console.log(res.data);
+	      				if(res.code==200){
+							ixel_id_id = true;
+							alert('效验成功！');
+							$('#yin_sheng').html('');$('#yin_shi').html('');
+							$('#yin_sheng').append(`<option>`+res.data.province+`</option>`);
+							$('#yin_sheng').val(res.data.province);
+							$('#yin_shi').append(`<option>`+res.data.city+`</option>`);
+							$('#yin_shi').val(res.data.city);
+							$('#aer').html(res.data.bankName);$('#aer').show()
+	      				}else{
+							alert('效验失败，请确保输入了正确的‘‘银行卡账号’’')
+						}
+	      		  }
+	     });
+};
+/////////身份证效验/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function shen_id(){
+	$.ajax({type:"GET",url:url_data+"/api/ocridNum?idCard="+$('#exid_s').val()+'&name='+$('#name_s').val(),dataType:'json',success:res=>{
+		                console.log(res);
+	      				if(res.code==200){
+							shen_id_id = true;
+							alert('验证成功！');
+						}else{
+							alert('效验失败，请确保输入了正确的‘‘教师姓名’’和‘‘证件号码’’')
+						}
+	      		  }
+	     });
+};
+
 
 
 

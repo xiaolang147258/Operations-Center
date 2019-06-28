@@ -37,7 +37,14 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/prince-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/prince-180x180.png">
   <!-- End favicon ico -->
-
+  <style type="text/css">
+  	  .col-sm-2{
+				width: 190px;
+			}
+			.cqj{
+				width: 150px;;
+			}
+  </style>
 </head>
 
 <body class="nav-small">
@@ -171,83 +178,72 @@
         </div>
 
         <div class="contain-section">
-          <div class="contain-inner-section">
+          <!-- <div class="contain-inner-section"> -->
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="section-body">
+                <div class="section-body" style="background: white;">
                   <div class="background-tab">
                     <div class="tab-content">
                       <div id="check-message" class="tab-pane fade in active">
                         <div class="mseeage-choose clearfix">
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                            <select class="form-control">
-                              <option>所有类型</option>
-                              <option>教师审核</option>
-                              <option>机构资质</option>
-                              <option>系统通知</option>
+														
+                            <select id="sh_lei" onchange="git_act(1)" class="form-control">
+                              
                             </select>
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                            <select class="form-control">
-                              <option>审核状态</option>
-                              <option>待审核</option>
-                              <option>审核通过</option>
-                              <option>审核不通过</option>
+                            <select id="sh_zt"  onchange="git_act(1)" class="form-control">
+                              
                             </select>
                           </div>
-                          <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <div class="input-group input-large custom-date-range" id="datepicker"
-                              data-date-format="mm/dd/yyyy">
-                              <input id="startTime" placeholder="请输入起始时间" type="text" class="form-control">
-                              <span class="input-group-addon">至</span>
-                              <input id="endTime" placeholder="请输入结束时间" type="text" class="form-control">
-                            </div>
-                          </div>
+                          
+													
+													
+													
+													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
+													  <select id="cs" onchange="cs_showImg()" class="form-control">
+													    <!-- <option></option> -->
+													    
+													  </select>
+													</div>
+													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
+													  <select id="qy" onchange="qy_showImg()" class="form-control">
+													    
+													  </select>
+													</div>
+													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
+													  <select id="jd" onchange="jd_showImg()" class="form-control">
+													    
+													  </select>
+													</div>
+													
+													
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
                             <div>
-                              <input class="form-control" value="" placeholder="请输入关键字">
+                              <input id="inp_val" class="form-control" value="" placeholder="请输入关键字">
                             </div>
                           </div>
-                          <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                            <button type="button"
+                          <div style="width: 100px;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
+                            <button onclick="git_act(1)" type="button"
                               class="btn btn-primary btn-outline float-button-light waves-effect waves-button waves-float waves-light">搜索</button>
                           </div>
                         </div>
                         <table id="handle-message" class="display datatable-default">
                           <thead>
                             <tr>
-                              <th><input id="msgCheckAll" class="checkAll" type="checkbox" value=""><label
-                                  for="msgCheckAll">全选</label></th>
-                              <th>时间日期</th>
+                              <th>提交日期时间</th>
+															<th>城市</th>
+															<th>区域</th>
+															<th>街道</th>
                               <th>类型</th>
-                              <th>来源</th>
-                              <th>待审核</th>
+                              
+                              <th>状态</th>
                               <th>操作</th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr class="no-reading">
-                              <td></td>
-                              <td>2019-08-18 16：00</td>
-                              <td>代理课程</td>
-                              <td>新东方</td>
-                              <td>待审核</td>
-                              <td class="operation-wrap">
-                                <div class="detail-btn"><a href="check_detail.html">审核</a></div>
-                                <div class="delete-btn">删除</div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td></td>
-                              <td>2019-08-18 16：00</td>
-                              <td>课程派发</td>
-                              <td>李扬疯狂英语</td>
-                              <td>审核不通过</td>
-                              <td class="operation-wrap">
-                                <div class="detail-btn"><a href="check_detail.html">审核</a></div>
-                                <div class="delete-btn">删除</div>
-                              </td>
-                            </tr>
+                          <tbody id="tr_box">
+                            
                           </tbody>
                         </table>
                         <div class="pagination-wrap">
@@ -259,9 +255,9 @@
                             </ul>
                             <div class="pageJump">
                               <span>跳转到</span>
-                              <input type="text" />
+                              <input id="page_inp" type="text" />
                               <span>页</span>
-                              <button type="button" class="button">确定</button>
+                              <button onclick="initPag()" type="button" class="button">确定</button>
                             </div>
                           </div>
                         </div>
@@ -271,7 +267,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
 
         <div class="modal fade" id="primary-modal">
@@ -331,7 +327,9 @@
   <!-- Start page js -->
   <!-- <script src="assets/global/js/dashboard_v1.min.js"></script> -->
   <!-- End page js -->
-
+  <script src="js/vuex.js" type="text/javascript"></script>
+  	
+  
   <script src="js/common.js"></script>
   <script src="js/check-center.js"></script>
 </body>
