@@ -216,6 +216,7 @@ function git_act(pages){
 					  }
 		 	   }
 	   });
+		 top_num();
 };
 function ly_fn(){
 	ly_id = $('#syly').find("option:selected").attr("index-id");
@@ -432,4 +433,16 @@ function bian_ji(thiss,names){
 	  localStorage.audit_type_name = $(thiss).attr('type_s');//存储名字
 		localStorage.audit_id = $(thiss).attr('index');//存储id
 		window.location.href = 'check_detail.html';
+}
+
+function top_num(){
+	$.ajax({type: "GET",url: url_data+"/api/works",dataType:'json',
+		headers:{'Authorization':'Bearer '+localStorage.token},
+		success: function(res){
+				if(res.code==200){
+					   $('.list-tab a').html('待审核列表'+'('+res.message.audit_count+')');
+						 $('.message-tab a').html('待处理消息'+'('+res.message.message_count+')');
+				}
+		   }
+	  });
 }

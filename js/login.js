@@ -61,7 +61,6 @@ $(function() {
 		}else{ alert('账号或密码不能为空')}
 	};
 	
-	
   //清空账号的同时，清空密码
   $(".account-wrap input").bind('input propertychange',function(){
     var account = $('.account-wrap input').val();
