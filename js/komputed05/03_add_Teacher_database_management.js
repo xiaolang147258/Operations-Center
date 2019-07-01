@@ -7,7 +7,8 @@
 
 //城市初始化//获取城市数据
 	var cs_id1 = '',qy_id1='',jd_id1 = '';
-			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440}, 
+			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440},
+			    headers:{'Authorization':'Bearer '+localStorage.token},
 				success: function(res){
 						if(res.code==200){for (var i = 0; i < res.data.length; i++) {$('#cs').append(`<option index=` + res.data[i].city_id + ` >` + res.data[i].city_name + `</option>`);}}
 						cs_id1 = res.data[0].city_id; cs_showImg(res.data[0].city_id);//获取区域数据
@@ -16,10 +17,16 @@
 	   function cs_showImg(id){ //城市的option被点击//获取区域数据
 			    var index = id?id:$("#cs").find("option:selected").attr("index");
 				$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'region',id:index},
+					headers:{'Authorization':'Bearer '+localStorage.token},
 					success: function(res){
 							if(res.code==200){$('#qy').empty();$('#jd').empty();
 								  for (var i = 0; i < res.data.length; i++) {$('#qy').append(`<option index=` + res.data[i].region_id + ` >` + res.data[i].region_name + `</option>`);}
-								  qy_id1 = res.data[0].region_id;qy_showImg(res.data[0].region_id);//获取街道数据
+								  cs_id1 = $("#cs").find("option:selected").attr("index");qy_id1 = res.data[0].region_id;
+								    
+								    
+										qy_showImg(res.data[0].region_id);//获取街道数
+									
+									 
 							}
 					   }
 				});
@@ -27,10 +34,15 @@
       function qy_showImg(id){ //区域的option被点击//获取城市数据
       	var index = id?id:$("#qy").find("option:selected").attr("index");
       	$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'street',id:index},
-      		success: function(res){
+      		headers:{'Authorization':'Bearer '+localStorage.token},
+			success: function(res){
+				   
       				if(res.code==200){$('#jd').empty();
       					  for (var i = 0; i < res.data.length; i++) {$('#jd').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`); };
-      					  jd_id1 = res.data[0].street_id;
+      					  qy_id1=$("#qy").find("option:selected").attr("index");jd_id1 = res.data[0].street_id;
+						  
+						  
+						  
       				}
       		   }
       	  });
@@ -40,7 +52,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //获取学历
 var xue_li_id = '';//学历id
-$.ajax({type: "GET",url: url_data+"/api/teacherEduDegrees",dataType: 'json',success: function(res){
+$.ajax({type: "GET",url: url_data+"/api/teacherEduDegrees",dataType: 'json',
+headers:{'Authorization':'Bearer '+localStorage.token},
+success: function(res){
       				if(res.code==200){
       					  for (var i = 0; i < res.data.length; i++) {
 							  $('#xue').append(`<option index=` + res.data[i].id + ` >` + res.data[i].name + `</option>`); 
@@ -84,8 +98,8 @@ yue_fn(0);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //教师来源下拉数据初始化
 var ly_id = '';
-function ly_fn(){
-	var url = $('#lysa').find("option:selected").html()=='机构'?'institutions':'schools';
+function ly_fn(id){
+	var url =id?id:($('#lysa').find("option:selected").html()=='机构'?'institutions':'schools');
 	if($('#lysa').find("option:selected").html()=='机构'){
 		     $('#js_show').hide();
 			 $('.img_box').eq(1).show();
@@ -93,7 +107,6 @@ function ly_fn(){
 			 $('.img_box').eq(4).show();
 			 $('.img_box').eq(3).hide();
 			 $('.img_box').eq(0).hide();
-			 
 		}else if($('#lysa').find("option:selected").html()=='学校'){
 			 $('#js_show').show();
 			 $('.img_box').eq(4).show();
@@ -101,21 +114,21 @@ function ly_fn(){
 			 $('.img_box').eq(3).show();
 			 $('.img_box').eq(1).hide();
 			 $('.img_box').eq(2).hide();
-			 
 		};
-	$.ajax({type:"GET",url:url_data+"/api/"+url,dataType:'json',success:res=>{
+	$.ajax({type:"GET",url:url_data+"/api/"+url,dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
 		  console.log(res)
 	      				if(res.code==200){
-							ly_id = res.data
-							  $('#xue_name').html('');
-	      					  for (var i = 0; i < res.data.length; i++) {
-								  $('#xue_name').append(`<option index=` + res.data[i].institution_id + ` >` + res.data[i].name + `</option>`); 
+							  ly_id = res.data;$('#xue_name').html('');
+	      					  for(var i = 0; i < res.data.length; i++){
+								  $('#xue_name').append(`<option index=` + res.data[i].institution_id + ` >` + res.data[i].name + `</option>`);
 							  };
 	      				}
-	      		  }
+	      		}
 	     });
-};
-ly_fn();
+};ly_fn();
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //开户行地区赛选初始化
 var shuju = [];
@@ -143,7 +156,9 @@ function zheng_fn(i){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //获取授课门类
 var ke_id_box = [];//课程门类 集合；
-$.ajax({type:"get",dataType:"json",url:url_data+"/api/courseCategories",success:res=>{
+$.ajax({type:"get",dataType:"json",url:url_data+"/api/courseCategories",
+headers:{'Authorization':'Bearer '+localStorage.token},
+success:res=>{
 	     var html_left = '',html_right = '';
           // console.log(res.data,'课程门类')
           for(var i=0;i<res.data.length;i++){
@@ -178,7 +193,6 @@ function ke_lei(this_s){//课程门类选项被点击
 //提交按钮被点击
 function git_act(){//增加课程函数
 	var ids = $('#lysa').find("option:selected").html(),source_type_id_s = ids=='学校'?2:1;
-	 
 	 if(ids=='学校'){
 		if(ixel_id_id==false||shen_id_id == false){
 			 alert('请效验银行卡账号和证件号码!');
@@ -193,16 +207,22 @@ function git_act(){//增加课程函数
    	
 	var source_id_s = $('#xue_name').find("option:selected").attr('index');
     var attachments=[];
+	
 	attachments['7']=url_0;
 	attachments['1']=url_1;
 	attachments['2']=url_2;
 	attachments['8']=url_3;
 	attachments['6']=url_4;
 	
+	console.log(attachments);
+	
 	var type_s = localStorage.terid==0?'post':'put';
 	var urls = localStorage.terid==0?'':'/'+localStorage.terid;
 	
+	console.log(cs_id1)
+	
 $.ajax({type:type_s,url:url_data+"/api/teachers"+urls,
+    headers:{'Authorization':'Bearer '+localStorage.token},
 	data:{
 		name:$('#name_s').val(),
 		source_type_id:source_type_id_s,
@@ -232,25 +252,38 @@ $.ajax({type:type_s,url:url_data+"/api/teachers"+urls,
 	      }else if(res.code==407){
 			  alert('请完善信息后再提交！')
 		  }
-	    }
-	 });
+	   }
+    });
 };
-
 //判断为添加或者编辑
+
+function windows(){
 if(localStorage.terid==0){}else{//获取详细信息并赋值
-	$.ajax({type:"GET",url:url_data+"/api/teachers/"+localStorage.terid,dataType:'json',success:res=>{
+	$.ajax({type:"GET",url:url_data+"/api/teachers/"+localStorage.terid,dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
 		                console.log(res.data,'详情数据');
 	      				if(res.code==200){//执行赋值
 						    var teacher = res.data.teacher;//教师详细信息
 							var category = res.data.category;
 							var attachment = res.data.attachment;
 							$('#name_s').val(teacher.name);
-							// $('#cs').prepend(`<option index=` + teacher.city_id + ` >` + teacher.city_name + `</option>`);
-							$('#qy').prepend(`<option index=` + teacher.region_id + ` >` + teacher.region_name + `</option>`);
-							$('#jd').prepend(`<option index=` + teacher.street_id + ` >` + teacher.street_name + `</option>`);
-							$("#cs").val(teacher.city_name);$("#qy").val(teacher.region_name);$("#jd").val(teacher.street_name);
+							
+							let id_tre = teacher.source_type_id==1?'institutions':'schools';
+							ly_fn(id_tre);
+							
+							$("#cs").val(teacher.city_name);
+							
+							cs_showImg(teacher.city_id);
+							setTimeout(()=>{
+								$("#qy").val(teacher.region_name);
+								 qy_showImg(teacher.origin_region)
+							},200)
+							setTimeout(()=>{
+								$("#jd").val(teacher.street_name);
+							},300)
 							cs_id1 = teacher.city_id;qy_id1=teacher.region_id;jd_id1=teacher.street_id; 
-							 
+							
 							$("#xue").val(teacher.edu_degree);
 							xue_li_id = teacher.edu_degree_type_id
 							
@@ -306,38 +339,66 @@ if(localStorage.terid==0){}else{//获取详细信息并赋值
 							$('#exid_s').val(teacher.idcard_number);
 							
 							ke_id_box = category;
-							let full_category = teacher.full_category.split(' ');
+							let full_category = ke_id_box;
 							console.log(full_category);
 							
-							
 							for(var i=0;i<full_category.length;i++){
-								for(var j=0;j<full_category.length;j++){
-									if($('#dabtn label a').eq(j).html()==full_category[i]){
-									      $('#dabtn label input').eq(i).prop('checked', true);
+								var labers=$('.material-design-checkobx label input');
+								var inputs = $('.material-design-checkobx label input');
+								for(var j=0,length=$('.material-design-checkobx label input').length;j<length;j++){
+									if(labers.eq(j).attr('id')==full_category[i]){
+									      inputs.eq(j).prop('checked', true);
 								    }
 								}
 							};
 							
-							url_0 = attachment[1].url?attachment[1].url:'';
-							url_1 = attachment[3].url?attachment[3].url:'';
-							url_2 = attachment[4].url?attachment[4].url:'';
-							url_3 = attachment[2].url?attachment[2].url:'';
-							url_4 = attachment[0].url?attachment[0].url:'';
 							
-			$('#url_img5').attr('src',url_0);$('#imgsa5').show();$('#zi5').hide();$('.jia5').hide();
-			$('#url_img3').attr('src',url_1);$('#imgsa3').show();$('#zi3').hide();$('.jia3').hide();
-			$('#url_img2').attr('src',url_2);$('#imgsa2').show();$('#zi2').hide();$('.jia2').hide();
-			$('#url_img4').attr('src',url_3);$('#imgsa4').show();$('#zi4').hide();$('.jia4').hide();
-			$('#url_img').attr('src',url_4);$('#imgsa').show();$('#zi').hide();$('.jia').hide();
-							
+				let ids = $('#lysa').find("option:selected").html();	
+				if(ids=='学校'){
+					for(var i=0;i<attachment.length;i++){
+							 if(attachment[i].id==6){
+								url_4 = attachment[i].url;
+								$('#url_img').attr('src',url_4);$('#imgsa').show();$('#zi').hide();$('.jia').hide();
+					     };
+							if(attachment[i].id==7){
+								url_0 = attachment[i].url
+								$('#url_img5').attr('src',url_0);$('#imgsa5').show();$('#zi5').hide();$('.jia5').hide();
+					    };	 
+							if(attachment[i].id==8){
+								url_3 = attachment[i].url
+								$('#url_img4').attr('src',url_3);$('#imgsa4').show();$('#zi4').hide();$('.jia4').hide();
+						};	 
+					}
+			   }else if(ids=='机构'){
+						 for(var i=0;i<attachment.length;i++){
+							 if(attachment[i].id==1){
+								 url_1 = attachment[i].url;
+								 $('#url_img3').attr('src',url_1);$('#imgsa3').show();$('#zi3').hide();$('.jia3').hide();
+						      };
+							 if(attachment[i].id==2){
+								 url_2 = attachment[i].url
+								 $('#url_img2').attr('src',url_2);$('#imgsa2').show();$('#zi2').hide();$('.jia2').hide();
+						     };	 
+							 if(attachment[i].id==6){
+								 url_4 = attachment[i].url
+								 $('#url_img').attr('src',url_4);$('#imgsa').show();$('#zi').hide();$('.jia').hide();
+							  };	 
+						 }
+			   };
 	      				}
 	      		  }
 	     });
 }
+};
+window.setTimeout(()=>{
+	windows();
+},500)
 /////////银行卡效验函数///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var ixel_id_id = false,shen_id_id = false;
 function ixel_id(){
-	$.ajax({type:"GET",url:url_data+"/api/cards?card="+$('#yin_kid_s').val(),dataType:'json',success:res=>{
+	$.ajax({type:"GET",url:url_data+"/api/cards?card="+$('#yin_kid_s').val(),dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
 		                console.log(res.data);
 	      				if(res.code==200){
 							ixel_id_id = true;
@@ -356,7 +417,9 @@ function ixel_id(){
 };
 /////////身份证效验/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function shen_id(){
-	$.ajax({type:"GET",url:url_data+"/api/ocridNum?idCard="+$('#exid_s').val()+'&name='+$('#name_s').val(),dataType:'json',success:res=>{
+	$.ajax({type:"GET",url:url_data+"/api/ocridNum?idCard="+$('#exid_s').val()+'&name='+$('#name_s').val(),dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
 		                console.log(res);
 	      				if(res.code==200){
 							shen_id_id = true;

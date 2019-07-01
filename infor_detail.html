@@ -240,7 +240,9 @@
 	<script src="js/vuex.js"></script>
 	<script type="text/javascript">
 		
-		$.ajax({type:"get",url:url_data+"/api/messages/"+localStorage.id,dataType: 'json',success:res=>{
+		$.ajax({type:"get",url:url_data+"/api/messages/"+localStorage.id,dataType: 'json',
+		headers:{'Authorization':'Bearer '+localStorage.token},
+		success:res=>{
 							if(res.code==200){
 								console.log(res.data);
 								$('.institution-infor').html(res.data.src_type_name+' 您好');

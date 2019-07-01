@@ -10,7 +10,9 @@ function initPagination(el, pages) {//分页初始化、、控制跳转第几页
 function dell(i){//删除函数
   var msg = "确定要删除吗？\n\n请确认！"; 
   if (confirm(msg)==true){ 
-     $.ajax({type:"delete",url: url_data+"/api/teachers/"+$(i).attr('id'),dataType: 'json',success:res=>{
+     $.ajax({type:"delete",url: url_data+"/api/teachers/"+$(i).attr('id'),dataType: 'json',
+	 headers:{'Authorization':'Bearer '+localStorage.token},
+	 success:res=>{
 				if(res.code==200){
 					console.log(res,'删除结果');
 					git_act(1);//更新教师列表
@@ -23,6 +25,7 @@ function dell(i){//删除函数
 var num = 0;
 function git_act(pages){//获取教师列表数据
   $.ajax({type:"GET",url:url_data+"/api/teachers",dataType:'json',
+    headers:{'Authorization':'Bearer '+localStorage.token},
 	 data:{
 		source_type_id:js_ly_id,
 		city_id:cs_id1,
@@ -34,10 +37,10 @@ function git_act(pages){//获取教师列表数据
 	 },success:res=>{
 	 		    console.log(res,'教师列表');
 	 			if(res.code==200){$('#tr_box').empty();
-				    $('.pageTotal').html(res.meta.current_page);
+				    $('.pageTotal').html(res.meta.last_page);
 				    $('.dataTotal').html(res.meta.to);
-				    if(num==0){initPagination("#msgPage",res.meta.current_page);num=1};
-				    if(res.meta.current_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
+				    if(num==0){initPagination("#msgPage",res.meta.last_page);num=1};
+				    if(res.meta.last_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
 					var htmls = ''
 	 				for(var i=0;i<res.data.length;i++){
 						htmls+=`<tr>
@@ -57,7 +60,9 @@ function git_act(pages){//获取教师列表数据
 						      	</td>
 						      </tr>`;
 	 				   };$('#tr_box').append(htmls);// <a id=`+res.data[i].teacher_id+` onclick='dell(this)' href="javascript:void(0)" class="assing-teacher-btn">删除</a>
-	 			 }
+	 			 }else if(res.code==403){
+				   window.location.href = '../login.html'
+			     }
 	 	   }
 	 });
  };
@@ -73,7 +78,9 @@ $('#jia_click').on('click',()=>{//添加按钮被点击
 
 //获取教师来源下拉数据
 var js_ly_id = '';//教师来源id
-$.ajax({type: "GET",url: url_data+"/api/teacherSourceTypes",dataType: 'json',success:res=>{
+$.ajax({type: "GET",url: url_data+"/api/teacherSourceTypes",dataType: 'json',
+headers:{'Authorization':'Bearer '+localStorage.token},
+success:res=>{
 		    // console.log(res.data,'教师来源');
 			if(res.code==200){
 				for(var i=0;i<res.data.length;i++){
@@ -90,6 +97,7 @@ function js_lyfn(){
 //城市筛选选初始化、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
        var cs_id1 = '',qy_id1='',jd_id1 = '';
 			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440}, 
+				headers:{'Authorization':'Bearer '+localStorage.token},
 				success: function(res){
 						if(res.code==200){$('#cs').append(`<option>选择城市</option>`);for (var i = 0; i < res.data.length; i++) {$('#cs').append(`<option index=` + res.data[i].city_id + ` >` + res.data[i].city_name + `</option>`);}}
 						cs_showImg(res.data[0].city_id,1);//获取区域数据
@@ -99,6 +107,7 @@ function js_lyfn(){
 			    var index = id?id:$("#cs").find("option:selected").attr("index");
 				if(nu==1){}else{cs_id1 = $("#cs").find("option:selected").attr("index");}
 				$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'region',id:index},
+					headers:{'Authorization':'Bearer '+localStorage.token},
 					success: function(res){
 							if(res.code==200){$('#qy').empty();$('#jd').empty();
 							      $('#qy').append(`<option>选择区域</option>`);
@@ -112,7 +121,8 @@ function js_lyfn(){
       	var index = id?id:$("#qy").find("option:selected").attr("index");
 		if(nu==1){}else{qy_id1 = $("#qy").find("option:selected").attr("index");}
       	$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'street',id:index},
-      		success: function(res){
+      		headers:{'Authorization':'Bearer '+localStorage.token},
+			success: function(res){
       				if(res.code==200){$('#jd').empty();
 					      $('#jd').append(`<option>选择街道</option>`);
       					  for (var i = 0; i < res.data.length; i++) {$('#jd').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`); };

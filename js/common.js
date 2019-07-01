@@ -24,6 +24,7 @@ $('.modal-body').prepend(`
 
 $('.modal-footer').on('click','.btn-primary',()=>{//修改按钮被点击
 	  $.ajax({type:"post",url:url_data+"/api/resetPassword",
+		headers:{'Authorization':'Bearer '+localStorage.token},
 		data:{
 			'original_password':$('.modal-body input').eq(0).val(),
 		  'password':$('.modal-body input').eq(1).val(),

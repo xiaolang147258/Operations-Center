@@ -26,21 +26,29 @@ function initPagination(el, pages) {
     }
   });
 }
+
+function sou_fn(){
+	num = 0;
+	git_act(1)
+};
+
 //获取消息列表函数
 var num = 0;
 function git_act(pages){
 	$.ajax({type:"GET",url:url_data+"/api/messages",dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
 		 data:{
 			page:pages,
 			src_type:ly_id,
-			dest_type:lx_id
+			dest_type:lx_id,
+			dest_name:$('#inp_val').val()
 		 },success:res=>{
 		 	console.log(res,'消息列表');
 			if(res.code==200){
-					    $('#tr_box').empty();$('.pageTotal').html(res.meta.current_page);
+					    $('#tr_box').empty();$('.pageTotal').html(res.meta.last_page);
 					    $('.dataTotal').html(res.meta.per_page);
 					    if(num==0){initPagination("#msgPage",res.meta.last_page);num=1};
-					    if(res.meta.current_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
+					    if(res.meta.last_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
 		 				for(var i=0;i<res.data.length;i++){
 		 					 $('#tr_box').append(`
 								     <tr class="no-reading">
@@ -54,7 +62,9 @@ function git_act(pages){
 								             <div onclick='dell(this)' id=`+res.data[i].message_id+` class="delete-btn">删除</div>
 								         </td>
 								     </tr>`);
-		 				     }
+		 				 }
+					  }else if(res.code==403){
+						  window.location.href = 'login.html'
 					  }
 		 	   }
 	    });
@@ -90,7 +100,9 @@ function chebox_all(){//全选
 function dell(i){//删除函数
 	var msg = "确定要删除吗？\n\n请确认！";
 	if (confirm(msg)==true){
-	   $.ajax({type:"delete",url:url_data+"/api/messages/"+$(i).attr('id'),dataType: 'json',success:res=>{
+	   $.ajax({type:"delete",url:url_data+"/api/messages/"+$(i).attr('id'),dataType: 'json',
+	   headers:{'Authorization':'Bearer '+localStorage.token},
+	   success:res=>{
 					if(res.code==200){
 						console.log(res,'删除结果');
 						num=0;
@@ -108,7 +120,9 @@ function che_masg(i){//查看详情
 
 //获取所有来源下拉数据
 var ly_id = '';
-$.ajax({type:"get",url:url_data+"/api/messageSourceTypes",dataType:'json',success:res=>{
+$.ajax({type:"get",url:url_data+"/api/messageSourceTypes",dataType:'json',
+headers:{'Authorization':'Bearer '+localStorage.token},
+success:res=>{
 					console.log(res,'所有来源下拉数据');
 					if(res.code==200){
 					   for(var i=0;i<res.data.length;i++){
@@ -124,7 +138,9 @@ function ly_fn(){
 };
 //获取所有类型下拉数据
 var lx_id = '';
-$.ajax({type:"get",url:url_data+"/api/auditTypes",dataType:'json',success:res=>{
+$.ajax({type:"get",url:url_data+"/api/auditTypes",dataType:'json',
+headers:{'Authorization':'Bearer '+localStorage.token},
+success:res=>{
 					console.log(res,'所有类型下拉数据');
 					if(res.code==200){
 					   for(var i=0;i<res.data.length;i++){
@@ -144,7 +160,9 @@ function all_del_du(type){
 	let val = type=='read'?'已读':'删除'
 	var msg = "确定要批量"+val+"吗？\n\n请确认！";
 	if (confirm(msg)==true){
-	  $.ajax({type:"patch",url:url_data+"/api/messages",data:{'type':type,'ids':chebox_id},dataType:'json',success:res=>{
+	  $.ajax({type:"patch",url:url_data+"/api/messages",data:{'type':type,'ids':chebox_id},dataType:'json',
+	  headers:{'Authorization':'Bearer '+localStorage.token},
+	  success:res=>{
 					if(res.code==200){
 						   alert('操作成功！');
 						   num=0;git_act(1);
@@ -154,14 +172,6 @@ function all_del_du(type){
 	  });
 	}else{return false;}
 }
-
-
-
-
-
-
-
-
 
 
 git_act(1);

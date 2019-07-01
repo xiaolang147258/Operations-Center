@@ -36,7 +36,15 @@
     <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/prince-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/prince-180x180.png">
     <!-- End favicon ico -->
-
+    <style type="text/css">
+    	#handle-message input{
+			width: 20px;
+			height: 20px;
+		}
+		.cqj{
+			width: 155px;
+		}
+    </style>
 </head>
 
 <body class="nav-small">
@@ -170,51 +178,46 @@
                 </div>
 
                 <div class="contain-section">
-                    <div class="contain-inner-section">
+                    <!-- <div class="contain-inner-section"> -->
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="section-body">
+                                <div class="section-body" style="background:white;">
                                     <div class="background-tab">
                                         <ul class="nav nav-tabs">
                                             <li role="presentation" class="active message-tab"><a href="#check-message"
-                                                    data-toggle="tab">待处理消息 (4)</a></li>
+                                                    data-toggle="tab">待处理消息 </a></li>
                                             <li role="presentation" class="list-tab"><a href="#check-list"
-                                                    data-toggle="tab">待审核列表 (3)</a></li>
+                                                    data-toggle="tab">待审核列表 </a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div id="check-message" class="tab-pane fade in active">
                                                 <div class="mseeage-choose clearfix">
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                                                        <select class="form-control">
+                                                        <select  id="syly" onchange="ly_fn()" class="form-control">
                                                             <option>所有来源</option>
-                                                            <option>系统</option>
-                                                            <option>机构</option>
-                                                            <option>学校</option>
-                                                            <option>平台</option>
+                                                            
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                                                        <select class="form-control">
+                                                        <select id="sylx" onchange="lx_fn()" class="form-control">
                                                             <option>所有类型</option>
-                                                            <option>教师审核</option>
-                                                            <option>机构资质</option>
-                                                            <option>系统通知</option>
+                                                            
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
                                                         <div class="form-group">
-                                                            <input class="form-control" value="" placeholder="请输入关键字">
+                                                            <input id="inp_val" class="form-control" value="" placeholder="请输入关键字">
                                                         </div>
                                                     </div>
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                                                        <button type="button"
+                                                        <button type="button" onclick="sou_fn()"
                                                             class="btn btn-primary btn-outline float-button-light waves-effect waves-button waves-float waves-light">搜索</button>
                                                     </div>
                                                 </div>
                                                 <table id="handle-message" class="display datatable-default">
                                                     <thead>
                                                         <tr>
-                                                            <th><input id="msgCheckAll" class="checkAll" type="checkbox"
+                                                            <th><input onclick="chebox_all()" id="msgCheckAll" class="checkAll" type="checkbox"
                                                                     value=""><label for="msgCheckAll">全选</label></th>
                                                             <th>时间</th>
                                                             <th>来源</th>
@@ -223,37 +226,14 @@
                                                             <th>操作</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>2019/04/30 10:25</td>
-                                                            <td>系统</td>
-                                                            <td>有学生没有请假，但是考勤成功</td>
-                                                            <td>教师审核</td>
-                                                            <td class="operation-wrap">
-                                                                <div class="detail-btn"><a
-                                                                        href="infor_detail.html">消息详情</a></div>
-                                                                <div class="delete-btn">删除</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>2019/04/29 9:25</td>
-                                                            <td>机构</td>
-                                                            <td>有学生没有请假，但是考勤成功</td>
-                                                            <td>机构资质</td>
-                                                            <td class="operation-wrap">
-                                                                <div class="detail-btn"><a
-                                                                        href="infor_detail.html">消息详情</a></div>
-                                                                <div class="delete-btn">删除</div>
-                                                            </td>
-                                                        </tr>
+                                                    <tbody id="xiao_tr_box">
+                                                       
                                                     </tbody>
                                                 </table>
                                                 <div class="select-btns">
-                                                    <button type="button"
+                                                    <button type="button" onclick="all_del_du('delete')"
                                                         class="btn btn-primary float-button-light">批量删除</button>
-                                                    <button type="button"
+                                                    <button type="button" onclick="all_del_du('read')"
                                                         class="btn btn-primary float-button-light">批量已读</button>
                                                 </div>
                                                 <div class="pagination-wrap">
@@ -266,85 +246,103 @@
                                                         </ul>
                                                         <div class="pageJump">
                                                             <span>跳转到</span>
-                                                            <input type="text" />
+                                                            <input id="page_inp" type="text" />
                                                             <span>页</span>
-                                                            <button type="button" class="button">确定</button>
+                                                            <button onclick="initPag()" type="button" class="button">确定</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+											
+					<!-- 审核------------------------------------------------------------------------------------ -->		
+											
+											
                                             <div id="check-list" class="tab-pane fade">
                                                 <div class="check-choose clearfix">
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                                                        <select class="form-control">
-                                                            <option>所有类型</option>
-                                                            <option>课表审核</option>
-                                                            <option>师资审核</option>
-                                                            <option>病假申请</option>
+                                                        <select  id="sh_lei" onclick="xuan_fn()" class="form-control">
+                                                            
+                                                           
                                                         </select>
                                                     </div>
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                                                        <select class="form-control">
-                                                            <option>审核状态</option>
-                                                            <option>待审核</option>
-                                                            <option>审核成功</option>
-                                                            <option>审核失败</option>
+                                                        <select id="sh_zt" onclick="xuan_fn()" class="form-control">
+                                                            
+                                                           
                                                         </select>
                                                     </div>
+													
+													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
+													  <select id="cs" onchange="cs_showImg()" class="form-control">
+													    <!-- <option></option> -->
+													    
+													  </select>
+													</div>
+													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
+													  <select id="qy" onchange="qy_showImg()" class="form-control">
+													    
+													  </select>
+													</div>
+													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
+													  <select id="jd" onchange="jd_showImg()" class="form-control">
+													    
+													  </select>
+													</div>
+													
+													
                                                     <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
                                                         <div class="form-group">
-                                                            <input class="form-control" value="" placeholder="请输入关键字">
+                                                            <input id="inp_val2" class="form-control" value="" placeholder="请输入关键字">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                                                        <button type="button"
+                                                    <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3" style="width: 100px;">
+                                                        <button type="button" onclick="xuan_fn()"
                                                             class="btn btn-primary btn-outline float-button-light waves-effect waves-button waves-float waves-light">搜索</button>
                                                     </div>
                                                 </div>
-                                                <table id="handle-list" class="display datatable-default">
+												
+												
+													<table class="table table-striped">
+												           <thead>
+												            <tr>
+												             <th>提交日期时间</th>
+												           	<th>城市</th>
+												           	<th>区域</th>
+												           	<th>街道</th>
+												             <th>类型</th>
+												             <th>状态</th>
+												             <th>操作</th>
+												           </tr>
+												           </thead>
+												           <tbody id="sh_tr_box">
+												           
+												           </tbody>
+												       </table>
+												
+                                               <!-- <table id="handle-list" class="display datatable-default">
                                                     <thead>
                                                         <tr>
-                                                            <th><input id="listCheckAll" class="checkAll"
-                                                                    type="checkbox" value=""><label
-                                                                    for="listCheckAll">全选</label></th>
-                                                            <th>时间</th>
-                                                            <th>来源</th>
+                                                            <th>提交时间日期</th>
+                                                            <th>城市</th>
+															<th>区域</th>
+															<th>街道</th>
+															<th>类型</th>
                                                             <th>状态</th>
                                                             <th>操作</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>2019/04/30 10:25</td>
-                                                            <td>新东方</td>
-                                                            <td>待审核</td>
-                                                            <td class="operation-wrap">
-                                                                <div class="detail-btn"><a
-                                                                        href="check_detail.html">审核</a></div>
-                                                                <div class="delete-btn">删除</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td>
-                                                            <td>2019/04/29 9:25</td>
-                                                            <td>李阳疯狂英语</td>
-                                                            <td>审核通过</td>
-                                                            <td class="operation-wrap">
-                                                                <div class="detail-btn"><a
-                                                                        href="check_detail.html">审核</a></div>
-                                                                <div class="delete-btn">删除</div>
-                                                            </td>
-                                                        </tr>
+                                                    <tbody id="sh_tr_box">
+                                                             
                                                     </tbody>
-                                                </table>
-                                                <div class="select-btns">
+                                                </table> -->
+												
+                                                <!-- <div class="select-btns">
                                                     <button type="button"
                                                         class="btn btn-primary float-button-light">批量删除</button>
                                                     <button type="button"
                                                         class="btn btn-primary float-button-light">批量已读</button>
-                                                </div>
-                                                <div class="pagination-wrap">
+                                                </div> -->
+                                                <div class="pagination-wrap" style="margin-top: 15px;">
                                                     <div class="pagination-left">
                                                         共<span class="pageTotal">10</span>页/<span
                                                             class="dataTotal">100</span>条数据
@@ -354,9 +352,9 @@
                                                         </ul>
                                                         <div class="pageJump">
                                                             <span>跳转到</span>
-                                                            <input type="text" />
+                                                            <input id="page_inp2" type="text" />
                                                             <span>页</span>
-                                                            <button type="button" class="button">确定</button>
+                                                            <button onclick="initPag2()" type="button" class="button">确定</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -366,7 +364,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
 
                 <div class="modal fade" id="primary-modal">
@@ -422,7 +420,9 @@
     <script src="assets/global/plugins/datatables/media/js/dataTables.bootstrap.min.js"></script>
     <script src="js/pagination.js"></script>
     <!-- End page plugin js -->
-
+     <script src="js/vuex.js" type="text/javascript"></script>
+     	
+     
     <!-- Start page js -->
     <!-- <script src="assets/global/js/dashboard_v1.min.js"></script> -->
     <!-- End page js -->

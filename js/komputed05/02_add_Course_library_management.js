@@ -3,6 +3,7 @@
 //城市初始化//获取城市数据
 	var cs_id1 = '',qy_id1='',jd_id1 = '';
 			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440}, 
+			    headers:{'Authorization':'Bearer '+localStorage.token},
 				success: function(res){
 						if(res.code==200){for (var i = 0; i < res.data.length; i++) {$('#cs').append(`<option index=` + res.data[i].city_id + ` >` + res.data[i].city_name + `</option>`);}}
 						cs_id1 = res.data[0].city_id;cs_showImg(res.data[0].city_id);//获取区域数据
@@ -11,6 +12,7 @@
 	   function cs_showImg(id){ //城市的option被点击//获取区域数据
 			    var index = id?id:$("#cs").find("option:selected").attr("index");
 				$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'region',id:index},
+				    headers:{'Authorization':'Bearer '+localStorage.token},
 					success: function(res){
 							if(res.code==200){$('#qy').empty();$('#jd').empty();
 								  for (var i = 0; i < res.data.length; i++) {$('#qy').append(`<option index=` + res.data[i].region_id + ` >` + res.data[i].region_name + `</option>`);}
@@ -22,6 +24,7 @@
       function qy_showImg(id){ //区域的option被点击//获取城市数据
       	var index = id?id:$("#qy").find("option:selected").attr("index");
       	$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'street',id:index},
+		    headers:{'Authorization':'Bearer '+localStorage.token},
       		success: function(res){
       				if(res.code==200){$('#jd').empty();
       					  for (var i = 0; i < res.data.length; i++) {$('#jd').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`); };
@@ -34,7 +37,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //获取课程特色标签
-$.ajax({type: "GET",url: url_data+"/api/tags",dataType: 'json',success:res=>{
+$.ajax({type: "GET",url: url_data+"/api/tags",dataType: 'json',
+headers:{'Authorization':'Bearer '+localStorage.token},
+success:res=>{
 		    console.log(res.data,'课程特色');
 			if(res.code==200){
 				for(var i=0;i<res.data.length;i++){
@@ -75,7 +80,9 @@ var url1='',url2='',url3='';//存储上传之后的图片url地址
 $('#chooseImage').on('change',function(){//第1张封面图上传图片
     $('.gif_img').eq(0).show();
     var formData = new FormData();var filesa = $("#chooseImage")[0].files[0];formData.append("images",filesa);
-    $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+    $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
     		    console.log(res,'上传图片');
     			if(res.code==200){
 					$('.gif_img').eq(0).hide();url1 = res.data.image;
@@ -98,7 +105,9 @@ $('#chooseImage').on('change',function(){//第1张封面图上传图片
 //、、、、、、、、、、、、、、、、,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 $('#chooseImage2').on('change',function(){//第2张封面图上传图片
       $('.gif_img').eq(1).show();var formData = new FormData();var filesa = $("#chooseImage2")[0].files[0];formData.append("images",filesa);
-      $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+      $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,
+	  headers:{'Authorization':'Bearer '+localStorage.token},
+	  success:res=>{
       	console.log(res,'上传图片');if(res.code==200){
             $('.gif_img').eq(1).hide();url2 = res.data.image;
 		    var reader = new FileReader();//这是核心,读取操作就是由它完成.
@@ -116,7 +125,9 @@ $('#chooseImage2').on('change',function(){//第2张封面图上传图片
 //、、、、、、、、、、、、、、、、
 $('#chooseImage3').on('change',function(){//第3张封面图上传图片
   $('.gif_img').eq(2).show();var formData = new FormData();var filesa = $("#chooseImage3")[0].files[0];formData.append("images",filesa);
-  $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+  $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,
+  headers:{'Authorization':'Bearer '+localStorage.token},
+  success:res=>{
   	   console.log(res,'上传图片');if(res.code==200){
   		 $('.gif_img').eq(2).hide();url3 = res.data.image;   
 		 var reader = new FileReader();//这是核心,读取操作就是由它完成.
@@ -136,7 +147,9 @@ $('#chooseImage3').on('change',function(){//第3张封面图上传图片
 var ly_id = '';
 function ly_fn(){
 	var url = $('#lysa').find("option:selected").html()=='机构'?'institutions':'schools';
-	$.ajax({type:"GET",url:url_data+"/api/"+url,dataType:'json',success:res=>{
+	$.ajax({type:"GET",url:url_data+"/api/"+url,dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
 		  // console.log(res)
 	      				if(res.code==200){
 							ly_id = res.data
@@ -150,7 +163,9 @@ function ly_fn(){
 };ly_fn();
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //获取课程门类下拉数据
-$.ajax({type:"GET",url:url_data+"/api/courseCategories",dataType:'json',success:res=>{
+$.ajax({type:"GET",url:url_data+"/api/courseCategories",dataType:'json',
+headers:{'Authorization':'Bearer '+localStorage.token},
+success:res=>{
 		  // console.log(res.data)
 	      				if(res.code==200){
 							   var htmls = '';
@@ -169,7 +184,9 @@ var htmls = '';
 //上传 excel文件
 function git_excel(files){
 	var formData = new FormData();formData.append("excel",files); 
-	 $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,success:res=>{
+	 $.ajax({ type:"post",url:url_data+"/api/uploads",data:formData,processData:false,contentType:false,
+	 headers:{'Authorization':'Bearer '+localStorage.token},
+	 success:res=>{
 		   // console.log(res,'上传文件');
 		   if(res.code==200){
 			      excel_url =  res.data.excel; 
@@ -276,6 +293,7 @@ function git_act(){
 	 type:"post",
 	 url:url_data+"/api/courses",
 	 data:postData,
+	 headers:{'Authorization':'Bearer '+localStorage.token},
 	 dataType:'json',success:res=>{
 		       console.log(res)
 			   if(res.code==200){

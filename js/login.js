@@ -14,7 +14,9 @@ $(function() {
   })
 	
 	//退出登录
-  $.ajax({type:"post",url:url_data+"/api/logout",dataType:'json',success:res=>{
+  $.ajax({type:"post",url:url_data+"/api/logout",dataType:'json',
+	headers:{'Authorization':'Bearer '+localStorage.token},
+	success:res=>{
   		  console.log(res,'退出登录');
   			if(res.code==200){
   				 localStorage.token = '';
@@ -25,14 +27,23 @@ $(function() {
   	 },error:(XMLHttpRequest,textStatus,errorThrown)=>{console.log(errorThrown);alert('网络错误');}
   });
 	
+	$(document).keyup(function(event){
+  if(event.keyCode ==13){
+       act_login();
+  }
+});
 	
   //用户登录
   $('.el-button--primary').click(function() {//执行登录事件
-    var account = $('.account-wrap input').val(),
-        password = $('.password-wrap input').val();
-    if(!account) {$('.account-errow').css({display: 'block'})}
-    if(!password) {$('.password-errow').css({display: 'block'})}
-      
+       act_login();
+  });
+  
+	function act_login(){
+		var account = $('.account-wrap input').val(),
+		    password = $('.password-wrap input').val();
+		if(!account) {$('.account-errow').css({display: 'block'})}
+		if(!password) {$('.password-errow').css({display: 'block'})}
+		  
 		if(account!=''&&password!=''){
 			if(account.length==11){
 				$.ajax({type:"post",url:url_data+"/api/login",data:{'phone':account,'password':password},dataType:'json',success:res=>{
@@ -48,8 +59,9 @@ $(function() {
 			}); 
 			}else{alert('账号必须输入11位数')};
 		}else{ alert('账号或密码不能为空')}
-  });
-
+	};
+	
+	
   //清空账号的同时，清空密码
   $(".account-wrap input").bind('input propertychange',function(){
     var account = $('.account-wrap input').val();

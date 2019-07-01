@@ -187,20 +187,16 @@
                       <div id="check-message" class="tab-pane fade in active">
                         <div class="mseeage-choose clearfix">
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-														
-                            <select id="sh_lei" onchange="git_act(1)" class="form-control">
+                            <select id="sh_lei" onchange="xuan_fn()" class="form-control">
                               
                             </select>
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                            <select id="sh_zt"  onchange="git_act(1)" class="form-control">
+                            <select id="sh_zt"  onchange="xuan_fn()" class="form-control">
                               
                             </select>
                           </div>
                           
-													
-													
-													
 													<div class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3 cqj">
 													  <select id="cs" onchange="cs_showImg()" class="form-control">
 													    <!-- <option></option> -->
@@ -225,27 +221,29 @@
                             </div>
                           </div>
                           <div style="width: 100px;" class="form-group col-lg-2 col-md-2 col-sm-2 col-xs-3">
-                            <button onclick="git_act(1)" type="button"
+                            <button onclick="xuan_fn()" type="button"
                               class="btn btn-primary btn-outline float-button-light waves-effect waves-button waves-float waves-light">搜索</button>
                           </div>
                         </div>
-                        <table id="handle-message" class="display datatable-default">
-                          <thead>
-                            <tr>
-                              <th>提交日期时间</th>
-															<th>城市</th>
-															<th>区域</th>
-															<th>街道</th>
-                              <th>类型</th>
-                              
-                              <th>状态</th>
-                              <th>操作</th>
-                            </tr>
-                          </thead>
-                          <tbody id="tr_box">
-                            
-                          </tbody>
-                        </table>
+												
+												
+												 <table class="table table-striped">
+                                    <thead>
+                                     <tr>
+                                      <th>提交日期时间</th>
+                                    	<th>城市</th>
+                                    	<th>区域</th>
+                                    	<th>街道</th>
+                                      <th>类型</th>
+                                      <th>状态</th>
+                                      <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tr_box">
+                                    
+                                    </tbody>
+                                </table>
+												
                         <div class="pagination-wrap">
                           <div class="pagination-left">
                             共<span class="pageTotal">10</span>页/<span class="dataTotal">100</span>条数据

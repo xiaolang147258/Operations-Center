@@ -438,6 +438,7 @@
 	    	url:url_data+"/api/institutions/"+$(i).attr('index_id'),
 	    	dataType: 'json',
 	    	data: {},
+			headers:{'Authorization':'Bearer '+localStorage.token},
 	    	success: function(res){
 	    		  console.log(res.data)
 	    			if(res.code==200){//进行填充内容
@@ -480,6 +481,7 @@
 		    	type:"delete",
 		    	url:url_data+"/api/institutions/"+$(i).attr('index_id'),
 		    	dataType: 'json',
+				headers:{'Authorization':'Bearer '+localStorage.token},
 		    	data: {}, //也可以是字符串链接"id=1001"，建议用对象
 		    	success: function(res){
 		    		  console.log(res)
@@ -514,6 +516,7 @@
 		  	type: "GET",
 		  	url: url_data+"/api/institutions",
 		  	dataType: 'json',
+			headers:{'Authorization':'Bearer '+localStorage.token},
 		  	data: {
 		  		active:$('#tai').val(),
 					city_id:cs_id1,
@@ -525,10 +528,10 @@
 		  	success: function(res){
 		  		  console.log(res,'机构列表数据')
 		  			if(res.code==200){
-							  $('.pageTotal').html(res.meta.current_page);
+							  $('.pageTotal').html(res.meta.last_page);
 							  $('.dataTotal').html(res.meta.to);
-								if(num==0){initPagination("#msgPage",res.meta.current_page);num=1};
-								if(res.meta.current_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
+								if(num==0){initPagination("#msgPage",res.meta.last_page);num=1};
+								if(res.meta.last_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
 								
 							  $('#tr_box').empty();
 		  				  for(var i=0;i<res.data.length;i++){
@@ -550,7 +553,9 @@
 									      	</td>
 									      </tr>`);
 								}
-		  			}
+		  			}else if(res.code==403){
+						 window.location.href = '../login.html'
+					}
 		  	 }
 		  });
 	};
@@ -561,6 +566,7 @@
 		  	type:type_s,
 		  	url: url_data+"/api/institutions"+ider,
 		  	dataType: 'json',
+			headers:{'Authorization':'Bearer '+localStorage.token},
 		  	data: {
 		  		name:$('#inp_name').val(),
 					city_id:cs_id,
@@ -609,6 +615,7 @@
 				type: "GET",
 				url: url_data+"/api/regions",
 				dataType: 'json',
+				headers:{'Authorization':'Bearer '+localStorage.token},
 				data: {
 					type:'city',
 					id:440
@@ -637,6 +644,7 @@
 					type: "GET",
 					url: url_data+"/api/regions",
 					dataType: 'json',
+					headers:{'Authorization':'Bearer '+localStorage.token},
 					data: {
 						type:'region',
 						id:index
@@ -668,6 +676,7 @@
       		type: "GET",
       		url: url_data+"/api/regions",
       		dataType: 'json',
+			headers:{'Authorization':'Bearer '+localStorage.token},
       		data: {
       			type:'street',
       			id:index
@@ -706,6 +715,7 @@
       	type: "GET",
       	url: url_data+"/api/regions",
       	dataType: 'json',
+		headers:{'Authorization':'Bearer '+localStorage.token},
       	data: {
       		type:'city',
       		id:440
@@ -736,6 +746,7 @@
       		type: "GET",
       		url: url_data+"/api/regions",
       		dataType: 'json',
+			headers:{'Authorization':'Bearer '+localStorage.token},
       		data: {
       			type:'region',
       			id:index
@@ -765,6 +776,7 @@
       		type: "GET",
       		url: url_data+"/api/regions",
       		dataType: 'json',
+			headers:{'Authorization':'Bearer '+localStorage.token},
       		data: {
       			type:'street',
       			id:index
@@ -776,7 +788,7 @@
       					  for (var i = 0; i < res.data.length; i++) {
       					  	$('#jd2').append(`<option index=` + res.data[i].street_id + ` >` + res.data[i].street_name + `</option>`);
       					  }
-									jd_id = res.data[0].street_id
+							jd_id = res.data[0].street_id
       				}
       		 }
       	});
