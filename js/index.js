@@ -33,10 +33,15 @@ $(function (){
 
   //tab切换
   $('.background-tab .message-tab').click(function (){
-    $('.breadcrumb li.active').html("待处理消息")
+    $('.breadcrumb li.active').html("待处理消息");
+		num = 0;
+		git_act(1);
   })
   $('.background-tab .list-tab').click(function (){
-    $('.breadcrumb li.active').html("待审核列表")
+    $('.breadcrumb li.active').html("待审核列表");
+		 num=0;
+		 csfn();
+		// git_act2(1);
   })
   //模态框垂直居中
   function centerModals(){ 
@@ -134,7 +139,7 @@ var ly_id = '';
 $.ajax({type:"get",url:url_data+"/api/messageSourceTypes",dataType:'json',
 headers:{'Authorization':'Bearer '+localStorage.token},
 success:res=>{
-					console.log(res,'所有来源下拉数据');
+					// console.log(res,'所有来源下拉数据');
 					if(res.code==200){
 					   for(var i=0;i<res.data.length;i++){
 						   $('#syly').append(`<option index-id=`+res.data[i].id+`>`+res.data[i].name+`</option>`)
@@ -152,7 +157,7 @@ var lx_id = '';
 $.ajax({type:"get",url:url_data+"/api/auditTypes",dataType:'json',
 headers:{'Authorization':'Bearer '+localStorage.token},
 success:res=>{
-					console.log(res,'所有类型下拉数据');
+					// console.log(res,'所有类型下拉数据');
 					if(res.code==200){
 					   for(var i=0;i<res.data.length;i++){
 						   $('#sylx').append(`<option index-id=`+res.data[i].id+`>`+res.data[i].name+`</option>`)
@@ -189,28 +194,32 @@ function git_act(pages){
 			page:pages,
 			src_type:ly_id,
 			dest_type:lx_id,
-			dest_name:$('#inp_val').val()
+			dest_name:$('#inp_val').val(),
+			is_read:0,
+			dest_type:3
 		 },success:res=>{
 		 	console.log(res,'消息列表');
 			if(res.code==200){
 					    $('#xiao_tr_box').empty();$('.pageTotal').html(res.meta.last_page);
-					    $('.dataTotal').html(res.meta.per_page);
+					    $('.dataTotal').html(res.meta.to);
 					    if(num==0){initPagination("#msgPage",res.meta.last_page);num=1};
 					    if(res.meta.last_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
-		 				for(var i=0;i<res.data.length;i++){
-		 					 $('#xiao_tr_box').append(`
+		 				  var htmls = '';
+						for(var i=0;i<res.data.length;i++){
+								    htmls+=`
 								     <tr class="no-reading">
 								         <td><input id=`+res.data[i].message_id+` class='boxa' onclick='chebox_c(this)' class='msgCheck' type="checkbox"></td>
 								         <td>`+res.data[i].updated_at+`</td>
-								         <td>`+res.data[i].src_name+`</td>
+								         <td>`+res.data[i].dest_type_name+`</td>
 								         <td>`+res.data[i].message+`</td>
-								         <td>`+res.data[i].dest_name+`</td>
+								         <td>`+res.data[i].src_type_name+`</td>
 								         <td class="operation-wrap">
 								             <div onclick='che_masg(this)' id=`+res.data[i].message_id+` class="detail-btn">查看详情</div>
 								             <div onclick='dell(this)' id=`+res.data[i].message_id+` class="delete-btn">删除</div>
 								         </td>
-								     </tr>`);
-		 				 }
+								     </tr>`;
+		 				 };
+						 $('#xiao_tr_box').append(htmls);
 					  }else if(res.code==403){
 						  window.location.href = 'login.html'
 					  }
@@ -323,7 +332,8 @@ success:res=>{
 });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //获取城市区域街道
- var cs_id1 = '',qy_id1='',jd_id1 = '';
+var cs_id1 = '',qy_id1='',jd_id1 = '';
+function csfn(){
 			$.ajax({type: "GET",url: url_data+"/api/regions",dataType: 'json',data: {type:'city',id:440}, 
 			headers:{'Authorization':'Bearer '+localStorage.token},
 				success: function(res){
@@ -331,6 +341,8 @@ success:res=>{
 						cs_showImg(res.data[0].city_id,1);//获取区域数据
 				 }
 			});
+    };
+ 
 	   function cs_showImg(id,nu){ //城市的option被点击//获取区域数据
 			    var index = id?id:$("#cs").find("option:selected").attr("index");
 				if(nu==1){}else{cs_id1 = $("#cs").find("option:selected").attr("index");}

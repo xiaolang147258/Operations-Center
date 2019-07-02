@@ -41,12 +41,14 @@ function git_act(pages){
 			page:pages,
 			src_type:ly_id,
 			dest_type:lx_id,
-			dest_name:$('#inp_val').val()
+			dest_name:$('#inp_val').val(),
+			is_read:0,
+			dest_type:3
 		 },success:res=>{
 		 	console.log(res,'消息列表');
 			if(res.code==200){
 					    $('#tr_box').empty();$('.pageTotal').html(res.meta.last_page);
-					    $('.dataTotal').html(res.meta.per_page);
+					    $('.dataTotal').html(res.meta.to);
 					    if(num==0){initPagination("#msgPage",res.meta.last_page);num=1};
 					    if(res.meta.last_page==1){$('.pageJump').hide()}else{$('.pageJump').show()};//如果总页数为1就隐藏分页按钮
 		 				for(var i=0;i<res.data.length;i++){
