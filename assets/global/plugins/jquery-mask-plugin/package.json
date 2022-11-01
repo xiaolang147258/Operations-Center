@@ -21,9 +21,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "~1.5.3",
     "grunt-contrib-connect": "*",
-    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-jshint": "^3.2.0",
     "grunt-contrib-qunit": "*",
     "grunt-contrib-uglify": "*",
     "jshint-stylish": "^1.0.0",
